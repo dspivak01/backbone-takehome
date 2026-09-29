@@ -211,6 +211,7 @@ public static partial class Wording
     {
         "encounter_id" => "Linked by the encounter identifier",
         "date_and_category" => "Linked by service date and service type, because it carried no encounter identifier",
+        "every_session_in_document" => "Applied to every group session its document describes, because it named no session and no date",
         _ => Sentence(Plain(method)),
     };
 

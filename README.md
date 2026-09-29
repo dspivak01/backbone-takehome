@@ -208,7 +208,7 @@ replayed them without calling a model.
 
 | Other checks | Result |
 |---|---|
-| Automated tests | 120 pass |
+| Automated tests | 124 pass |
 | Three fictional patients I wrote, with other layouts, a plan change, and an unresolved week | 23 of 23 and 16 of 16 against their references. The third was checked by hand |
 | Every document ingested twice | Each registered once. No result changed |
 | Assertions processed in three different orders | Identical abstraction |

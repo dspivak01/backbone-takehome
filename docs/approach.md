@@ -96,6 +96,7 @@ The model states the record type and whether it is signed. Code derives the tier
 | One document says both "present" and "not present", and gives the patient's times | Present for part. Without times it is a contradiction and stays unresolved |
 | Arrival or departure falls outside the session | Roster times are limited to the session. A clinician's stated contact interval never is |
 | A group has no break recorded | No break is assumed. The minutes are flagged as an upper bound |
+| A break is stated once for every session of a group, naming no session and no date | Taken off each group session that the same document describes and that the break falls inside. Each session says that this was done |
 | Scheduling calls, outreach and notices | Never a clinical service, whatever a plan says |
 | A document mentions planned services without a threshold | Not a version of the plan |
 

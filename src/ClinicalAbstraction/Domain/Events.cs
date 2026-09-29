@@ -78,7 +78,10 @@ public sealed class AssertionLink
     public bool IsCopy { get; set; }
     public string? StatementTime { get; set; }
 
-    /// <summary>encounter_id, or date_and_category when the assertion carried no identifier.</summary>
+    /// <summary>
+    /// encounter_id; date_and_category when the assertion carried no identifier; or
+    /// every_session_in_document for a break that named no session and no date.
+    /// </summary>
     public string LinkMethod { get; set; } = "encounter_id";
 }
 

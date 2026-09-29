@@ -120,7 +120,7 @@ gap log.
 | `ca export` | Writes the abstraction to `abstraction/export/` as JSON and readable text |
 | `ca benchmark documents` | Writes `output/benchmarks.md` |
 | `ca evaluate --reference tests/reference/supplied-record.json` | Scores the abstraction against expected results. `--save <file>` keeps the report |
-| `dotnet test` | Runs the 120 tests |
+| `dotnet test` | Runs the 124 tests |
 
 ## Options
 

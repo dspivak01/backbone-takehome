@@ -217,3 +217,55 @@ Two things I saw while doing it:
 ### Limits
 
 Three documents and one question. The full build of 31 documents was not repeated on this path.
+
+## 8. A rule added after testing with further documents
+
+After the experiments above, I added 50 more fictional documents through the review page: new
+documents for the four patients already in the collection, and five new patients. I had worked
+out the right answer for each by hand first.
+
+Most behaved as expected, including a correction, a disagreement settled by a desk log, a plan
+change with an extended episode, weeks counted Sunday to Saturday, and a roster naming two
+patients. One did not.
+
+### What went wrong
+
+A group attendance sheet said, once, that every meeting has a break from 13:40 to 13:55. The
+patient attended two meetings, booked 13:00 to 14:30.
+
+| | Minutes for each meeting |
+|---|---|
+| Right answer | 75 |
+| System | 90 |
+
+| Step | What happened |
+|---|---|
+| Extraction | Correct. The break was recorded with its times |
+| Linking | The break named no session and no date, so it was left out |
+| Reporting | The patient's page listed it as left out of the counts. Each meeting also said that no break was documented, which was untrue |
+
+The same kind of sheet for another patient came out right, because the model recorded the break
+once for each meeting. When I ran the same files a second time, it recorded the break once for
+both patients, and both were wrong. The outcome depended on the run.
+
+### What I changed
+
+A break that names no session and no date is now taken off every group session that the same
+document describes and that the break falls inside. The rule is in code, so it gives the same
+result whichever way the model records the break.
+
+| Check | Result |
+|---|---|
+| The patient above | 125, 50 and 120 minutes by week, as worked by hand. Before: 140, 50, 135 |
+| The eight other patients in that collection | Unchanged |
+| The submitted abstraction, rebuilt with the rule | Unchanged. The same version, `8d999c6cbe5f02b7`, and 36 of 36 |
+| Tests added | Four, in `ReconciliationTests.cs` |
+
+### Limits
+
+- The rule covers breaks only. A lost connection stated the same way is not covered.
+- A break stated once in a document that describes both morning and afternoon groups is applied
+  only to the sessions it falls inside.
+- I found this by writing documents that state a break differently from the supplied ones. Other
+  ways of stating one may exist that I did not think of.
+- These 50 documents are not in the repository.

@@ -68,6 +68,8 @@ public sealed class Reconciler
     /// Groups assertions about service contacts into encounters. The encounter identifier is used when
     /// present. Without one, an assertion joins the single encounter that matches its date and service
     /// category, or starts an encounter of its own. An assertion that fits several is left unlinked.
+    /// A break that names no session and no date is a statement about every group session its
+    /// document describes, and joins each of them.
     /// </summary>
     private static Dictionary<string, List<Member>> Link(List<Assertion> assertions, List<UnlinkedAssertion> unlinked)
     {
@@ -85,6 +87,7 @@ public sealed class Reconciler
             g => g.Key,
             g => (Date: MostCommon(g.Value.Select(m => m.Assertion.ServiceDate)), Category: MostCommon(g.Value.Select(m => m.Assertion.Fields.ServiceCategory))));
 
+        var undatedBreaks = new List<Assertion>();
         foreach (var a in related.Where(a => a.EncounterId is null))
         {
             // When the statement carries no category, take it from the same document's description of that date.
@@ -94,7 +97,9 @@ public sealed class Reconciler
 
             if (a.ServiceDate is null)
             {
-                unlinked.Add(Unlinked(a, "no encounter identifier and no service date"));
+                // A break is looked at again below, once every encounter has been formed.
+                if (IsBreakForEverySession(a)) undatedBreaks.Add(a);
+                else unlinked.Add(Unlinked(a, "no encounter identifier and no service date"));
                 continue;
             }
 
@@ -123,7 +128,53 @@ public sealed class Reconciler
             }
         }
 
+        // "Every meeting has a break from 13:40 to 13:55" names no session. It applies to each group
+        // session that the same document describes and that the break falls inside.
+        foreach (var a in undatedBreaks)
+        {
+            var sessions = groups.Where(g => DescribedBy(g.Value, a) && Contains(g.Value, a)).Select(g => g.Key).ToList();
+            if (sessions.Count == 0)
+            {
+                unlinked.Add(Unlinked(a, "no encounter identifier and no service date, and its document describes no group session that it falls inside"));
+                continue;
+            }
+            foreach (var key in sessions) groups[key].Add(new Member(a, EverySession));
+        }
+
         return groups;
+    }
+
+    private const string EverySession = "every_session_in_document";
+
+    private static bool IsBreakForEverySession(Assertion a) =>
+        a.Kind == "excluded_interval" && Spans(a).Count > 0;
+
+    private static List<Span> Spans(Assertion a) =>
+        (a.Fields.Intervals ?? [])
+            .Select(i => (Start: Parse.ClockMinutes(i.Start), End: Parse.ClockMinutes(i.End)))
+            .Where(i => i.Start is not null && i.End is not null && i.End > i.Start)
+            .Select(i => new Span(i.Start!.Value, i.End!.Value))
+            .ToList();
+
+    /// <summary>Whether the break's own document describes this encounter as a group session.</summary>
+    private static bool DescribedBy(List<Member> members, Assertion a) =>
+        members.Any(m => m.Assertion.DocHash == a.DocHash && m.LinkMethod != EverySession)
+        && MostCommon(members.Select(m => m.Assertion.Fields.ServiceCategory)) == "group_therapy";
+
+    /// <summary>
+    /// Whether every part of the break falls inside the session, going by the times the break's own
+    /// document gives for it. A session with no times in that document is taken to contain it.
+    /// </summary>
+    private static bool Contains(List<Member> members, Assertion a)
+    {
+        var times = members.Select(m => m.Assertion).Where(o => o.DocHash == a.DocHash)
+            .SelectMany(o => new[] { (o.Fields.SessionStart, o.Fields.SessionEnd), (o.Fields.ScheduledStart, o.Fields.ScheduledEnd) })
+            .Select(t => (Start: Parse.ClockMinutes(t.Item1), End: Parse.ClockMinutes(t.Item2)))
+            .Where(t => t.Start is not null && t.End is not null && t.End > t.Start)
+            .ToList();
+        if (times.Count == 0) return true;
+        var (start, end) = (times.Min(t => t.Start!.Value), times.Max(t => t.End!.Value));
+        return Spans(a).All(s => s.Start >= start && s.End <= end);
     }
 
     private static UnlinkedAssertion Unlinked(Assertion a, string reason) =>
@@ -162,6 +213,8 @@ public sealed class Reconciler
         if (key.StartsWith("NOID|")) e.Flags.Add("No encounter identifier in any record. The records were grouped by service date and category.");
         if (members.Any(m => m.LinkMethod == "date_and_category") && !key.StartsWith("NOID|"))
             e.Flags.Add("Some records carried no encounter identifier and were linked by service date and category.");
+        foreach (var m in members.Where(m => m.LinkMethod == EverySession))
+            e.Flags.Add($"A break stated once for every session, without naming this one, was applied here because the same document describes this session ({m.Assertion.Citation}).");
 
         ResolveServiceDate(e, list);
         ResolveSessionInterval(e, list);

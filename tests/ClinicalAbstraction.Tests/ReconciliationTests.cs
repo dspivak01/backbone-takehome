@@ -353,4 +353,90 @@ public class ReconciliationTests
         Assert.Single(m.OriginalCitations);
         Assert.Equal(2, m.RepeatCitations.Count);
     }
+
+    // ---------- a break stated once for every session ----------
+
+    private static readonly DateOnly Wednesday = Build.Day.AddDays(2);
+
+    private static Assertion[] GroupSession(string document, string encounter, DateOnly date, string category = "group_therapy", string from = "13:00", string to = "14:30") =>
+    [
+        Build.Encounter(document, category, from, to, "attendance_record", encounter: encounter, date: date),
+        Build.Roster(document, from, to, signedAt: "2030-03-08T16:00", encounter: encounter, date: date),
+    ];
+
+    /// <summary>"Every meeting has a break from 13:40 to 13:55": it names no session and no date.</summary>
+    private static Assertion BreakForEverySession(string document, string from = "13:40", string to = "13:55") =>
+        Build.Assertion(document, 9, "excluded_interval", f =>
+        {
+            f.Intervals = [new IntervalText { Start = from, End = to }];
+            f.IntervalReason = "break";
+        }, "attendance_record", signedAt: "2030-03-08T16:00", encounter: null, noDate: true);
+
+    [Fact]
+    public void A_break_stated_once_for_every_session_is_taken_off_each_group_session_in_its_document()
+    {
+        var p = Build.Reconcile([
+            .. GroupSession("SHEET", "ENC-1", Build.Day),
+            .. GroupSession("SHEET", "ENC-2", Wednesday),
+            BreakForEverySession("SHEET"),
+        ]);
+
+        Assert.Equal(2, p.Encounters.Count);
+        Assert.All(p.Encounters, e =>
+        {
+            Assert.Equal((75, 75), (e.MinutesMin, e.MinutesMax));
+            Assert.Contains(e.Assertions, a => a.Kind == "excluded_interval" && a.LinkMethod == "every_session_in_document");
+            Assert.Contains(e.Flags, f => f.StartsWith("A break stated once for every session"));
+            Assert.DoesNotContain(e.Flags, f => f.StartsWith("No break is documented"));
+        });
+        Assert.Empty(p.Unlinked);
+        Assert.DoesNotContain(p.Warnings, w => w.Contains("could not be linked"));
+    }
+
+    [Fact]
+    public void A_break_stated_once_is_not_taken_off_other_kinds_of_session_or_sessions_in_other_documents()
+    {
+        var p = Build.Reconcile([
+            .. GroupSession("SHEET", "ENC-1", Build.Day),
+            .. GroupSession("SHEET", "ENC-2", Wednesday, "individual_therapy"),
+            .. GroupSession("OTHER", "ENC-3", Build.Day.AddDays(3)),
+            BreakForEverySession("SHEET"),
+        ]);
+
+        int Minutes(string id) => Assert.Single(p.Encounters, e => e.EncounterId == id).MinutesMax;
+        Assert.Equal(75, Minutes("ENC-1"));
+        Assert.Equal(90, Minutes("ENC-2"));
+        Assert.Equal(90, Minutes("ENC-3"));
+        Assert.Contains(Assert.Single(p.Encounters, e => e.EncounterId == "ENC-3").Flags, f => f.StartsWith("No break is documented"));
+        Assert.Empty(p.Unlinked);
+    }
+
+    [Fact]
+    public void A_break_stated_once_that_falls_inside_no_session_is_left_out_and_reported()
+    {
+        var p = Build.Reconcile([
+            .. GroupSession("SHEET", "ENC-1", Build.Day, from: "09:00", to: "10:00"),
+            BreakForEverySession("SHEET"),
+        ]);
+
+        Assert.Equal(60, Assert.Single(p.Encounters).MinutesMax);
+        var left = Assert.Single(p.Unlinked);
+        Assert.Equal("excluded_interval", left.Kind);
+        Assert.Contains("describes no group session that it falls inside", left.Reason);
+        Assert.Single(p.Warnings, w => w.Contains("could not be linked"));
+    }
+
+    [Fact]
+    public void A_break_stated_once_reaches_sessions_that_have_no_identifier()
+    {
+        var p = Build.Reconcile([
+            .. GroupSession("SHEET", null!, Build.Day),
+            .. GroupSession("SHEET", null!, Wednesday),
+            BreakForEverySession("SHEET"),
+        ]);
+
+        Assert.Equal(2, p.Encounters.Count);
+        Assert.All(p.Encounters, e => Assert.Equal(75, e.MinutesMax));
+        Assert.Empty(p.Unlinked);
+    }
 }
