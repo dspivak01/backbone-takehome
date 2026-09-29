@@ -107,6 +107,9 @@ label { display: flex; flex-direction: column; gap: 2px; font-size: 13px; color:
 input { font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px; max-width: 100%; }
 button { font: inherit; font-size: 14px; color: var(--on-accent); background: var(--accent); border: 1px solid var(--accent); border-radius: 6px; padding: 6px 14px; cursor: pointer; }
 button:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+button.quiet { color: var(--text); background: var(--surface); border-color: var(--border); }
+button.quiet:hover { background: var(--surface-2); border-color: var(--muted); }
+input[hidden] { display: none; }
 details { margin: 0 0 12px; }
 summary { cursor: pointer; color: var(--accent); }
 details[open] > summary { margin-bottom: 6px; }
@@ -1414,9 +1417,49 @@ ol.list { margin: 0 0 10px; padding-left: 22px; }
     fill(addArea, addForms(model.ready));
   }
 
+  // Which files of a chosen folder are sent: the ones the ingest of a folder reads. A file is
+  // sent when its name ends in .txt or has no extension, it is not hidden or inside a hidden
+  // folder, and it is not empty. Every other file is left out and named to the reviewer.
+  function filesToAdd(list) {
+    const keep = [];
+    const skipped = [];
+    for (const file of Array.from(list || [])) {
+      const path = file.webkitRelativePath || file.name;
+      const parts = path.split('/');
+      const name = parts[parts.length - 1];
+      const dot = name.lastIndexOf('.');
+      if (parts.slice(1).some(part => part.startsWith('.')) || name.startsWith('.')) skipped.push({ path, why: 'hidden' });
+      else if (dot > 0 && name.slice(dot).toLowerCase() !== '.txt') skipped.push({ path, why: 'not a text file ending in .txt' });
+      else if (file.size === 0) skipped.push({ path, why: 'empty' });
+      else keep.push({ file, path });
+    }
+    keep.sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
+    return { keep, skipped, folder: keep.length || skipped.length ? (keep[0] || skipped[0]).path.split('/')[0] : '' };
+  }
+
+  function folderSummary(chosen) {
+    if (!chosen.keep.length && !chosen.skipped.length) return el('p', { class: 'small muted' }, 'The folder is empty.');
+    const count = n => (n === 1 ? '1 file' : n + ' files');
+    const shown = chosen.skipped.slice(0, 5).map(f => f.path.split('/').pop() + ' (' + f.why + ')').join(', ');
+    return [
+      el('p', { class: 'small' }, el('strong', null, chosen.folder), ': ', chosen.keep.length
+        ? count(chosen.keep.length) + ' will be added.'
+        : 'no text file ending in .txt was found.'),
+      chosen.skipped.length
+        ? el('p', { class: 'small muted' }, count(chosen.skipped.length) + ' left out: ' + shown + (chosen.skipped.length > 5 ? ', and ' + (chosen.skipped.length - 5) + ' more' : '') + '.')
+        : null,
+    ];
+  }
+
   function addForms(ready) {
     const files = el('input', { type: 'file', id: 'add-files', multiple: true, accept: '.txt,text/plain' });
+    // The browser labels its own control "Choose Files" even for a folder, so the control is kept
+    // out of sight and a button that says what it does opens it.
+    const chooser = el('input', { type: 'file', id: 'add-folder-files', webkitdirectory: true, multiple: true, hidden: true, tabindex: '-1' });
+    const choose = el('button', { type: 'button', class: 'quiet', disabled: !ready }, 'Choose a folder');
+    choose.addEventListener('click', () => chooser.click());
     const folder = el('input', { type: 'text', id: 'add-folder', size: '48', autocomplete: 'off', spellcheck: 'false' });
+    const chosenArea = el('div', { role: 'status' });
     const message = el('div', { role: 'status' });
     const say = text => fill(message, el('div', { class: 'notice error', role: 'alert' }, el('p', null, text)));
     const start = async body => {
@@ -1428,6 +1471,9 @@ ol.list { margin: 0 0 10px; padding-left: 22px; }
         fill(message, failed(error));
       }
     };
+    const tooLarge = name => 'Nothing was added. "' + name + '" is larger than 1 MB. Only text files of up to 1 MB each can be added.';
+    fill(chosenArea, el('p', { class: 'small muted' }, 'No folder chosen.'));
+    chooser.addEventListener('change', () => fill(chosenArea, folderSummary(filesToAdd(chooser.files))));
     return [
       el('h2', null, 'Add documents'),
       el('p', { class: 'small muted' }, 'Text files ending in .txt, up to 1 MB each. A document whose text was added before is recognised and not read again. Each new document is read by the model, which takes a little while.'),
@@ -1436,7 +1482,7 @@ ol.list { margin: 0 0 10px; padding-left: 22px; }
         const chosen = files.files ? Array.from(files.files) : [];
         if (!chosen.length) return say('Choose one or more text files first.');
         const large = chosen.find(f => f.size > 1024 * 1024);
-        if (large) return say('Nothing was added. "' + large.name + '" is larger than 1 MB. Only text files of up to 1 MB each can be added.');
+        if (large) return say(tooLarge(large.name));
         const body = new FormData();
         for (const f of chosen) body.append('files', f, f.name);
         start(body);
@@ -1445,14 +1491,32 @@ ol.list { margin: 0 0 10px; padding-left: 22px; }
       el('button', { type: 'submit', disabled: !ready }, 'Add documents')),
       form({ class: 'inline', 'aria-label': 'Add a folder' }, () => {
         if (!ready) return;
-        const named = folder.value.trim();
-        if (!named) return say('Name a folder first.');
+        const chosen = filesToAdd(chooser.files);
+        if (!chosen.keep.length && !chosen.skipped.length) return say('Choose a folder first.');
+        if (!chosen.keep.length) return say('Nothing was added. The folder holds no text file ending in .txt.');
+        if (chosen.keep.length > 100) return say('Nothing was added. The folder holds ' + chosen.keep.length + ' text files, and at most 100 can be added at a time. Choose a folder with fewer files, or type the folder\'s path below.');
+        const large = chosen.keep.find(f => f.file.size > 1024 * 1024);
+        if (large) return say(tooLarge(large.path));
         const body = new FormData();
-        body.append('folder', named);
+        for (const f of chosen.keep) body.append('files', f.file, f.path);
         start(body);
       },
-      el('label', { for: 'add-folder' }, 'Or the full path of a folder on this machine. Its text files are read, and the folder is never changed.', folder),
-      el('button', { type: 'submit', disabled: !ready }, 'Add documents from this folder')),
+      el('div', null,
+        el('p', { class: 'small', id: 'add-folder-hint' }, 'Or a folder. Every text file in it and in its subfolders is added. The browser may ask you to confirm.'),
+        chooser, choose, ' ', el('button', { type: 'submit', disabled: !ready }, 'Add documents from this folder'),
+        chosenArea)),
+      el('details', null,
+        el('summary', null, 'Type the folder\'s path instead'),
+        form({ class: 'inline', 'aria-label': 'Add a folder by its path' }, () => {
+          if (!ready) return;
+          const named = folder.value.trim();
+          if (!named) return say('Name a folder first.');
+          const body = new FormData();
+          body.append('folder', named);
+          start(body);
+        },
+        el('label', { for: 'add-folder' }, 'The full path of a folder on this machine. Its text files are read where they are, with no limit on how many, and the folder is never changed.', folder),
+        el('button', { type: 'submit', disabled: !ready }, 'Add documents from this path'))),
       message,
     ];
   }

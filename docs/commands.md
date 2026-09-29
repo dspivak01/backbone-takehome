@@ -32,7 +32,7 @@ Opens at `http://127.0.0.1:5173`. It answers on this machine only.
 | Patients | Each patient's weeks, sessions and symptom measures | No |
 | Trace | From any number to its contacts, then to each assertion, then to the document lines | No |
 | Ask | Ask a question, watch the steps, read the answer with its checks and tables | Yes |
-| Documents | Add files or a folder, watch each file, open any document | Yes, for new documents |
+| Documents | Add files, choose a folder, or type a folder's path. Watch each file, open any document | Yes, for new documents |
 | Gap log | Passages found by text search, grouped by suggested kind | No |
 
 Ask and Documents write to the database the page is serving. To try them without changing the
@@ -43,8 +43,10 @@ cp abstraction/abstraction.db /tmp/copy.db
 ca serve --db /tmp/copy.db --out /tmp/copy-output
 ```
 
-Uploads are limited to text files ending in `.txt`, 1 MB each, 100 at a time. Uploaded files are
-saved under `<out>/uploads/` with generated names. Original files are never changed.
+Files and chosen folders are uploaded: text files ending in `.txt`, 1 MB each, 100 at a time.
+They are saved under `<out>/uploads/` with generated names. From a chosen folder, files that are
+not text, hidden or empty are left out and named on the screen before anything is sent. A folder
+given by its path is read where it is, with no limit. Original files are never changed.
 
 ### Known limits of the review page
 
