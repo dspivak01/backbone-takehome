@@ -86,6 +86,73 @@ concludes happened, and is rebuilt from assertions by rules in code.
 
 Detail: `docs/approach.md`.
 
+## What the abstraction holds
+
+### Assertions
+
+An assertion is one statement from one document. Every assertion carries the document, the line
+range, the exact quote, the kind of record it came from, whether that record is signed, who
+signed it and when, and whether it is a copy of an earlier record.
+
+There are 13 kinds. The model chooses the kind from this fixed list and cannot add to it. The
+count is how many the 31 supplied documents produced, 405 in all.
+
+| Kind | What it states | A quote from the supplied documents | Used for | Count |
+|---|---|---|---|---|
+| `encounter` | That a service was booked or held: type, date, booked times, clinicians | "Family psychotherapy \| Encounter HG-E119" | The event's service type and session times | 39 |
+| `attendance` | What happened to the appointment, and whether the patient took part | "Rowan was present from opening through closing." | Whether the event is a session | 41 |
+| `presence` | When the patient was in contact | "10:00 \| 11:30 \| Attended" | Minutes | 21 |
+| `excluded_interval` | A break, or a lost connection | "Nontherapeutic break 10:45–11:00." | Taken off the minutes | 7 |
+| `stated_duration` | A duration the document gives in minutes | "Total patient psychotherapy contact: 45 minutes." | Checked against the minutes worked out from times. Used when no times are given | 12 |
+| `correction` | A change to one value in an earlier record | "Patient departure for HG-E110 is 11:15, replacing the original roster value of 11:30." | Replaces that value in earlier assertions | 1 |
+| `no_service_contact` | That something did not take place | "No patient treatment contact occurred." | Explains exclusions. Changes no count | 23 |
+| `plan_requirement` | The treatment plan's goal, what counts, and the dates it applies | "Patient-present individual, group, and family therapy contribute to the minute goal." | Plan versions and the episode | 6 |
+| `measure` | A symptom score | "PHQ-9 completed by Rowan on 2026-01-05: total score 18." | Symptom assessments | 6 |
+| `observation` | A clinical statement about symptoms, functioning, safety, or the reason for a contact | "Sleep was still variable." | Questions about the patient's course | 185 |
+| `authorization` | An approval of services | "Authorized quantity: 8 group sessions." | Stored. No calculation uses it | 1 |
+| `charge` | A billing entry | "Charge ID: CH-116 \| Encounter: HG-E116" | Compared with the event and reported. Never evidence | 1 |
+| `other` | A fact that fits none of the above, with a name the model proposes | "Attendance is recorded on the group desk roster." | Stored and searchable. No rule uses it | 62 |
+
+### Events
+
+An event is what the system concludes. Rules in code build events from assertions, one patient
+at a time. There are three types.
+
+| Event | One per | What it holds | Built from |
+|---|---|---|---|
+| Encounter | Booked or delivered contact | Service type, outcome, whether the patient was present, start and end of presence, breaks, minutes as a minimum and maximum | `encounter`, `attendance`, `presence`, `excluded_interval`, `stated_duration`, `correction`, `charge` |
+| Symptom assessment | Questionnaire completed | Instrument, score, date. Copies and later mentions are attached to it, not counted again | `measure` |
+| Plan version | Period a goal applies | Minimum days and minutes a week, which services count and which do not, how the week is counted | `plan_requirement` |
+
+Each field of an encounter records how it was decided:
+
+| Decision | Meaning |
+|---|---|
+| Resolved | The most authoritative records agree |
+| Resolved by corroboration | Two signed records disagree, and exactly one lower-ranked record supports one of them |
+| Unresolved | Signed records disagree and nothing settles it. Every value is kept, with what would settle it |
+| Missing | No record states it |
+
+An encounter's outcome is one of session, not a session, or uncertain. Assertions that were
+overruled stay on the event with the rule that overruled them.
+
+Whether an encounter counts toward the goal is not stored on the event. It is decided when a
+question is asked, by the plan version in effect on the encounter's date.
+
+### Service types
+
+Documents name services in many ways. The model maps each to one of eight fixed types, and code
+compares only these.
+
+| Type | Meaning |
+|---|---|
+| Individual, group, family therapy | Psychotherapy with the patient alone, in a group, or with family |
+| Collateral contact | A contact held with a partner or family member |
+| Medication management | A prescriber visit |
+| Care coordination | Contact between professionals about the patient |
+| Administrative | Scheduling, reminders, notices. Never counted, whatever a plan says |
+| Other | Any other service. Counted only if the plan says so |
+
 ## What I tested
 
 **Design decision: which model extracts.** I ran the supplied documents through three models,
