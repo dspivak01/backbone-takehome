@@ -193,3 +193,27 @@ This is the design working as intended. The written answer can be wrong, the che
 and the tables stay correct.
 
 Files: `output/experiments/development-questions-rerun/`.
+
+## 7. The Anthropic API path
+
+Everything above was run through Amazon Bedrock. Before submitting, I ran one check through the
+Anthropic API, on a copy of the saved abstraction.
+
+| Step | Result |
+|---|---|
+| Ingest of 3 new documents for a patient the copy had not seen | 15 assertions kept, none rejected, 21 s, $0.06 |
+| Sessions for that patient, compared with the same documents extracted through Bedrock | The same: 1 group, 1 individual, 2 days |
+| One question about that patient | Answered in 7.3 s. Passed its checks |
+
+Two things I saw while doing it:
+
+- **With no credit on the account**, every document was marked failed, nothing was saved from
+  them, and the next ingest tried them again. The message shown is the provider's own.
+- **A question asked from a second terminal while the ingest was running** was answered from the
+  abstraction as it stood before the ingest, and said the patient was not found. That was correct
+  at that moment. It is the first limit listed for the review page in `docs/commands.md`, and it
+  applies to the command line too.
+
+### Limits
+
+Three documents and one question. The full build of 31 documents was not repeated on this path.

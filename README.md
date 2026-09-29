@@ -38,7 +38,8 @@ the document lines.
 
 The saved abstraction is included, so everything except asking a new question and adding
 documents works with no model access. Those two need AWS credentials with access to Claude
-Sonnet 5 on Amazon Bedrock in `us-west-2`, or `ANTHROPIC_API_KEY`. I tested Bedrock only.
+Sonnet 5 on Amazon Bedrock in `us-west-2`, or `ANTHROPIC_API_KEY` set in the terminal that runs
+the command. When the key is set, the program uses the Anthropic API.
 
 ```bash
 ca ask "How many group sessions did Rowan Mercer attend?"
@@ -147,7 +148,7 @@ Detail: `docs/performance.md`.
 | Item | State |
 |---|---|
 | The reference scores | I tuned the rules while looking at scored output. Only the 16 of 16 result was scored once and left alone |
-| Anthropic API path | Written, never run |
+| Anthropic API path | Run once, with 3 new documents and one question. Everything else here was built through Bedrock |
 | One document that names several patients | Tried once, with a roster naming two. Both were rebuilt. On the review page, its sources open the first patient's trace |
 | Meaning of the written answer | Code checks that sources and numbers exist. It cannot check that a sentence says what its source says |
 | Corrections to a break | Detected and reported, not applied |

@@ -14,7 +14,7 @@ Commands that call a model need one of:
 | Access | Setup | Tested |
 |---|---|---|
 | Amazon Bedrock | AWS credentials for the AWS CLI, with access to Claude Sonnet 5 in `us-west-2` | Yes |
-| Anthropic API | Set `ANTHROPIC_API_KEY`. The program then uses it automatically | No. Written, never run |
+| Anthropic API | Set `ANTHROPIC_API_KEY` in the terminal that runs the command. The program then uses it automatically | Yes, once: 3 new documents and one question |
 
 The repository includes the saved abstraction, so every command that needs no model works
 straight away.
