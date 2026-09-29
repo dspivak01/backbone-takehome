@@ -1,0 +1,21 @@
+21:43:09.181  calculation find_patient {"query":"Rowan"} -> ok in 21.0 ms
+21:43:11.213  calculation session_counts {"patient_key":"HG-M042","from":"2026-01-05","to":"2026-01-30"} -> ok in 23.3 ms
+21:43:31.843  DEV-01 answered in 25154 ms; saved to output/answers/DEV-01.md
+21:43:34.206  calculation find_patient {"query":"Rowan"} -> ok in 2.0 ms
+21:43:36.224  calculation weekly_minutes_and_goals {"patient_key":"HG-M042"} -> ok in 21.9 ms
+21:43:48.572  DEV-02 answered in 16722 ms; saved to output/answers/DEV-02.md
+21:43:50.979  calculation find_patient {"query":"Rowan"} -> ok in 0.5 ms
+21:43:53.101  calculation weekly_minutes_and_goals {"patient_key":"HG-M042"} -> ok in 0.9 ms
+21:44:07.901  DEV-03 answered in 19324 ms; saved to output/answers/DEV-03.md
+21:44:11.000  calculation find_patient {"query":""} -> ok in 0.9 ms
+21:44:15.320  calculation day_reconstruction {"date":"2026-01-19","patient_key":"HG-M042"} -> ok in 37.6 ms
+21:44:15.322  calculation day_reconstruction {"date":"2026-01-21","patient_key":"HG-M042"} -> ok in 1.8 ms
+21:44:31.137  DEV-04 answered in 23229 ms; saved to output/answers/DEV-04.md
+21:44:33.630  calculation find_patient {"query":""} -> ok in 0.9 ms
+21:44:37.652  calculation symptom_measures {"patient_key":"HG-M042"} -> ok in 8.0 ms
+21:44:37.658  calculation observations {"patient_key":"HG-M042"} -> ok in 5.9 ms
+21:44:37.664  calculation day_reconstruction {"date":"2026-01-19","patient_key":"HG-M042"} -> ok in 4.6 ms
+21:44:58.227  DEV-05 answered in 27068 ms; saved to output/answers/DEV-05.md
+21:44:58.229  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 35 calls, 28231 input, 0 cache write, 244825 cache read, 85352 output tokens, 630956 ms in total. Cost at list price: $0.9589.
+21:44:58.229  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.
+21:44:58.229  Model usage so far, question with us.anthropic.claude-sonnet-5: 45 calls, 191013 input, 10440 cache write, 146160 cache read, 25295 output tokens, 321227 ms in total. Cost at list price: $0.6903.

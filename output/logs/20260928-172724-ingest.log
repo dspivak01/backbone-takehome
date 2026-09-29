@@ -1,0 +1,69 @@
+17:27:24.621  Ingesting documents into abstraction/abstraction.db
+17:27:24.629  new        5a5962a8dbea  documents/BH-D101_group_content_2026-01-19.txt
+17:27:24.630  new        49df839a0715  documents/BH-D102_original_attendance_2026-01-19.txt
+17:27:24.630  new        6e90bb7d77bb  documents/BH-D103_attendance_correction_2026-01-20.txt
+17:27:24.630  new        ff8680de1981  documents/BH-D104_resent_roster_received_2026-01-26.txt
+17:27:24.631  new        e4c7e1c6ed93  documents/BH-D105_individual_2026-01-19.txt
+17:27:24.631  new        b9158ab16c50  documents/BH-D106_telehealth_2026-01-21.txt
+17:27:24.631  new        7943c47e4b17  documents/BH-D107_group_activity_records_2026-01-22_and_29.txt
+17:27:24.631  new        030d45df5e32  documents/BH-D108_final_attendance_and_cancellation_register.txt
+17:27:24.631  new        d66ae1672d87  documents/BH-D109_care_coordination_2026-01-23.txt
+17:27:24.632  new        51ccfc0f6dcd  documents/BH-D110_individual_primary_record_2026-01-26.txt
+17:27:24.632  new        1146e767a569  documents/BH-D111_individual_second_record_2026-01-26.txt
+17:27:24.632  new        321c63d7f6aa  documents/BH-D112_draft_note_and_charge_extract_2026-01-27.txt
+17:27:24.632  new        faf8d0605570  documents/BH-D113_family_therapy_2026-01-30.txt
+17:27:24.632  new        c98b81f3cee8  documents/BH-D114_medication_management_2026-01-30.txt
+17:27:24.633  new        8f842b632c7e  documents/BH-D115_symptom_measure_review_2026-01-30.txt
+17:27:24.633  new        c5ba771551b8  documents/early_appointment_status_export.txt
+17:27:24.633  new        b3f1ff4f6a15  documents/early_group_attendance_roster.txt
+17:27:24.633  new        a09c9b3263d0  documents/family_cofacilitator_jan09.txt
+17:27:24.634  new        0e1146675065  documents/family_primary_jan09.txt
+17:27:24.634  new        65058e301a13  documents/group_authorization_letter.txt
+17:27:24.634  new        c5a92d55e069  documents/group_cancellation_notice_jan15.txt
+17:27:24.634  new        54ba37211e1d  documents/group_facilitator_jan06.txt
+17:27:24.635  new        7d1db7e11585  documents/group_facilitator_jan12.txt
+17:27:24.635  new        462ec9d069a0  documents/imported_measure_summary_received_jan26.txt
+17:27:24.635  new        a64a37568f11  documents/individual_therapy_jan14.txt
+17:27:24.635  new        4d45fd8d3e62  documents/intake_and_individual_jan05.txt
+17:27:24.635  new        3cbc32cd91d9  documents/medication_review_jan13.txt
+17:27:24.636  new        ad66d95650f4  documents/missed_visit_outreach_jan08.txt
+17:27:24.636  new        1a43d926e91e  documents/partner_collateral_jan16.txt
+17:27:24.636  new        3ab7566cda49  documents/signed_treatment_plan_jan05.txt
+17:27:24.636  new        90a4c133add7  documents/symptom_measure_review_jan16.txt
+17:27:24.636  Registered 31 files: 31 new, 0 already known. 31 need extraction.
+17:27:38.969  Extracted BH-D101      9 assertions, 0 rejected, 1 attempt(s), 14306 ms  [BH-D101_group_content_2026-01-19.txt]
+17:27:54.555  Extracted BH-D104      9 assertions, 0 rejected, 1 attempt(s), 15585 ms  [BH-D104_resent_roster_received_2026-01-26.txt]
+17:27:55.198  Extracted BH-D103     11 assertions, 0 rejected, 1 attempt(s), 16227 ms  [BH-D103_attendance_correction_2026-01-20.txt]
+17:27:56.567  Extracted BH-D102     13 assertions, 0 rejected, 1 attempt(s), 17596 ms  [BH-D102_original_attendance_2026-01-19.txt]
+17:27:58.723  Extracted BH-D106     16 assertions, 0 rejected, 1 attempt(s), 19753 ms  [BH-D106_telehealth_2026-01-21.txt]
+17:27:58.749  Extracted BH-D107     16 assertions, 0 rejected, 1 attempt(s), 19778 ms  [BH-D107_group_activity_records_2026-01-22_and_29.txt]
+17:28:00.571  Extracted BH-D105     14 assertions, 0 rejected, 1 attempt(s), 21600 ms  [BH-D105_individual_2026-01-19.txt]
+17:28:12.364  Extracted BH-D109     10 assertions, 0 rejected, 1 attempt(s), 15796 ms  [BH-D109_care_coordination_2026-01-23.txt]
+17:28:15.515  Extracted BH-D110     14 assertions, 0 rejected, 1 attempt(s), 20317 ms  [BH-D110_individual_primary_record_2026-01-26.txt]
+17:28:17.273  Extracted BH-D111     15 assertions, 0 rejected, 1 attempt(s), 18549 ms  [BH-D111_individual_second_record_2026-01-26.txt]
+17:28:18.068  Extracted BH-D108     20 assertions, 0 rejected, 1 attempt(s), 23512 ms  [BH-D108_final_attendance_and_cancellation_register.txt]
+17:28:19.428  Extracted BH-D113     14 assertions, 0 rejected, 1 attempt(s), 18857 ms  [BH-D113_family_therapy_2026-01-30.txt]
+17:28:28.412  Extracted BH-D112     10 assertions, 0 rejected, 2 attempt(s), 29662 ms  [BH-D112_draft_note_and_charge_extract_2026-01-27.txt]
+17:28:30.790  Extracted BH-D115     10 assertions, 0 rejected, 1 attempt(s), 15274 ms  [BH-D115_symptom_measure_review_2026-01-30.txt]
+17:28:37.197  Extracted BH-D114     10 assertions, 0 rejected, 2 attempt(s), 24832 ms  [BH-D114_medication_management_2026-01-30.txt]
+17:28:37.536  Extracted BH-D005     13 assertions, 0 rejected, 1 attempt(s), 19467 ms  [early_group_attendance_roster.txt]
+17:28:38.600  Extracted BH-D008     13 assertions, 0 rejected, 1 attempt(s), 19170 ms  [family_cofacilitator_jan09.txt]
+17:28:43.142  Extracted BH-D006     23 assertions, 0 rejected, 1 attempt(s), 25868 ms  [early_appointment_status_export.txt]
+17:28:43.917  Extracted BH-D001      9 assertions, 0 rejected, 1 attempt(s), 13127 ms  [group_authorization_letter.txt]
+17:28:52.305  Extracted BH-D016     11 assertions, 0 rejected, 1 attempt(s), 15107 ms  [group_cancellation_notice_jan15.txt]
+17:28:52.672  Extracted BH-D004     10 assertions, 0 rejected, 1 attempt(s), 15135 ms  [group_facilitator_jan06.txt]
+17:28:56.030  Extracted BH-D014      8 assertions, 0 rejected, 1 attempt(s), 12887 ms  [imported_measure_summary_received_jan26.txt]
+17:29:05.267  Extracted BH-D007     15 assertions, 0 rejected, 2 attempt(s), 36854 ms  [family_primary_jan09.txt]
+17:29:08.593  Extracted BH-D010     13 assertions, 0 rejected, 1 attempt(s), 16287 ms  [medication_review_jan13.txt]
+17:29:11.015  Extracted BH-D009     11 assertions, 0 rejected, 2 attempt(s), 32414 ms  [group_facilitator_jan12.txt]
+17:29:11.016  Extracted BH-D015     12 assertions, 0 rejected, 1 attempt(s), 14985 ms  [missed_visit_outreach_jan08.txt]
+17:29:11.017  Extracted BH-D002     18 assertions, 0 rejected, 1 attempt(s), 27099 ms  [intake_and_individual_jan05.txt]
+17:29:24.461  Extracted BH-D012     16 assertions, 0 rejected, 1 attempt(s), 19194 ms  [partner_collateral_jan16.txt]
+17:29:26.994  Extracted BH-D013     12 assertions, 0 rejected, 1 attempt(s), 15978 ms  [symptom_measure_review_jan16.txt]
+17:29:31.992  Extracted BH-D011     14 assertions, 0 rejected, 2 attempt(s), 39320 ms  [individual_therapy_jan14.txt]
+17:29:33.763  Extracted BH-D003     16 assertions, 0 rejected, 1 attempt(s), 25170 ms  [signed_treatment_plan_jan05.txt]
+17:29:33.845  Extraction: 31 documents, 405 assertions kept (0 with corrected line numbers), 0 rejected (0 critical).
+17:29:33.845  Reconciled 1 patient(s).
+17:29:33.845  Time: register 12 ms, extract 129126 ms, reconcile 79 ms, total 129220 ms.
+17:29:33.846  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 35 calls, 28231 input, 0 cache write, 244825 cache read, 85352 output tokens, 630956 ms in total. Cost at list price: $0.9589.
+17:29:33.846  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.

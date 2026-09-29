@@ -1,0 +1,6 @@
+[
+  { "id": "COLLECTION-01", "question": "Which patients had two consecutive weeks below their treatment plan's requirements, and which patients' inclusion depends on unresolved documentation?" },
+  { "id": "PLAN-CHANGE-01", "question": "How did the types and amounts of care delivered to Jordan Avery change before and after the treatment-plan change?" },
+  { "id": "AMBIGUOUS-01", "question": "How many therapy minutes were delivered in the week of the plan change?" },
+  { "id": "GAP-01", "question": "Why did Rowan miss or cut short sessions during the episode?" }
+]

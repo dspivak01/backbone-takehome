@@ -1,0 +1,21 @@
+21:32:14.896  calculation find_patient {"query":""} -> ok in 21.1 ms
+21:32:18.578  calculation day_reconstruction {"date":"2026-01-19"} -> ok in 39.5 ms
+21:32:18.586  calculation day_reconstruction {"date":"2026-01-21"} -> ok in 7.2 ms
+21:32:37.547  NO-NAME-DEV-04 answered in 26454 ms; saved to output/experiments/three-patients/answers/NO-NAME-DEV-04.md
+21:32:40.827  calculation find_patient {"query":""} -> ok in 3.2 ms
+21:32:43.581  calculation day_reconstruction {"date":"2026-01-19"} -> ok in 3.5 ms
+21:32:51.071  calculation symptom_measures {"patient_key":"HG-M042"} -> ok in 9.3 ms
+21:32:51.079  calculation observations {"patient_key":"HG-M042"} -> ok in 7.8 ms
+21:32:51.081  calculation symptom_measures {"patient_key":"WD-40815"} -> ok in 0.5 ms
+21:32:51.081  calculation observations {"patient_key":"WD-40815"} -> ok in 0.2 ms
+21:33:16.853  NO-NAME-DEV-05 answered in 39295 ms; saved to output/experiments/three-patients/answers/NO-NAME-DEV-05.md
+21:33:19.491  calculation find_patient {"query":""} -> ok in 1.2 ms
+21:33:21.987  calculation collection_summary {} -> ok in 10.5 ms
+21:33:28.135  NO-NAME-GENERIC answered in 11279 ms; saved to output/experiments/three-patients/answers/NO-NAME-GENERIC.md
+21:33:30.552  calculation consecutive_weeks_below_goal {} -> not run, because find_patient had not yet returned
+21:33:32.492  calculation find_patient {"query":""} -> ok in 0.9 ms
+21:33:34.483  calculation consecutive_weeks_below_goal {} -> ok in 18.5 ms
+21:33:40.760  COLLECTION-01 answered in 12623 ms; saved to output/experiments/three-patients/answers/COLLECTION-01.md
+21:33:40.763  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 43 calls, 32779 input, 6995 cache write, 293790 cache read, 98797 output tokens, 731469 ms in total. Cost at list price: $1.1298.
+21:33:40.763  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.
+21:33:40.763  Model usage so far, question with us.anthropic.claude-sonnet-5: 88 calls, 423889 input, 22113 cache write, 296870 cache read, 44950 output tokens, 598253 ms in total. Cost at list price: $1.4119.

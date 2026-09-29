@@ -1,0 +1,230 @@
+{
+  "about": "Expected results for the supplied record, worked by hand from the documents and recomputed independently by a reviewer. Used only to score the system's output. No code in the pipeline reads this file.",
+  "patient_key": "HG-M042",
+  "from": "2026-01-05",
+  "to": "2026-01-30",
+  "encounters": [
+    {
+      "id": "HG-E101",
+      "date": "2026-01-05",
+      "category": "individual_therapy",
+      "status": "counted",
+      "minutes_min": 50,
+      "minutes_max": 50
+    },
+    {
+      "id": "HG-E102",
+      "date": "2026-01-06",
+      "category": "group_therapy",
+      "status": "counted",
+      "minutes_min": 45,
+      "minutes_max": 45
+    },
+    {
+      "id": "HG-E103",
+      "date": "2026-01-08",
+      "category": "individual_therapy",
+      "status": "not_a_session",
+      "minutes_min": 0,
+      "minutes_max": 0
+    },
+    {
+      "id": "HG-E104",
+      "date": "2026-01-09",
+      "category": "family_therapy",
+      "status": "counted",
+      "minutes_min": 45,
+      "minutes_max": 45
+    },
+    {
+      "id": "HG-E105",
+      "date": "2026-01-12",
+      "category": "group_therapy",
+      "status": "counted",
+      "minutes_min": 75,
+      "minutes_max": 75
+    },
+    {
+      "id": "HG-E106",
+      "date": "2026-01-13",
+      "category": "medication_management",
+      "status": "excluded_by_plan",
+      "minutes_min": 0,
+      "minutes_max": 0
+    },
+    {
+      "id": "HG-E107",
+      "date": "2026-01-14",
+      "category": "individual_therapy",
+      "status": "counted",
+      "minutes_min": 45,
+      "minutes_max": 45
+    },
+    {
+      "id": "HG-E108",
+      "date": "2026-01-15",
+      "category": "group_therapy",
+      "status": "not_a_session",
+      "minutes_min": 0,
+      "minutes_max": 0
+    },
+    {
+      "id": "HG-E109",
+      "date": "2026-01-16",
+      "category": "collateral_contact",
+      "status": "not_a_session",
+      "minutes_min": 0,
+      "minutes_max": 0
+    },
+    {
+      "id": "HG-E110",
+      "date": "2026-01-19",
+      "category": "group_therapy",
+      "status": "counted",
+      "minutes_min": 60,
+      "minutes_max": 60
+    },
+    {
+      "id": "HG-E111",
+      "date": "2026-01-19",
+      "category": "individual_therapy",
+      "status": "counted",
+      "minutes_min": 30,
+      "minutes_max": 30
+    },
+    {
+      "id": "HG-E112",
+      "date": "2026-01-21",
+      "category": "individual_therapy",
+      "status": "counted",
+      "minutes_min": 45,
+      "minutes_max": 45
+    },
+    {
+      "id": "HG-E113",
+      "date": "2026-01-22",
+      "category": "group_therapy",
+      "status": "counted",
+      "minutes_min": 45,
+      "minutes_max": 45
+    },
+    {
+      "id": "HG-E114",
+      "date": "2026-01-23",
+      "category": "care_coordination",
+      "status": "not_a_session",
+      "minutes_min": 0,
+      "minutes_max": 0
+    },
+    {
+      "id": "HG-E115",
+      "date": "2026-01-26",
+      "category": "individual_therapy",
+      "status": "counted",
+      "minutes_min": 40,
+      "minutes_max": 50
+    },
+    {
+      "id": "HG-E116",
+      "date": "2026-01-27",
+      "category": "group_therapy",
+      "status": "not_a_session",
+      "minutes_min": 0,
+      "minutes_max": 0
+    },
+    {
+      "id": "HG-E117",
+      "date": "2026-01-28",
+      "category": "individual_therapy",
+      "status": "not_a_session",
+      "minutes_min": 0,
+      "minutes_max": 0
+    },
+    {
+      "id": "HG-E118",
+      "date": "2026-01-29",
+      "category": "group_therapy",
+      "status": "counted",
+      "minutes_min": 75,
+      "minutes_max": 75
+    },
+    {
+      "id": "HG-E119",
+      "date": "2026-01-30",
+      "category": "family_therapy",
+      "status": "counted",
+      "minutes_min": 30,
+      "minutes_max": 30
+    },
+    {
+      "id": "HG-E120",
+      "date": "2026-01-30",
+      "category": "medication_management",
+      "status": "excluded_by_plan",
+      "minutes_min": 0,
+      "minutes_max": 0
+    }
+  ],
+  "weeks": [
+    {
+      "week_start": "2026-01-05",
+      "days_min": 3,
+      "days_max": 3,
+      "minutes_min": 140,
+      "minutes_max": 140,
+      "result": "not_met"
+    },
+    {
+      "week_start": "2026-01-12",
+      "days_min": 2,
+      "days_max": 2,
+      "minutes_min": 120,
+      "minutes_max": 120,
+      "result": "not_met"
+    },
+    {
+      "week_start": "2026-01-19",
+      "days_min": 3,
+      "days_max": 3,
+      "minutes_min": 180,
+      "minutes_max": 180,
+      "result": "met"
+    },
+    {
+      "week_start": "2026-01-26",
+      "days_min": 3,
+      "days_max": 3,
+      "minutes_min": 145,
+      "minutes_max": 155,
+      "result": "cannot_be_determined"
+    }
+  ],
+  "sessions": {
+    "Individual therapy": 5,
+    "Group therapy": 5,
+    "Family therapy": 2
+  },
+  "total_sessions": "12",
+  "distinct_days": "11",
+  "measures": [
+    {
+      "instrument": "PHQ-9",
+      "date": "2026-01-05",
+      "total": 18
+    },
+    {
+      "instrument": "PHQ-9",
+      "date": "2026-01-16",
+      "total": 14
+    },
+    {
+      "instrument": "PHQ-9",
+      "date": "2026-01-30",
+      "total": 10
+    }
+  ],
+  "plan": {
+    "min_days": 3,
+    "min_minutes": 150
+  }
+}

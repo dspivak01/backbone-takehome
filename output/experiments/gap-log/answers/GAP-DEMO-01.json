@@ -1,0 +1,2188 @@
+{
+  "question_id": "GAP-DEMO-01",
+  "question": "Which clinicians delivered Rowan\u0027s therapy sessions, and did the treating clinician change during the episode?",
+  "model": "us.anthropic.claude-sonnet-5",
+  "abstraction_version": "5e7cfc4bb8555e82-b02d950f",
+  "narrative": "**Clinicians identified in Rowan Mercer\u0027s record (HG-M042)**\n\nThe reviewer\u0027s question about clinician names is not something the structured session/goal tools track (they identify sessions and minutes, not clinician identity), so the names below come from **text search of the underlying documents**, except where noted as confirmed by the day-by-day reconstruction tool.\n\n| Role | Clinician | Sessions |\n|---|---|---|\n| Treatment plan author / individual \u0026 family therapy (early) | Mara Voss, LCSW | Individual therapy 1/5, 1/14; family therapy 1/9 (with cofacilitator Leena Park, LPC); authored the treatment plan [BH-D003 L7]; reviewed the 1/16 PHQ-9 [BH-D013 L9] \u2014 *found by text search* |\n| Group therapy facilitator (early) | Leena Park, LPC | Group therapy 1/6, 1/12; cofacilitated family therapy 1/9 [BH-D004 L4-8 confirmed in day reconstruction; BH-D009 L7, BH-D008 L7 \u2014 text search] |\n| Individual \u0026 family therapy (later) | Mira Patel, LCSW | Individual therapy 1/19, 1/21, 1/26; family therapy 1/30 \u2014 *found by text search* (BH-D105 L7, BH-D106 L5, BH-D110 L6, BH-D113 L5) |\n| Co-participating individual clinician | Nora Ellis, LCSW | Individual therapy 1/26, participating with Mira Patel \u2014 *found by text search* (BH-D110 L6, BH-D111 L8) |\n| Group therapy facilitator (later) | Leah Chen, LCSW | Group therapy 1/19, 1/22, 1/29 \u2014 *found by text search* (BH-D101 L4, BH-D107 L5) |\n| Medication management (not counted toward the therapy goal) | Elias Brenner, NP | Medication visits 1/13 [BH-D010 L8] \u2014 *found by text search* |\n\n**Did the treating clinician change?**\n\nYes, based on the names appearing on the encounter documents:\n\n- **Individual/family therapy** started with Mara Voss, LCSW (1/5, 1/9, 1/14) and was later provided by Mira Patel, LCSW (1/19, 1/21, 1/26, 1/30), with Nora Ellis, LCSW also participating in the 1/26 individual session.\n- **Group therapy** was facilitated by Leena Park, LPC early in the episode (1/6, 1/12) and by Leah Chen, LCSW later (1/19, 1/22, 1/29).\n\nThe treatment plan itself was not revised \u2014 the record has only one plan version, so no plan-level change is documented \u2014 but the clinicians delivering individual, family, and group sessions changed partway through the episode, around January 19.\n\nBecause the clinician-name findings above (other than the Leena Park facilitator note on 1/6, which the reconstruction tool confirmed) came only from keyword search of the documents rather than the structured abstraction, they should be treated as leads for verification rather than as counted, cross-checked data.",
+  "checks": {
+    "citations_found": 6,
+    "citations_verified": 6,
+    "citations_not_in_results": [],
+    "numbers_found": 61,
+    "numbers_not_in_results": [],
+    "passed": true
+  },
+  "calculations": [
+    {
+      "name": "find_patient",
+      "input": "{\u0022query\u0022:\u0022Rowan\u0022}",
+      "elapsed_ms": 19.8568,
+      "failed": false,
+      "rendered": "One patient matches.\n\n| Patient | MRN | Date of birth | Episode | Plan versions | Encounters |\n|---|---|---|---|---|---|\n| Rowan Mercer | HG-M042 | 1991-04-12 | 2026-01-05 to 2026-01-30 | 1 | 20 |\n\n",
+      "result": {
+        "query": "Rowan",
+        "matches": [
+          {
+            "patient_key": "HG-M042",
+            "mrn": "HG-M042",
+            "name": "Rowan Mercer",
+            "date_of_birth": "1991-04-12",
+            "episode_start": "2026-01-05",
+            "episode_end": "2026-01-30",
+            "plan_versions": 1,
+            "encounters": 20,
+            "abstraction_version": "c9e505146e97ad8e"
+          }
+        ],
+        "note": "One patient matches."
+      }
+    },
+    {
+      "name": "session_counts",
+      "input": "{\u0022patient_key\u0022:\u0022HG-M042\u0022}",
+      "elapsed_ms": 24.7469,
+      "failed": false,
+      "rendered": "| Parameter | Value | Source |\n|---|---|---|\n| Patient | Rowan Mercer (HG-M042) | Matched by medical record number |\n| Dates | 2026-01-05 to 2026-01-30 | Not given, so the episode dates stated in the record (BH-D003 L6, BH-D003 L12) are used; both dates are included |\n| Week | Monday to Sunday | From the treatment plan |\n| Abstraction version | c9e505146e97ad8e | Changes only when a conclusion about this patient changes |\n\n\n**Sessions attended**\n\n| Service type | Sessions |\n|---|---|\n| Family therapy | 2 |\n| Group therapy | 5 |\n| Individual therapy | 5 |\n| Total | 12 |\n| Distinct days | 11 |\n\n\n**Counted sessions**\n\n| Date | Encounter | Service | Minutes | How the minutes were worked out | Sources |\n|---|---|---|---|---|---|\n| 2026-01-05 Mon | HG-E101 | Individual therapy | 50 | present 09:00-09:50 = 50 minutes | BH-D002 L6-8, BH-D002 L8, BH-D006 L10 |\n| 2026-01-06 Tue | HG-E102 | Group therapy | 45 | present 10:15-11:15, less break 10:45-11:00 = 45 minutes | BH-D004 L12, BH-D004 L4-8, BH-D005 L10, BH-D005 L9-10, BH-D006 L11 |\n| 2026-01-09 Fri | HG-E104 | Family therapy | 45 | present 14:00-14:45 = 45 minutes | BH-D006 L13, BH-D007 L4-9, BH-D007 L7-9, BH-D008 L4-9, BH-D008 L8, BH-D015 L13 |\n| 2026-01-12 Mon | HG-E105 | Group therapy | 75 | present 10:00-11:30, less break 10:40-10:55 = 75 minutes | BH-D005 L11, BH-D005 L9-11, BH-D006 L14, BH-D009 L12, BH-D009 L4-8 |\n| 2026-01-14 Wed | HG-E107 | Individual therapy | 45 | present 11:00-11:45 = 45 minutes | BH-D006 L16, BH-D011 L4-9, BH-D011 L7 |\n| 2026-01-19 Mon | HG-E110 | Group therapy | 60 | present 10:00-11:15, less break 10:45-11:00 = 60 minutes | BH-D101 L3-6, BH-D101 L6, BH-D102 L4-9, BH-D102 L9, BH-D102 L9-10, BH-D103 L7, BH-D104 L10-14, BH-D104 L14 |\n| 2026-01-19 Mon | HG-E111 | Individual therapy | 30 | present 11:15-11:45 = 30 minutes | BH-D105 L3-7, BH-D105 L6 |\n| 2026-01-21 Wed | HG-E112 | Individual therapy | 45 | present 13:00-13:55, less connection lost 13:20-13:30 = 45 minutes | BH-D106 L17, BH-D106 L18, BH-D106 L3-5, BH-D106 L7 |\n| 2026-01-22 Thu | HG-E113 | Group therapy | 45 | present 10:30-11:30, less break 10:45-11:00 = 45 minutes | BH-D107 L7-8, BH-D107 L8, BH-D107 L9, BH-D108 L14, BH-D108 L9 |\n| 2026-01-26 Mon | HG-E115 | Individual therapy | 40 to 50 | present 09:00-09:50 = 50 minutes; or present 09:10-09:50 = 40 minutes | BH-D110 L3-6, BH-D110 L7, BH-D111 L10, BH-D111 L14, BH-D111 L4-8 |\n| 2026-01-29 Thu | HG-E118 | Group therapy | 75 | present 10:00-11:30, less break 10:45-11:00 = 75 minutes | BH-D107 L12-13, BH-D107 L13, BH-D107 L14, BH-D108 L12, BH-D108 L20 |\n| 2026-01-30 Fri | HG-E119 | Family therapy | 30 | present 13:15-13:45 = 30 minutes | BH-D113 L3-6, BH-D113 L7, BH-D113 L7-9, BH-D113 L9 |\n\n\n**Appointments and contacts not counted**\n\n| Date | Encounter | Service | Why it is not counted | Sources |\n|---|---|---|---|---|\n| 2026-01-08 | HG-E103 | Individual therapy | The appointment was a no show. | BH-D006 L12, BH-D015 L11, BH-D015 L6 |\n| 2026-01-13 | HG-E106 | Medication management | The treatment plan says medication management does not count toward the goal (BH-D003 L6, BH-D003 L12). | BH-D006 L15, BH-D010 L4-9, BH-D010 L7 |\n| 2026-01-15 | HG-E108 | Group therapy | The appointment was cancelled by the clinic. | BH-D006 L17, BH-D016 L9 |\n| 2026-01-16 | HG-E109 | Collateral contact | The patient was not present. | BH-D006 L18, BH-D006 L20, BH-D012 L11, BH-D012 L4-7, BH-D012 L8 |\n| 2026-01-23 | HG-E114 | Care coordination | The patient was not present. | BH-D109 L2-6, BH-D109 L7 |\n| 2026-01-27 | HG-E116 | Group therapy | The appointment was a no show. | BH-D108 L10, BH-D108 L16 |\n| 2026-01-28 | HG-E117 | Individual therapy | The appointment was cancelled by the patient. | BH-D108 L11, BH-D108 L18 |\n| 2026-01-30 | HG-E120 | Medication management | The treatment plan says medication management does not count toward the goal (BH-D003 L6, BH-D003 L12). | BH-D114 L3-6, BH-D114 L5 |\n\n\n**Records that disagree with the conclusion**\n\n- 2026-01-26 HG-E115: R4: Unresolved presence start: 09:00 (BH-D110 L7) versus 09:10 (BH-D111 L10). (BH-D110 L7, BH-D111 L10)\n- 2026-01-27 HG-E116: R5: A charge was posted for this encounter (Group psychotherapy, quantity 1). The appointment was a no show. Billing is not evidence of attendance. (BH-D112 L18-23)\n- 2026-01-27 HG-E116: R5: An unsigned draft says the patient attended. The appointment was a no show. A draft is not evidence of attendance. (BH-D112 L9-11)\n\n\n**Contacts described by more than one document, counted once**\n\n- HG-E101 on 2026-01-05 is described by 2 documents (BH-D002, BH-D006) and is one contact.\n- HG-E102 on 2026-01-06 is described by 3 documents (BH-D004, BH-D005, BH-D006) and is one contact.\n- HG-E103 on 2026-01-08 is described by 2 documents (BH-D006, BH-D015) and is one contact.\n- HG-E104 on 2026-01-09 is described by 4 documents (BH-D006, BH-D007, BH-D008, BH-D015) and is one contact.\n- HG-E105 on 2026-01-12 is described by 3 documents (BH-D005, BH-D006, BH-D009) and is one contact.\n- HG-E106 on 2026-01-13 is described by 2 documents (BH-D006, BH-D010) and is one contact.\n- HG-E107 on 2026-01-14 is described by 2 documents (BH-D006, BH-D011) and is one contact.\n- HG-E108 on 2026-01-15 is described by 2 documents (BH-D006, BH-D016) and is one contact.\n- HG-E109 on 2026-01-16 is described by 2 documents (BH-D006, BH-D012) and is one contact.\n- HG-E110 on 2026-01-19 is described by 4 documents (BH-D101, BH-D102, BH-D103, BH-D104) and is one contact.\n- HG-E113 on 2026-01-22 is described by 2 documents (BH-D107, BH-D108) and is one contact.\n- HG-E115 on 2026-01-26 is described by 2 documents (BH-D110, BH-D111) and is one contact.\n- HG-E116 on 2026-01-27 is described by 2 documents (BH-D108, BH-D112) and is one contact.\n- HG-E118 on 2026-01-29 is described by 2 documents (BH-D107, BH-D108) and is one contact.\n\n\n**Records that are not appointments**\n\n- BH-D001 L10: Authorization does not cover individual therapy, family therapy, or medication appointments under the group service quantity.\n- BH-D001 L15: No service attendance record accompanies this letter.\n- BH-D006 L20: Patient did not arrive by the close of the appointment slot\n- BH-D006 L20: The group session did not take place; it was removed from the active room schedule due to staff illness\n- BH-D010 L17: No separate psychotherapy component was provided or documented during this visit.\n- BH-D012 L17: A new treatment decision made with Rowan\n- BH-D012 L17: Patient-present psychotherapy\n- BH-D012 L17: Rowan joining the contact in person, by telephone, or by video\n- BH-D013 L11: Submission of an additional questionnaire with this update\n- BH-D013 L15: A clinical appointment at the time of this review\n- BH-D014 L17: Completion of a new patient questionnaire in this batch\n- BH-D014 L19: A visit with the patient\n- BH-D015 L9: arrival call or cancellation message on the scheduling line\n- BH-D015 L17: therapy intervention during the callback\n- BH-D016 L15: The coping skills group was not held and no participants were seen.\n- BH-D016 L15: No replacement group was conducted in the January 15 slot.\n- BH-D103 L13: additional clinical service in making this correction\n- BH-D108 L16: Patient treatment contact\n- BH-D108 L18: A replacement appointment being booked within January 2026\n- BH-D109 L7: No patient contact occurred during this care coordination call.\n- BH-D109 L13: Patient did not join by telephone or video, and no psychotherapy was delivered during the call.\n- BH-D112 L16: clinician attestation or finalized patient-specific narrative in the draft\n- BH-D115 L14: A separate treatment appointment or additional patient-contact interval beyond the questionnaire review\n- BH-D013 L11: a copy or later mention of the PHQ-9 result completed on 2026-01-05, not a new assessment or visit.\n- BH-D014 L12-13: a copy or later mention of the PHQ-9 result completed on 2026-01-16, not a new assessment or visit.\n\n\n",
+      "result": {
+        "parameters": {
+          "patient_key": "HG-M042",
+          "patient_name": "Rowan Mercer",
+          "from": "2026-01-05",
+          "to": "2026-01-30",
+          "date_range_source": "not given, so the episode dates stated in the record (BH-D003 L6, BH-D003 L12) are used; both dates are included",
+          "week_definition": "Monday to Sunday, from the treatment plan",
+          "abstraction_version": "c9e505146e97ad8e"
+        },
+        "sessions_by_category": {
+          "Family therapy": 2,
+          "Group therapy": 5,
+          "Individual therapy": 5
+        },
+        "total_sessions": 12,
+        "total_sessions_max": 12,
+        "distinct_days": 11,
+        "distinct_days_max": 11,
+        "therapy_dates": [
+          "2026-01-05",
+          "2026-01-06",
+          "2026-01-09",
+          "2026-01-12",
+          "2026-01-14",
+          "2026-01-19",
+          "2026-01-21",
+          "2026-01-22",
+          "2026-01-26",
+          "2026-01-29",
+          "2026-01-30"
+        ],
+        "counted": [
+          {
+            "event_key": "HG-E101",
+            "encounter_id": "HG-E101",
+            "date": "2026-01-05",
+            "weekday": "Monday",
+            "category": "individual_therapy",
+            "category_name": "Individual therapy",
+            "status": "counted",
+            "reason": "Individual therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 50,
+            "minutes_max": 50,
+            "arithmetic": "present 09:00-09:50 = 50 minutes",
+            "source_documents": [
+              "BH-D002",
+              "BH-D006"
+            ],
+            "citations": [
+              "BH-D002 L6-8",
+              "BH-D002 L8",
+              "BH-D006 L10"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E102",
+            "encounter_id": "HG-E102",
+            "date": "2026-01-06",
+            "weekday": "Tuesday",
+            "category": "group_therapy",
+            "category_name": "Group therapy",
+            "status": "counted",
+            "reason": "Group therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 45,
+            "minutes_max": 45,
+            "arithmetic": "present 10:15-11:15, less break 10:45-11:00 = 45 minutes",
+            "source_documents": [
+              "BH-D004",
+              "BH-D005",
+              "BH-D006"
+            ],
+            "citations": [
+              "BH-D004 L12",
+              "BH-D004 L4-8",
+              "BH-D005 L10",
+              "BH-D005 L9-10",
+              "BH-D006 L11"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E104",
+            "encounter_id": "HG-E104",
+            "date": "2026-01-09",
+            "weekday": "Friday",
+            "category": "family_therapy",
+            "category_name": "Family therapy",
+            "status": "counted",
+            "reason": "Family therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 45,
+            "minutes_max": 45,
+            "arithmetic": "present 14:00-14:45 = 45 minutes",
+            "source_documents": [
+              "BH-D006",
+              "BH-D007",
+              "BH-D008",
+              "BH-D015"
+            ],
+            "citations": [
+              "BH-D006 L13",
+              "BH-D007 L4-9",
+              "BH-D007 L7-9",
+              "BH-D008 L4-9",
+              "BH-D008 L8",
+              "BH-D015 L13"
+            ],
+            "flags": [
+              "Some records carried no encounter identifier and were linked by service date and category."
+            ],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E105",
+            "encounter_id": "HG-E105",
+            "date": "2026-01-12",
+            "weekday": "Monday",
+            "category": "group_therapy",
+            "category_name": "Group therapy",
+            "status": "counted",
+            "reason": "Group therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 75,
+            "minutes_max": 75,
+            "arithmetic": "present 10:00-11:30, less break 10:40-10:55 = 75 minutes",
+            "source_documents": [
+              "BH-D005",
+              "BH-D006",
+              "BH-D009"
+            ],
+            "citations": [
+              "BH-D005 L11",
+              "BH-D005 L9-11",
+              "BH-D006 L14",
+              "BH-D009 L12",
+              "BH-D009 L4-8"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E107",
+            "encounter_id": "HG-E107",
+            "date": "2026-01-14",
+            "weekday": "Wednesday",
+            "category": "individual_therapy",
+            "category_name": "Individual therapy",
+            "status": "counted",
+            "reason": "Individual therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 45,
+            "minutes_max": 45,
+            "arithmetic": "present 11:00-11:45 = 45 minutes",
+            "source_documents": [
+              "BH-D006",
+              "BH-D011"
+            ],
+            "citations": [
+              "BH-D006 L16",
+              "BH-D011 L4-9",
+              "BH-D011 L7"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E110",
+            "encounter_id": "HG-E110",
+            "date": "2026-01-19",
+            "weekday": "Monday",
+            "category": "group_therapy",
+            "category_name": "Group therapy",
+            "status": "counted",
+            "reason": "Group therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 60,
+            "minutes_max": 60,
+            "arithmetic": "present 10:00-11:15, less break 10:45-11:00 = 60 minutes",
+            "source_documents": [
+              "BH-D101",
+              "BH-D102",
+              "BH-D103",
+              "BH-D104"
+            ],
+            "citations": [
+              "BH-D101 L3-6",
+              "BH-D101 L6",
+              "BH-D102 L4-9",
+              "BH-D102 L9",
+              "BH-D102 L9-10",
+              "BH-D103 L7",
+              "BH-D104 L10-14",
+              "BH-D104 L14"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E111",
+            "encounter_id": "HG-E111",
+            "date": "2026-01-19",
+            "weekday": "Monday",
+            "category": "individual_therapy",
+            "category_name": "Individual therapy",
+            "status": "counted",
+            "reason": "Individual therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 30,
+            "minutes_max": 30,
+            "arithmetic": "present 11:15-11:45 = 30 minutes",
+            "source_documents": [
+              "BH-D105"
+            ],
+            "citations": [
+              "BH-D105 L3-7",
+              "BH-D105 L6"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E112",
+            "encounter_id": "HG-E112",
+            "date": "2026-01-21",
+            "weekday": "Wednesday",
+            "category": "individual_therapy",
+            "category_name": "Individual therapy",
+            "status": "counted",
+            "reason": "Individual therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 45,
+            "minutes_max": 45,
+            "arithmetic": "present 13:00-13:55, less connection lost 13:20-13:30 = 45 minutes",
+            "source_documents": [
+              "BH-D106"
+            ],
+            "citations": [
+              "BH-D106 L17",
+              "BH-D106 L18",
+              "BH-D106 L3-5",
+              "BH-D106 L7"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E113",
+            "encounter_id": "HG-E113",
+            "date": "2026-01-22",
+            "weekday": "Thursday",
+            "category": "group_therapy",
+            "category_name": "Group therapy",
+            "status": "counted",
+            "reason": "Group therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 45,
+            "minutes_max": 45,
+            "arithmetic": "present 10:30-11:30, less break 10:45-11:00 = 45 minutes",
+            "source_documents": [
+              "BH-D107",
+              "BH-D108"
+            ],
+            "citations": [
+              "BH-D107 L7-8",
+              "BH-D107 L8",
+              "BH-D107 L9",
+              "BH-D108 L14",
+              "BH-D108 L9"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E115",
+            "encounter_id": "HG-E115",
+            "date": "2026-01-26",
+            "weekday": "Monday",
+            "category": "individual_therapy",
+            "category_name": "Individual therapy",
+            "status": "counted",
+            "reason": "Individual therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 40,
+            "minutes_max": 50,
+            "arithmetic": "present 09:00-09:50 = 50 minutes; or present 09:10-09:50 = 40 minutes",
+            "source_documents": [
+              "BH-D110",
+              "BH-D111"
+            ],
+            "citations": [
+              "BH-D110 L3-6",
+              "BH-D110 L7",
+              "BH-D111 L10",
+              "BH-D111 L14",
+              "BH-D111 L4-8"
+            ],
+            "flags": [],
+            "discrepancies": [
+              "R4: Unresolved presence start: 09:00 (BH-D110 L7) versus 09:10 (BH-D111 L10). (BH-D110 L7, BH-D111 L10)"
+            ],
+            "needs": [
+              "A signed correction or addendum for HG-E115 stating when the patient\u0027s contact began, or an independent record of arrival such as a check-in, room or platform log."
+            ],
+            "counted": true,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E118",
+            "encounter_id": "HG-E118",
+            "date": "2026-01-29",
+            "weekday": "Thursday",
+            "category": "group_therapy",
+            "category_name": "Group therapy",
+            "status": "counted",
+            "reason": "Group therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 75,
+            "minutes_max": 75,
+            "arithmetic": "present 10:00-11:30, less break 10:45-11:00 = 75 minutes",
+            "source_documents": [
+              "BH-D107",
+              "BH-D108"
+            ],
+            "citations": [
+              "BH-D107 L12-13",
+              "BH-D107 L13",
+              "BH-D107 L14",
+              "BH-D108 L12",
+              "BH-D108 L20"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E119",
+            "encounter_id": "HG-E119",
+            "date": "2026-01-30",
+            "weekday": "Friday",
+            "category": "family_therapy",
+            "category_name": "Family therapy",
+            "status": "counted",
+            "reason": "Family therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 30,
+            "minutes_max": 30,
+            "arithmetic": "present 13:15-13:45 = 30 minutes",
+            "source_documents": [
+              "BH-D113"
+            ],
+            "citations": [
+              "BH-D113 L3-6",
+              "BH-D113 L7",
+              "BH-D113 L7-9",
+              "BH-D113 L9"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          }
+        ],
+        "uncertain": [],
+        "not_counted": [
+          {
+            "event_key": "HG-E103",
+            "encounter_id": "HG-E103",
+            "date": "2026-01-08",
+            "weekday": "Thursday",
+            "category": "individual_therapy",
+            "category_name": "Individual therapy",
+            "status": "not_a_session",
+            "reason": "The appointment was a no show.",
+            "minutes_min": 0,
+            "minutes_max": 0,
+            "arithmetic": "The appointment was a no show. 0 minutes. (BH-D006 L12, BH-D015 L11)",
+            "source_documents": [
+              "BH-D006",
+              "BH-D015"
+            ],
+            "citations": [
+              "BH-D006 L12",
+              "BH-D015 L11",
+              "BH-D015 L6"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": false,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E106",
+            "encounter_id": "HG-E106",
+            "date": "2026-01-13",
+            "weekday": "Tuesday",
+            "category": "medication_management",
+            "category_name": "Medication management",
+            "status": "excluded_by_plan",
+            "reason": "The treatment plan says medication management does not count toward the goal (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 0,
+            "minutes_max": 0,
+            "arithmetic": "present 09:00-09:25 = 25 minutes",
+            "source_documents": [
+              "BH-D006",
+              "BH-D010"
+            ],
+            "citations": [
+              "BH-D006 L15",
+              "BH-D010 L4-9",
+              "BH-D010 L7"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": false,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E108",
+            "encounter_id": "HG-E108",
+            "date": "2026-01-15",
+            "weekday": "Thursday",
+            "category": "group_therapy",
+            "category_name": "Group therapy",
+            "status": "not_a_session",
+            "reason": "The appointment was cancelled by the clinic.",
+            "minutes_min": 0,
+            "minutes_max": 0,
+            "arithmetic": "The appointment was cancelled by the clinic. 0 minutes. (BH-D006 L17, BH-D016 L9)",
+            "source_documents": [
+              "BH-D006",
+              "BH-D016"
+            ],
+            "citations": [
+              "BH-D006 L17",
+              "BH-D016 L9"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": false,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E109",
+            "encounter_id": "HG-E109",
+            "date": "2026-01-16",
+            "weekday": "Friday",
+            "category": "collateral_contact",
+            "category_name": "Collateral contact",
+            "status": "not_a_session",
+            "reason": "The patient was not present.",
+            "minutes_min": 0,
+            "minutes_max": 0,
+            "arithmetic": "The patient was not present. 0 minutes. (BH-D006 L20, BH-D012 L11, BH-D012 L8)",
+            "source_documents": [
+              "BH-D006",
+              "BH-D012"
+            ],
+            "citations": [
+              "BH-D006 L18",
+              "BH-D006 L20",
+              "BH-D012 L11",
+              "BH-D012 L4-7",
+              "BH-D012 L8"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": false,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E114",
+            "encounter_id": "HG-E114",
+            "date": "2026-01-23",
+            "weekday": "Friday",
+            "category": "care_coordination",
+            "category_name": "Care coordination",
+            "status": "not_a_session",
+            "reason": "The patient was not present.",
+            "minutes_min": 0,
+            "minutes_max": 0,
+            "arithmetic": "The patient was not present. 0 minutes. (BH-D109 L7)",
+            "source_documents": [
+              "BH-D109"
+            ],
+            "citations": [
+              "BH-D109 L2-6",
+              "BH-D109 L7"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": false,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E116",
+            "encounter_id": "HG-E116",
+            "date": "2026-01-27",
+            "weekday": "Tuesday",
+            "category": "group_therapy",
+            "category_name": "Group therapy",
+            "status": "not_a_session",
+            "reason": "The appointment was a no show.",
+            "minutes_min": 0,
+            "minutes_max": 0,
+            "arithmetic": "The appointment was a no show. 0 minutes. (BH-D108 L10, BH-D108 L16)",
+            "source_documents": [
+              "BH-D108",
+              "BH-D112"
+            ],
+            "citations": [
+              "BH-D108 L10",
+              "BH-D108 L16"
+            ],
+            "flags": [],
+            "discrepancies": [
+              "R5: A charge was posted for this encounter (Group psychotherapy, quantity 1). The appointment was a no show. Billing is not evidence of attendance. (BH-D112 L18-23)",
+              "R5: An unsigned draft says the patient attended. The appointment was a no show. A draft is not evidence of attendance. (BH-D112 L9-11)"
+            ],
+            "needs": [],
+            "counted": false,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E117",
+            "encounter_id": "HG-E117",
+            "date": "2026-01-28",
+            "weekday": "Wednesday",
+            "category": "individual_therapy",
+            "category_name": "Individual therapy",
+            "status": "not_a_session",
+            "reason": "The appointment was cancelled by the patient.",
+            "minutes_min": 0,
+            "minutes_max": 0,
+            "arithmetic": "The appointment was cancelled by the patient. 0 minutes. (BH-D108 L11, BH-D108 L18)",
+            "source_documents": [
+              "BH-D108"
+            ],
+            "citations": [
+              "BH-D108 L11",
+              "BH-D108 L18"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": false,
+            "may_count": false
+          },
+          {
+            "event_key": "HG-E120",
+            "encounter_id": "HG-E120",
+            "date": "2026-01-30",
+            "weekday": "Friday",
+            "category": "medication_management",
+            "category_name": "Medication management",
+            "status": "excluded_by_plan",
+            "reason": "The treatment plan says medication management does not count toward the goal (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 0,
+            "minutes_max": 0,
+            "arithmetic": "No arrival or departure recorded. Full attendance assumed: session 15:00-15:20 = 20 minutes",
+            "source_documents": [
+              "BH-D114"
+            ],
+            "citations": [
+              "BH-D114 L3-6",
+              "BH-D114 L5"
+            ],
+            "flags": [
+              "Attendance times were not recorded. The session interval is assumed."
+            ],
+            "discrepancies": [],
+            "needs": [],
+            "counted": false,
+            "may_count": false
+          }
+        ],
+        "described_more_than_once": [
+          "HG-E101 on 2026-01-05 is described by 2 documents (BH-D002, BH-D006) and is one contact.",
+          "HG-E102 on 2026-01-06 is described by 3 documents (BH-D004, BH-D005, BH-D006) and is one contact.",
+          "HG-E103 on 2026-01-08 is described by 2 documents (BH-D006, BH-D015) and is one contact.",
+          "HG-E104 on 2026-01-09 is described by 4 documents (BH-D006, BH-D007, BH-D008, BH-D015) and is one contact.",
+          "HG-E105 on 2026-01-12 is described by 3 documents (BH-D005, BH-D006, BH-D009) and is one contact.",
+          "HG-E106 on 2026-01-13 is described by 2 documents (BH-D006, BH-D010) and is one contact.",
+          "HG-E107 on 2026-01-14 is described by 2 documents (BH-D006, BH-D011) and is one contact.",
+          "HG-E108 on 2026-01-15 is described by 2 documents (BH-D006, BH-D016) and is one contact.",
+          "HG-E109 on 2026-01-16 is described by 2 documents (BH-D006, BH-D012) and is one contact.",
+          "HG-E110 on 2026-01-19 is described by 4 documents (BH-D101, BH-D102, BH-D103, BH-D104) and is one contact.",
+          "HG-E113 on 2026-01-22 is described by 2 documents (BH-D107, BH-D108) and is one contact.",
+          "HG-E115 on 2026-01-26 is described by 2 documents (BH-D110, BH-D111) and is one contact.",
+          "HG-E116 on 2026-01-27 is described by 2 documents (BH-D108, BH-D112) and is one contact.",
+          "HG-E118 on 2026-01-29 is described by 2 documents (BH-D107, BH-D108) and is one contact."
+        ],
+        "records_that_are_not_appointments": [
+          "BH-D001 L10: Authorization does not cover individual therapy, family therapy, or medication appointments under the group service quantity.",
+          "BH-D001 L15: No service attendance record accompanies this letter.",
+          "BH-D006 L20: Patient did not arrive by the close of the appointment slot",
+          "BH-D006 L20: The group session did not take place; it was removed from the active room schedule due to staff illness",
+          "BH-D010 L17: No separate psychotherapy component was provided or documented during this visit.",
+          "BH-D012 L17: A new treatment decision made with Rowan",
+          "BH-D012 L17: Patient-present psychotherapy",
+          "BH-D012 L17: Rowan joining the contact in person, by telephone, or by video",
+          "BH-D013 L11: Submission of an additional questionnaire with this update",
+          "BH-D013 L15: A clinical appointment at the time of this review",
+          "BH-D014 L17: Completion of a new patient questionnaire in this batch",
+          "BH-D014 L19: A visit with the patient",
+          "BH-D015 L9: arrival call or cancellation message on the scheduling line",
+          "BH-D015 L17: therapy intervention during the callback",
+          "BH-D016 L15: The coping skills group was not held and no participants were seen.",
+          "BH-D016 L15: No replacement group was conducted in the January 15 slot.",
+          "BH-D103 L13: additional clinical service in making this correction",
+          "BH-D108 L16: Patient treatment contact",
+          "BH-D108 L18: A replacement appointment being booked within January 2026",
+          "BH-D109 L7: No patient contact occurred during this care coordination call.",
+          "BH-D109 L13: Patient did not join by telephone or video, and no psychotherapy was delivered during the call.",
+          "BH-D112 L16: clinician attestation or finalized patient-specific narrative in the draft",
+          "BH-D115 L14: A separate treatment appointment or additional patient-contact interval beyond the questionnaire review",
+          "BH-D013 L11: a copy or later mention of the PHQ-9 result completed on 2026-01-05, not a new assessment or visit.",
+          "BH-D014 L12-13: a copy or later mention of the PHQ-9 result completed on 2026-01-16, not a new assessment or visit."
+        ],
+        "unlinked_assertions": [],
+        "warnings": []
+      }
+    },
+    {
+      "name": "search_passages",
+      "input": "{\u0022patient_key\u0022:\u0022HG-M042\u0022,\u0022terms\u0022:\u0022clinician\\u0022,\\u0022therapist\\u0022,\\u0022LCSW\\u0022,\\u0022LMFT\\u0022,\\u0022provider\\u0022,\\u0022counselor\u0022,\u0022suggested_kind\u0022:\u0022clinician_identity\u0022}",
+      "elapsed_ms": 1.6714,
+      "failed": false,
+      "rendered": "These passages were found by text search, not taken from the abstraction. Counts must not be based on them.\n\nSearch terms: . 0 passage(s) found, 0 written to the gap log.\n\n| Source | Passage | Already covered by |\n|---|---|---|\n| None |  |  |\n\n\n",
+      "result": {
+        "note": "These passages were found by text search, not taken from the abstraction. Counts must not be based on them.",
+        "terms": [],
+        "hits": [],
+        "gaps_recorded": 0
+      }
+    },
+    {
+      "name": "search_passages",
+      "input": "{\u0022patient_key\u0022:\u0022HG-M042\u0022,\u0022terms\u0022:[\u0022clinician\u0022,\u0022therapist\u0022,\u0022LCSW\u0022,\u0022LMFT\u0022,\u0022provider\u0022,\u0022counselor\u0022,\u0022signed by\u0022],\u0022suggested_kind\u0022:\u0022clinician_identity\u0022}",
+      "elapsed_ms": 27.09,
+      "failed": false,
+      "rendered": "These passages were found by text search, not taken from the abstraction. Counts must not be based on them.\n\nSearch terms: clinician, therapist, LCSW, LMFT, provider, counselor, signed by. 53 passage(s) found, 53 written to the gap log.\n\n| Source | Passage | Already covered by |\n|---|---|---|\n| BH-D101 L4 | Group encounter: HG-E110 \\| Facilitator: Leah Chen, LCSW | encounter |\n| BH-D101 L10 | Rowan initially followed the exercise and identified postponing a message to a supervisor as a familiar pattern. When discussion turned to returning to the workplace, Rowan became visibly tense and said the amount of discussion felt difficult to manage. The facilitator offered grounding and arranged a same-day individual meeting with the treating clinician. Patient-specific arrival and departure are maintained on the attendance roster. | observation, other |\n| BH-D101 L12 | Continue practicing brief coping skills before an approach task. Coordinate with the individual clinician regarding the group experience so that future attendance can be supported without assuming that participation in a group exercise reflects completion of the patient\u0027s own work task. | observation |\n| BH-D101 L14 | Electronically signed: Leah Chen, LCSW \\| January 19, 2026, 12:08 | nothing |\n| BH-D102 L14 | Rowan was present for the opening check-in. The patient identified anxiety about reconnecting with work and accepted an exercise handout. Staff arranged access to the individual clinician after Rowan requested additional help. No transportation assistance was requested. The patient retained the same outpatient chart identifier throughout the day\u0027s services. | observation, other |\n| BH-D102 L18 | Electronically signed: Leah Chen, LCSW \\| January 19, 2026, 12:14 | nothing |\n| BH-D103 L9 | During review of the same-day transfer, the original group roster was found to retain the scheduled group closing time in Rowan\u0027s departure field. The room-transfer record shows Rowan leaving skills room B at 11:15 and being received by the individual clinician at 11:15. I reviewed that record with the receiving clinician and confirm the corrected departure time above. The group continued for other members until its scheduled close. | attendance, other |\n| BH-D103 L13 | No additional clinical service was provided in making this correction. The group discussion and the individual clinician\u0027s assessment remain documented in their respective service records. | no service contact, other |\n| BH-D103 L15 | Electronically signed: Leah Chen, LCSW \\| January 20, 2026, 08:42 | nothing |\n| BH-D104 L15 | Original signature: Leah Chen, LCSW \\| January 19, 2026, 12:14 | other |\n| BH-D104 L18 | Attachment remarks retained from original: Rowan attended the opening check-in, accepted the exercise handout, and requested additional help from the individual clinician. Group content is recorded separately. | observation |\n| BH-D104 L20 | Records intake: indexed by Ana Reed, records assistant, January 26, 2026, 16:31. This is a retransmission of the January 19 roster for HG-E110. The received copy contains no new clinician signature and records no additional visit. | other |\n| BH-D105 L7 | Clinician: Mira Patel, LCSW | encounter |\n| BH-D105 L15 | Electronically signed: Mira Patel, LCSW \\| January 19, 2026, 12:32 | nothing |\n| BH-D106 L5 | January 21, 2026 \\| Video \\| Clinician: Mira Patel, LCSW | encounter |\n| BH-D106 L13 | Electronically signed: Mira Patel, LCSW \\| January 21, 2026, 15:04 | nothing |\n| BH-D107 L5 | Facilitator: Leah Chen, LCSW | nothing |\n| BH-D107 L10 | Signed: Leah Chen, LCSW \\| January 22, 2026, 12:06 | nothing |\n| BH-D107 L15 | Signed: Leah Chen, LCSW \\| January 29, 2026, 12:11 | nothing |\n| BH-D108 L14 | January 22 attendance attestation: Rowan arrived at 10:30 and remained until the group closed. Signed: Leah Chen, LCSW, January 22, 12:09. | attendance, presence |\n| BH-D108 L16 | January 27 attendance attestation: Final roster confirms Rowan was absent for the entire group. No patient treatment contact occurred. An outreach message inviting the patient to contact scheduling was left after the group; no clinical discussion occurred. Signed: Leah Chen, LCSW, January 27, 11:54. | attendance, no service contact, other |\n| BH-D108 L20 | January 29 attendance attestation: Rowan was present from opening through closing. Signed: Leah Chen, LCSW, January 29, 12:15. | attendance, presence |\n| BH-D109 L6 | Participants: Mira Patel, LCSW, and Daniel Shaw, outside social worker | encounter |\n| BH-D109 L15 | Electronically signed: Mira Patel, LCSW \\| January 23, 2026, 10:02 | nothing |\n| BH-D110 L6 | Clinicians: Mira Patel, LCSW; Nora Ellis, LCSW | encounter |\n| BH-D110 L15 | Electronically signed: Mira Patel, LCSW \\| January 26, 2026, 11:16 | nothing |\n| BH-D111 L3 | Participating clinician psychotherapy record | nothing |\n| BH-D111 L8 | Clinician: Nora Ellis, LCSW, participating with Mira Patel, LCSW | encounter |\n| BH-D111 L16 | Electronically signed: Nora Ellis, LCSW \\| January 26, 2026, 12:03 | nothing |\n| BH-D112 L13 | Clinician signature: None | other |\n| BH-D112 L16 | The text above appears in the draft document area. It was generated from the appointment template before the scheduled group. No clinician attestation or finalized patient-specific narrative appears in this draft. | no service contact |\n| BH-D113 L5 | January 30, 2026 \\| In person \\| Clinician: Mira Patel, LCSW | encounter |\n| BH-D113 L6 | Therapist session interval: 13:00\u201313:45, 45 minutes. | encounter, stated duration |\n| BH-D113 L15 | Electronically signed: Mira Patel, LCSW \\| January 30, 2026, 14:18 | nothing |\n| BH-D114 L12 | The service consisted of medication evaluation and management, including symptom review and medication counseling. No separately documented psychotherapy was provided. Ongoing psychotherapy goals and behavioral assignments remain with the treating therapist. Rowan agreed to continue attending scheduled outpatient follow-up and to bring questions about the medication regimen to the next medication appointment. | observation |\n| BH-D115 L8 | Rowan completed the questionnaire before the afternoon appointment. The patient continued to endorse sleep difficulty and trouble sustaining usual activities, with fewer days of pervasive low mood than reported at intake. The form was available to the treating clinician for review with the patient\u0027s account of functioning. | observation |\n| BH-D115 L10 | Clinician review, January 30: Rowan shows partial improvement, with persistent avoidance and meaningful functional impact around returning to work. The patient has taken some initial steps, including drafting and sending a message, but continues to delay follow-up and becomes anxious when a task expands beyond a narrowly defined action. Sleep disruption remains an intermittent barrier to establishing a steadier daytime routine. | observation |\n| BH-D115 L16 | Electronically signed: Mira Patel, LCSW \\| January 30, 2026, 16:20 | nothing |\n| BH-D006 L20 | Desk comments: HG-E103 remained unarrived at close of its appointment slot on January 8. Outreach was assigned to the individual therapist\u0027s support queue. HG-E108 was removed from the active room schedule after staff illness was reported. A cancellation message was released to all registered members. Appointment HG-E109 was retained as a partner collateral contact after Rowan could not attend. | attendance, no service contact, other |\n| BH-D008 L7 | Author: Leena Park, LPC, cofacilitator with Mara Voss, LCSW | encounter |\n| BH-D007 L8 | Clinicians: Mara Voss, LCSW; cofacilitator Leena Park, LPC | attendance, encounter |\n| BH-D014 L15 | Source review excerpt, Mara Voss, LCSW: some improvement in depressive symptoms; ongoing avoidance of work communication and inconsistent sleep. Continue current therapeutic focus and review practical functioning at the next direct appointment. Original clinician review timestamp: January 16, 2026, 09:10 local. | measure, observation |\n| BH-D011 L8 | Clinician: Mara Voss, LCSW | encounter |\n| BH-D002 L7 | Clinician: Mara Voss, LCSW | encounter |\n| BH-D010 L8 | Clinician: Elias Brenner, NP | encounter |\n| BH-D010 L17 | Service documented: medication review and management only. No separate psychotherapy component was provided or documented. Rowan was directed to bring activity and communication concerns to the treating therapist for continued work. | no service contact |\n| BH-D015 L9 | 11:12: Reception notified the clinician that Rowan had not checked in. There was no arrival call or cancellation message on the scheduling line. The appointment remained on the room schedule until its end time. | no service contact, observation, other |\n| BH-D015 L17 | The callback addressed scheduling and contact information. No therapy intervention was conducted. The individual clinician was notified of the missed appointment so that barriers to attendance could be discussed at the next visit. | no service contact, observation |\n| BH-D012 L7 | Clinician: Mara Voss, LCSW | encounter |\n| BH-D003 L7 | Prepared by Mara Voss, LCSW; signed 2026-01-05, 13:05 local | other |\n| BH-D003 L14 | Goal 1: improve daily activity and task initiation. Rowan will select manageable activities, track attempts, and review barriers with the individual therapist. The team will emphasize completion of useful steps rather than judging the day by mood alone. | observation |\n| BH-D013 L9 | Reviewed by Mara Voss, LCSW, 2026-01-16, 09:10 local | observation |\n| BH-D013 L13 | Clinician review: the score and recent individual-session material suggest some improvement in depressive symptoms. Persistent avoidance, difficulty initiating work communication, and sleep disruption remain clinically relevant. Rowan has attempted small activities and communication practice but has not yet established a reliable routine. Continue the current therapeutic focus and review functioning alongside symptom change during the next direct appointment. | observation |\n\n\n",
+      "result": {
+        "note": "These passages were found by text search, not taken from the abstraction. Counts must not be based on them.",
+        "terms": [
+          "clinician",
+          "therapist",
+          "LCSW",
+          "LMFT",
+          "provider",
+          "counselor",
+          "signed by"
+        ],
+        "hits": [
+          {
+            "citation": "BH-D101 L4",
+            "passage": "Group encounter: HG-E110 | Facilitator: Leah Chen, LCSW",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D101 L10",
+            "passage": "Rowan initially followed the exercise and identified postponing a message to a supervisor as a familiar pattern. When discussion turned to returning to the workplace, Rowan became visibly tense and said the amount of discussion felt difficult to manage. The facilitator offered grounding and arranged a same-day individual meeting with the treating clinician. Patient-specific arrival and departure are maintained on the attendance roster.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation",
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D101 L12",
+            "passage": "Continue practicing brief coping skills before an approach task. Coordinate with the individual clinician regarding the group experience so that future attendance can be supported without assuming that participation in a group exercise reflects completion of the patient\u0027s own work task.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D101 L14",
+            "passage": "Electronically signed: Leah Chen, LCSW | January 19, 2026, 12:08",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D102 L14",
+            "passage": "Rowan was present for the opening check-in. The patient identified anxiety about reconnecting with work and accepted an exercise handout. Staff arranged access to the individual clinician after Rowan requested additional help. No transportation assistance was requested. The patient retained the same outpatient chart identifier throughout the day\u0027s services.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation",
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D102 L18",
+            "passage": "Electronically signed: Leah Chen, LCSW | January 19, 2026, 12:14",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D103 L9",
+            "passage": "During review of the same-day transfer, the original group roster was found to retain the scheduled group closing time in Rowan\u0027s departure field. The room-transfer record shows Rowan leaving skills room B at 11:15 and being received by the individual clinician at 11:15. I reviewed that record with the receiving clinician and confirm the corrected departure time above. The group continued for other members until its scheduled close.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D103 L13",
+            "passage": "No additional clinical service was provided in making this correction. The group discussion and the individual clinician\u0027s assessment remain documented in their respective service records.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "no_service_contact",
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D103 L15",
+            "passage": "Electronically signed: Leah Chen, LCSW | January 20, 2026, 08:42",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D104 L15",
+            "passage": "Original signature: Leah Chen, LCSW | January 19, 2026, 12:14",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D104 L18",
+            "passage": "Attachment remarks retained from original: Rowan attended the opening check-in, accepted the exercise handout, and requested additional help from the individual clinician. Group content is recorded separately.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D104 L20",
+            "passage": "Records intake: indexed by Ana Reed, records assistant, January 26, 2026, 16:31. This is a retransmission of the January 19 roster for HG-E110. The received copy contains no new clinician signature and records no additional visit.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D105 L7",
+            "passage": "Clinician: Mira Patel, LCSW",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D105 L15",
+            "passage": "Electronically signed: Mira Patel, LCSW | January 19, 2026, 12:32",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D106 L5",
+            "passage": "January 21, 2026 | Video | Clinician: Mira Patel, LCSW",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D106 L13",
+            "passage": "Electronically signed: Mira Patel, LCSW | January 21, 2026, 15:04",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D107 L5",
+            "passage": "Facilitator: Leah Chen, LCSW",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D107 L10",
+            "passage": "Signed: Leah Chen, LCSW | January 22, 2026, 12:06",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D107 L15",
+            "passage": "Signed: Leah Chen, LCSW | January 29, 2026, 12:11",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D108 L14",
+            "passage": "January 22 attendance attestation: Rowan arrived at 10:30 and remained until the group closed. Signed: Leah Chen, LCSW, January 22, 12:09.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "presence"
+            ]
+          },
+          {
+            "citation": "BH-D108 L16",
+            "passage": "January 27 attendance attestation: Final roster confirms Rowan was absent for the entire group. No patient treatment contact occurred. An outreach message inviting the patient to contact scheduling was left after the group; no clinical discussion occurred. Signed: Leah Chen, LCSW, January 27, 11:54.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "no_service_contact",
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D108 L20",
+            "passage": "January 29 attendance attestation: Rowan was present from opening through closing. Signed: Leah Chen, LCSW, January 29, 12:15.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "presence"
+            ]
+          },
+          {
+            "citation": "BH-D109 L6",
+            "passage": "Participants: Mira Patel, LCSW, and Daniel Shaw, outside social worker",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D109 L15",
+            "passage": "Electronically signed: Mira Patel, LCSW | January 23, 2026, 10:02",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D110 L6",
+            "passage": "Clinicians: Mira Patel, LCSW; Nora Ellis, LCSW",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D110 L15",
+            "passage": "Electronically signed: Mira Patel, LCSW | January 26, 2026, 11:16",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D111 L3",
+            "passage": "Participating clinician psychotherapy record",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D111 L8",
+            "passage": "Clinician: Nora Ellis, LCSW, participating with Mira Patel, LCSW",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D111 L16",
+            "passage": "Electronically signed: Nora Ellis, LCSW | January 26, 2026, 12:03",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D112 L13",
+            "passage": "Clinician signature: None",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D112 L16",
+            "passage": "The text above appears in the draft document area. It was generated from the appointment template before the scheduled group. No clinician attestation or finalized patient-specific narrative appears in this draft.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "no_service_contact"
+            ]
+          },
+          {
+            "citation": "BH-D113 L5",
+            "passage": "January 30, 2026 | In person | Clinician: Mira Patel, LCSW",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D113 L6",
+            "passage": "Therapist session interval: 13:00\u201313:45, 45 minutes.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter",
+              "stated_duration"
+            ]
+          },
+          {
+            "citation": "BH-D113 L15",
+            "passage": "Electronically signed: Mira Patel, LCSW | January 30, 2026, 14:18",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D114 L12",
+            "passage": "The service consisted of medication evaluation and management, including symptom review and medication counseling. No separately documented psychotherapy was provided. Ongoing psychotherapy goals and behavioral assignments remain with the treating therapist. Rowan agreed to continue attending scheduled outpatient follow-up and to bring questions about the medication regimen to the next medication appointment.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D115 L8",
+            "passage": "Rowan completed the questionnaire before the afternoon appointment. The patient continued to endorse sleep difficulty and trouble sustaining usual activities, with fewer days of pervasive low mood than reported at intake. The form was available to the treating clinician for review with the patient\u0027s account of functioning.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D115 L10",
+            "passage": "Clinician review, January 30: Rowan shows partial improvement, with persistent avoidance and meaningful functional impact around returning to work. The patient has taken some initial steps, including drafting and sending a message, but continues to delay follow-up and becomes anxious when a task expands beyond a narrowly defined action. Sleep disruption remains an intermittent barrier to establishing a steadier daytime routine.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D115 L16",
+            "passage": "Electronically signed: Mira Patel, LCSW | January 30, 2026, 16:20",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D006 L20",
+            "passage": "Desk comments: HG-E103 remained unarrived at close of its appointment slot on January 8. Outreach was assigned to the individual therapist\u0027s support queue. HG-E108 was removed from the active room schedule after staff illness was reported. A cancellation message was released to all registered members. Appointment HG-E109 was retained as a partner collateral contact after Rowan could not attend.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "no_service_contact",
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D008 L7",
+            "passage": "Author: Leena Park, LPC, cofacilitator with Mara Voss, LCSW",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D007 L8",
+            "passage": "Clinicians: Mara Voss, LCSW; cofacilitator Leena Park, LPC",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D014 L15",
+            "passage": "Source review excerpt, Mara Voss, LCSW: some improvement in depressive symptoms; ongoing avoidance of work communication and inconsistent sleep. Continue current therapeutic focus and review practical functioning at the next direct appointment. Original clinician review timestamp: January 16, 2026, 09:10 local.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "measure",
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D011 L8",
+            "passage": "Clinician: Mara Voss, LCSW",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D002 L7",
+            "passage": "Clinician: Mara Voss, LCSW",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D010 L8",
+            "passage": "Clinician: Elias Brenner, NP",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D010 L17",
+            "passage": "Service documented: medication review and management only. No separate psychotherapy component was provided or documented. Rowan was directed to bring activity and communication concerns to the treating therapist for continued work.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "no_service_contact"
+            ]
+          },
+          {
+            "citation": "BH-D015 L9",
+            "passage": "11:12: Reception notified the clinician that Rowan had not checked in. There was no arrival call or cancellation message on the scheduling line. The appointment remained on the room schedule until its end time.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "no_service_contact",
+              "observation",
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D015 L17",
+            "passage": "The callback addressed scheduling and contact information. No therapy intervention was conducted. The individual clinician was notified of the missed appointment so that barriers to attendance could be discussed at the next visit.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "no_service_contact",
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D012 L7",
+            "passage": "Clinician: Mara Voss, LCSW",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D003 L7",
+            "passage": "Prepared by Mara Voss, LCSW; signed 2026-01-05, 13:05 local",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D003 L14",
+            "passage": "Goal 1: improve daily activity and task initiation. Rowan will select manageable activities, track attempts, and review barriers with the individual therapist. The team will emphasize completion of useful steps rather than judging the day by mood alone.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D013 L9",
+            "passage": "Reviewed by Mara Voss, LCSW, 2026-01-16, 09:10 local",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D013 L13",
+            "passage": "Clinician review: the score and recent individual-session material suggest some improvement in depressive symptoms. Persistent avoidance, difficulty initiating work communication, and sleep disruption remain clinically relevant. Rowan has attempted small activities and communication practice but has not yet established a reliable routine. Continue the current therapeutic focus and review functioning alongside symptom change during the next direct appointment.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation"
+            ]
+          }
+        ],
+        "gaps_recorded": 53
+      }
+    },
+    {
+      "name": "day_reconstruction",
+      "input": "{\u0022patient_key\u0022:\u0022HG-M042\u0022,\u0022date\u0022:\u00222026-01-06\u0022}",
+      "elapsed_ms": 28.5646,
+      "failed": false,
+      "rendered": "| Parameter | Value | Source |\n|---|---|---|\n| Patient | Rowan Mercer (HG-M042) | Matched by medical record number |\n| Dates | 2026-01-06 to 2026-01-06 | Given in the request; both dates are included |\n| Week | Monday to Sunday | From the treatment plan |\n| Abstraction version | c9e505146e97ad8e | Changes only when a conclusion about this patient changes |\n\n\n**2026-01-06**: 1 therapy contact(s), 45 patient therapy minutes. 45 = 45 minutes.\n\n| Encounter | Service | Counted | Minutes | Detail |\n|---|---|---|---|---|\n| HG-E102 | Group therapy | counted | 45 | present 10:15-11:15, less break 10:45-11:00 = 45 minutes |\n\n\n### HG-E102: Group therapy\n\n| Field | Decision | Value | Rule | Explanation | Sources |\n|---|---|---|---|---|---|\n| Service category | resolved | group therapy | R4 | tier 1 (signed record) states group_therapy. | BH-D004 L4-8, BH-D005 L9-10, BH-D006 L11 |\n| Disposition | resolved | took place | R4 | tier 1 (signed record) states took_place. | BH-D005 L9-10, BH-D006 L11 |\n| Patient present | resolved | present | R4 | tier 1 (signed record) states present. | BH-D005 L9-10, BH-D006 L11 |\n| Presence start | resolved | 10:15 | R4 | tier 1 (signed record) states 10:15. | BH-D005 L10, BH-D005 L9-10 |\n| Presence end | resolved | 11:15 | R4 | tier 1 (signed record) states 11:15. | BH-D005 L10, BH-D005 L9-10 |\n\n\n- Conclusion: session. 45 patient-present minutes. present 10:15-11:15, less break 10:45-11:00 = 45 minutes\n- Session interval: 10:00-11:30 (scheduled interval; BH-D004 L4-8, BH-D005 L9-10, BH-D006 L11).\n- Removed: break 10:45-11:00 (BH-D004 L12).\n\n\nEvery statement linked to this encounter:\n\n| Source | Kind | Record | Signed | Tier | Stated at | Quote |\n|---|---|---|---|---|---|---|\n| BH-D004 L4-8 | encounter | clinical note | yes | 1 | 2026-01-06 12:02 | \u0022Harbor Grove Behavioral Health \\| Coping skills group Service date 2026-01-06 \\| Group scheduled 10:00\u201311:30 local Rowan Mercer \\| DOB 1991-04-12 \\| MRN HG-M042 \\| Encounter HG-E102 Facilitator: Leena Park, LPC\u0022 |\n| BH-D004 L12 | excluded interval | clinical note | yes | 1 | 2026-01-06 12:02 | \u0022The whole group took a break from 10:45 to 11:00. No therapy was conducted during that interval.\u0022 |\n| BH-D005 L9-10 | attendance | attendance record | extract of signed | 1 | 2026-01-12 15:10 | \u00222026-01-06 \\| HG-E102   \\| 10:00\u201311:30    \\| 10:15           \\| 11:15            \\| Attended part\u0022 |\n| BH-D005 L9-10 | encounter | attendance record | extract of signed | 1 | 2026-01-12 15:10 | \u00222026-01-06 \\| HG-E102   \\| 10:00\u201311:30    \\| 10:15           \\| 11:15            \\| Attended part\u0022 |\n| BH-D005 L10 | presence | attendance record | extract of signed | 1 | 2026-01-12 15:10 | \u002210:15           \\| 11:15\u0022 |\n| BH-D006 L11 | attendance | appointment export | no | 2 | 2026-01-16 16:50 | \u0022HG-E102   \\| Jan06 \\| Coping skills group    \\| 10:00\u201311:30    \\| Attended part\u0022 |\n| BH-D006 L11 | encounter | appointment export | no | 2 | 2026-01-16 16:50 | \u0022HG-E102   \\| Jan06 \\| Coping skills group    \\| 10:00\u201311:30    \\| Attended part\u0022 |\n\n\n\n**Observations recorded for this day**\n\n| Date | Category | What the record says | Source | Record |\n|---|---|---|---|---|\n| 2026-01-06 | reason for contact | \u0022Group focus: recognizing early physical signs of anxiety and choosing a coping response before withdrawing from a task.\u0022 | BH-D004 L10 | clinical note, signed |\n| 2026-01-06 | intervention | \u0022The facilitator demonstrated paced breathing, invited short practice rounds, and led discussion about using a skill during a manageable task rather than only after distress has peaked.\u0022 | BH-D004 L10 | clinical note, signed |\n| 2026-01-06 | intervention | \u0022Following the break, the facilitator resumed with a paired planning exercise and a group discussion of barriers to practice at home.\u0022 | BH-D004 L12 | clinical note, signed |\n| 2026-01-06 | functioning | \u0022Rowan was quiet initially and responded when invited to identify a situation involving avoidance.\u0022 | BH-D004 L14 | clinical note, signed |\n| 2026-01-06 | patient reported symptoms | \u0022They described delaying a reply to a work message because they feared being asked for a firm return date.\u0022 | BH-D004 L14 | clinical note, signed |\n| 2026-01-06 | intervention | \u0022Rowan practiced a breathing exercise and selected reading the message before deciding how to respond as a possible next step.\u0022 | BH-D004 L14 | clinical note, signed |\n| 2026-01-06 | clinician assessment | \u0022Their participation was relevant to the topic, and they appeared receptive to peer suggestions.\u0022 | BH-D004 L14 | clinical note, signed |\n| 2026-01-06 | reason for contact | \u0022Rowan called from the building entrance to say they were running behind after difficulty finding parking.\u0022 | BH-D005 L13 | desk log, unsigned |\n| 2026-01-06 | reason for contact | \u0022Rowan advised the facilitator that they would need to leave early for a previously arranged ride.\u0022 | BH-D005 L13 | desk log, unsigned |\n| 2026-01-06 | reason for contact | \u0022Departure was marked when Rowan returned their visitor badge. Rowan did not re-enter the group room after departing.\u0022 | BH-D005 L13 | desk log, unsigned |\n\n\n",
+      "result": {
+        "parameters": {
+          "patient_key": "HG-M042",
+          "patient_name": "Rowan Mercer",
+          "from": "2026-01-06",
+          "to": "2026-01-06",
+          "date_range_source": "given in the request; both dates are included",
+          "week_definition": "Monday to Sunday, from the treatment plan",
+          "abstraction_version": "c9e505146e97ad8e"
+        },
+        "date": "2026-01-06",
+        "therapy_contacts": 1,
+        "therapy_contacts_max": 1,
+        "minutes_min": 45,
+        "minutes_max": 45,
+        "minutes_arithmetic": "45 = 45 minutes",
+        "contacts": [
+          {
+            "event_key": "HG-E102",
+            "encounter_id": "HG-E102",
+            "date": "2026-01-06",
+            "weekday": "Tuesday",
+            "category": "group_therapy",
+            "category_name": "Group therapy",
+            "status": "counted",
+            "reason": "Group therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 45,
+            "minutes_max": 45,
+            "arithmetic": "present 10:15-11:15, less break 10:45-11:00 = 45 minutes",
+            "source_documents": [
+              "BH-D004",
+              "BH-D005",
+              "BH-D006"
+            ],
+            "citations": [
+              "BH-D004 L12",
+              "BH-D004 L4-8",
+              "BH-D005 L10",
+              "BH-D005 L9-10",
+              "BH-D006 L11"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          }
+        ],
+        "events": [
+          {
+            "event_key": "HG-E102",
+            "patient_key": "HG-M042",
+            "encounter_id": "HG-E102",
+            "service_date": "2026-01-06",
+            "category": {
+              "field": "service category",
+              "status": "resolved",
+              "value": "group_therapy",
+              "tier": 1,
+              "rule": "R4",
+              "explanation": "tier 1 (signed record) states group_therapy.",
+              "candidates": [
+                {
+                  "value": "group_therapy",
+                  "tier": 1,
+                  "citations": [
+                    "BH-D004 L4-8",
+                    "BH-D005 L9-10",
+                    "BH-D006 L11"
+                  ],
+                  "assertion_ids": [
+                    192,
+                    220,
+                    261
+                  ]
+                }
+              ],
+              "overruled": [],
+              "is_settled": true
+            },
+            "service_labels": [
+              "Coping skills group"
+            ],
+            "modality": "in_person",
+            "disposition": {
+              "field": "disposition",
+              "status": "resolved",
+              "value": "took_place",
+              "tier": 1,
+              "rule": "R4",
+              "explanation": "tier 1 (signed record) states took_place.",
+              "candidates": [
+                {
+                  "value": "took_place",
+                  "tier": 1,
+                  "citations": [
+                    "BH-D005 L9-10",
+                    "BH-D006 L11"
+                  ],
+                  "assertion_ids": [
+                    193,
+                    221
+                  ]
+                }
+              ],
+              "overruled": [],
+              "is_settled": true
+            },
+            "patient_present": {
+              "field": "patient present",
+              "status": "resolved",
+              "value": "present",
+              "tier": 1,
+              "rule": "R4",
+              "explanation": "tier 1 (signed record) states present.",
+              "candidates": [
+                {
+                  "value": "present",
+                  "tier": 1,
+                  "citations": [
+                    "BH-D005 L9-10",
+                    "BH-D006 L11"
+                  ],
+                  "assertion_ids": [
+                    193,
+                    221
+                  ]
+                }
+              ],
+              "overruled": [],
+              "is_settled": true
+            },
+            "start": {
+              "field": "presence start",
+              "status": "resolved",
+              "value": "10:15",
+              "tier": 1,
+              "rule": "R4",
+              "explanation": "tier 1 (signed record) states 10:15.",
+              "candidates": [
+                {
+                  "value": "10:15",
+                  "tier": 1,
+                  "citations": [
+                    "BH-D005 L10",
+                    "BH-D005 L9-10"
+                  ],
+                  "assertion_ids": [
+                    193,
+                    194
+                  ]
+                }
+              ],
+              "overruled": [],
+              "is_settled": true
+            },
+            "end": {
+              "field": "presence end",
+              "status": "resolved",
+              "value": "11:15",
+              "tier": 1,
+              "rule": "R4",
+              "explanation": "tier 1 (signed record) states 11:15.",
+              "candidates": [
+                {
+                  "value": "11:15",
+                  "tier": 1,
+                  "citations": [
+                    "BH-D005 L10",
+                    "BH-D005 L9-10"
+                  ],
+                  "assertion_ids": [
+                    193,
+                    194
+                  ]
+                }
+              ],
+              "overruled": [],
+              "is_settled": true
+            },
+            "session_interval": {
+              "start": 600,
+              "end": 690,
+              "reason": "scheduled interval",
+              "citations": [
+                "BH-D004 L4-8",
+                "BH-D005 L9-10",
+                "BH-D006 L11"
+              ]
+            },
+            "excluded": [
+              {
+                "start": 645,
+                "end": 660,
+                "reason": "break",
+                "citations": [
+                  "BH-D004 L12"
+                ]
+              }
+            ],
+            "presence_from_roster": true,
+            "occurrence": "session",
+            "minutes_min": 45,
+            "minutes_max": 45,
+            "arithmetic": "present 10:15-11:15, less break 10:45-11:00 = 45 minutes",
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "assertions": [
+              {
+                "assertion_id": 261,
+                "citation": "BH-D004 L4-8",
+                "kind": "encounter",
+                "quote": "Harbor Grove Behavioral Health | Coping skills group\nService date 2026-01-06 | Group scheduled 10:00\u201311:30 local\nRowan Mercer | DOB 1991-04-12 | MRN HG-M042 | Encounter HG-E102\nFacilitator: Leena Park, LPC",
+                "record_type": "clinical_note",
+                "signed": "yes",
+                "tier": 1,
+                "is_copy": false,
+                "statement_time": "2026-01-06 12:02",
+                "link_method": "encounter_id"
+              },
+              {
+                "assertion_id": 262,
+                "citation": "BH-D004 L12",
+                "kind": "excluded_interval",
+                "quote": "The whole group took a break from 10:45 to 11:00. No therapy was conducted during that interval.",
+                "record_type": "clinical_note",
+                "signed": "yes",
+                "tier": 1,
+                "is_copy": false,
+                "statement_time": "2026-01-06 12:02",
+                "link_method": "encounter_id"
+              },
+              {
+                "assertion_id": 193,
+                "citation": "BH-D005 L9-10",
+                "kind": "attendance",
+                "quote": "2026-01-06 | HG-E102   | 10:00\u201311:30    | 10:15           | 11:15            | Attended part",
+                "record_type": "attendance_record",
+                "signed": "extract_of_signed",
+                "tier": 1,
+                "is_copy": false,
+                "statement_time": "2026-01-12 15:10",
+                "link_method": "encounter_id"
+              },
+              {
+                "assertion_id": 192,
+                "citation": "BH-D005 L9-10",
+                "kind": "encounter",
+                "quote": "2026-01-06 | HG-E102   | 10:00\u201311:30    | 10:15           | 11:15            | Attended part",
+                "record_type": "attendance_record",
+                "signed": "extract_of_signed",
+                "tier": 1,
+                "is_copy": false,
+                "statement_time": "2026-01-12 15:10",
+                "link_method": "encounter_id"
+              },
+              {
+                "assertion_id": 194,
+                "citation": "BH-D005 L10",
+                "kind": "presence",
+                "quote": "10:15           | 11:15",
+                "record_type": "attendance_record",
+                "signed": "extract_of_signed",
+                "tier": 1,
+                "is_copy": false,
+                "statement_time": "2026-01-12 15:10",
+                "link_method": "encounter_id"
+              },
+              {
+                "assertion_id": 221,
+                "citation": "BH-D006 L11",
+                "kind": "attendance",
+                "quote": "HG-E102   | Jan06 | Coping skills group    | 10:00\u201311:30    | Attended part",
+                "record_type": "appointment_export",
+                "signed": "no",
+                "tier": 2,
+                "is_copy": false,
+                "statement_time": "2026-01-16 16:50",
+                "link_method": "encounter_id"
+              },
+              {
+                "assertion_id": 220,
+                "citation": "BH-D006 L11",
+                "kind": "encounter",
+                "quote": "HG-E102   | Jan06 | Coping skills group    | 10:00\u201311:30    | Attended part",
+                "record_type": "appointment_export",
+                "signed": "no",
+                "tier": 2,
+                "is_copy": false,
+                "statement_time": "2026-01-16 16:50",
+                "link_method": "encounter_id"
+              }
+            ],
+            "source_documents": [
+              "BH-D004",
+              "BH-D005",
+              "BH-D006"
+            ],
+            "category_value": "group_therapy",
+            "minutes_settled": true
+          }
+        ],
+        "observations": [
+          {
+            "date": "2026-01-06",
+            "category": "reason_for_contact",
+            "summary": "Group session focused on recognizing early physical anxiety signs and choosing coping responses before task withdrawal.",
+            "quote": "Group focus: recognizing early physical signs of anxiety and choosing a coping response before withdrawing from a task.",
+            "citation": "BH-D004 L10",
+            "encounter_id": "HG-E102",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-06",
+            "category": "intervention",
+            "summary": "Facilitator demonstrated paced breathing, led practice rounds, and discussed using skills early rather than after distress peaks.",
+            "quote": "The facilitator demonstrated paced breathing, invited short practice rounds, and led discussion about using a skill during a manageable task rather than only after distress has peaked.",
+            "citation": "BH-D004 L10",
+            "encounter_id": "HG-E102",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-06",
+            "category": "intervention",
+            "summary": "After the break, group resumed with a paired planning exercise and discussion of barriers to home practice.",
+            "quote": "Following the break, the facilitator resumed with a paired planning exercise and a group discussion of barriers to practice at home.",
+            "citation": "BH-D004 L12",
+            "encounter_id": "HG-E102",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-06",
+            "category": "functioning",
+            "summary": "Rowan was initially quiet and responded when invited to identify a situation involving avoidance.",
+            "quote": "Rowan was quiet initially and responded when invited to identify a situation involving avoidance.",
+            "citation": "BH-D004 L14",
+            "encounter_id": "HG-E102",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-06",
+            "category": "patient_reported_symptoms",
+            "summary": "Rowan described delaying a reply to a work message out of fear of being asked for a firm return date.",
+            "quote": "They described delaying a reply to a work message because they feared being asked for a firm return date.",
+            "citation": "BH-D004 L14",
+            "encounter_id": "HG-E102",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-06",
+            "category": "intervention",
+            "summary": "Rowan practiced a breathing exercise and identified reading the message before responding as a next step.",
+            "quote": "Rowan practiced a breathing exercise and selected reading the message before deciding how to respond as a possible next step.",
+            "citation": "BH-D004 L14",
+            "encounter_id": "HG-E102",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-06",
+            "category": "clinician_assessment",
+            "summary": "Clinician noted Rowan\u0027s participation was relevant to the topic and that Rowan appeared receptive to peer suggestions.",
+            "quote": "Their participation was relevant to the topic, and they appeared receptive to peer suggestions.",
+            "citation": "BH-D004 L14",
+            "encounter_id": "HG-E102",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-06",
+            "category": "reason_for_contact",
+            "summary": "Patient called ahead to report running late due to trouble finding parking.",
+            "quote": "Rowan called from the building entrance to say they were running behind after difficulty finding parking.",
+            "citation": "BH-D005 L13",
+            "encounter_id": "HG-E102",
+            "source": "desk log, unsigned",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-06",
+            "category": "reason_for_contact",
+            "summary": "Patient told the facilitator they needed to leave early due to a previously arranged ride.",
+            "quote": "Rowan advised the facilitator that they would need to leave early for a previously arranged ride.",
+            "citation": "BH-D005 L13",
+            "encounter_id": "HG-E102",
+            "source": "desk log, unsigned",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-06",
+            "category": "reason_for_contact",
+            "summary": "Departure time was recorded when the patient returned their visitor badge; patient did not return to the group room afterward.",
+            "quote": "Departure was marked when Rowan returned their visitor badge. Rowan did not re-enter the group room after departing.",
+            "citation": "BH-D005 L13",
+            "encounter_id": "HG-E102",
+            "source": "desk log, unsigned",
+            "is_copy": false
+          }
+        ],
+        "other_records": []
+      }
+    },
+    {
+      "name": "day_reconstruction",
+      "input": "{\u0022patient_key\u0022:\u0022HG-M042\u0022,\u0022date\u0022:\u00222026-01-12\u0022}",
+      "elapsed_ms": 1.7254,
+      "failed": false,
+      "rendered": "| Parameter | Value | Source |\n|---|---|---|\n| Patient | Rowan Mercer (HG-M042) | Matched by medical record number |\n| Dates | 2026-01-12 to 2026-01-12 | Given in the request; both dates are included |\n| Week | Monday to Sunday | From the treatment plan |\n| Abstraction version | c9e505146e97ad8e | Changes only when a conclusion about this patient changes |\n\n\n**2026-01-12**: 1 therapy contact(s), 75 patient therapy minutes. 75 = 75 minutes.\n\n| Encounter | Service | Counted | Minutes | Detail |\n|---|---|---|---|---|\n| HG-E105 | Group therapy | counted | 75 | present 10:00-11:30, less break 10:40-10:55 = 75 minutes |\n\n\n### HG-E105: Group therapy\n\n| Field | Decision | Value | Rule | Explanation | Sources |\n|---|---|---|---|---|---|\n| Service category | resolved | group therapy | R4 | tier 1 (signed record) states group_therapy. | BH-D005 L9-11, BH-D006 L14, BH-D009 L4-8 |\n| Disposition | resolved | took place | R4 | tier 1 (signed record) states took_place. | BH-D005 L9-11, BH-D006 L14 |\n| Patient present | resolved | present | R4 | tier 1 (signed record) states present. | BH-D005 L9-11 |\n| Presence start | resolved | 10:00 | R4 | tier 1 (signed record) states 10:00. | BH-D005 L11, BH-D005 L9-11 |\n| Presence end | resolved | 11:30 | R4 | tier 1 (signed record) states 11:30. | BH-D005 L11, BH-D005 L9-11 |\n\n\n- Conclusion: session. 75 patient-present minutes. present 10:00-11:30, less break 10:40-10:55 = 75 minutes\n- Session interval: 10:00-11:30 (scheduled interval; BH-D005 L9-11, BH-D006 L14, BH-D009 L4-8).\n- Removed: break 10:40-10:55 (BH-D009 L12).\n\n\nEvery statement linked to this encounter:\n\n| Source | Kind | Record | Signed | Tier | Stated at | Quote |\n|---|---|---|---|---|---|---|\n| BH-D005 L9-11 | attendance | attendance record | extract of signed | 1 | 2026-01-12 15:10 | \u00222026-01-12 \\| HG-E105   \\| 10:00\u201311:30    \\| 10:00           \\| 11:30            \\| Attended full\u0022 |\n| BH-D005 L9-11 | encounter | attendance record | extract of signed | 1 | 2026-01-12 15:10 | \u00222026-01-12 \\| HG-E105   \\| 10:00\u201311:30    \\| 10:00           \\| 11:30            \\| Attended full\u0022 |\n| BH-D005 L11 | presence | attendance record | extract of signed | 1 | 2026-01-12 15:10 | \u002210:00           \\| 11:30\u0022 |\n| BH-D006 L14 | attendance | appointment export | no | 2 | 2026-01-16 16:50 | \u0022HG-E105   \\| Jan12 \\| Coping skills group    \\| 10:00\u201311:30    \\| Completed\u0022 |\n| BH-D006 L14 | encounter | appointment export | no | 2 | 2026-01-16 16:50 | \u0022HG-E105   \\| Jan12 \\| Coping skills group    \\| 10:00\u201311:30    \\| Completed\u0022 |\n| BH-D009 L4-8 | encounter | clinical note | yes | 1 | 2026-01-12 12:20 | \u0022Harbor Grove Behavioral Health \\| Coping skills group\u0022 |\n| BH-D009 L12 | excluded interval | clinical note | yes | 1 | 2026-01-12 12:20 | \u0022Group break: 10:40\u201310:55; no therapeutic activity occurred during the break.\u0022 |\n\n\n\n**Observations recorded for this day**\n\n| Date | Category | What the record says | Source | Record |\n|---|---|---|---|---|\n| 2026-01-12 | reason for contact | \u0022Rowan checked in before the group began and remained until the group was released.\u0022 | BH-D005 L15 | desk log, unsigned |\n| 2026-01-12 | reason for contact | \u0022No transport concern was reported at that time.\u0022 | BH-D005 L15 | desk log, unsigned |\n| 2026-01-12 | intervention | \u0022Today\u0027s group addressed behavioral activation and the difference between an activity being possible and it feeling easy.\u0022 | BH-D009 L10 | clinical note, signed |\n| 2026-01-12 | intervention | \u0022Members reviewed how postponement can briefly reduce discomfort while making the next attempt feel harder.\u0022 | BH-D009 L10 | clinical note, signed |\n| 2026-01-12 | intervention | \u0022The second portion of the group included creating an activity ladder, anticipating obstacles, and rehearsing a neutral response to a missed attempt.\u0022 | BH-D009 L12 | clinical note, signed |\n| 2026-01-12 | functioning | \u0022Rowan contributed an example about leaving work messages unopened. They identified looking at one message as a lower step than replying to every outstanding message.\u0022 | BH-D009 L14 | clinical note, signed |\n| 2026-01-12 | patient reported symptoms | \u0022They also described taking a walk with Casey over the weekend and noted that it helped the evening feel less dominated by worry.\u0022 | BH-D009 L14 | clinical note, signed |\n| 2026-01-12 | intervention | \u0022During the planning exercise, Rowan wrote down an action to try after breakfast and asked how to respond if the morning went poorly.\u0022 | BH-D009 L14 | clinical note, signed |\n| 2026-01-12 | intervention | \u0022The facilitator reinforced restarting with a smaller step and reviewing what interfered.\u0022 | BH-D009 L16 | clinical note, signed |\n| 2026-01-12 | functioning | \u0022Rowan listened to peers and offered a supportive comment to another member.\u0022 | BH-D009 L16 | clinical note, signed |\n\n\n",
+      "result": {
+        "parameters": {
+          "patient_key": "HG-M042",
+          "patient_name": "Rowan Mercer",
+          "from": "2026-01-12",
+          "to": "2026-01-12",
+          "date_range_source": "given in the request; both dates are included",
+          "week_definition": "Monday to Sunday, from the treatment plan",
+          "abstraction_version": "c9e505146e97ad8e"
+        },
+        "date": "2026-01-12",
+        "therapy_contacts": 1,
+        "therapy_contacts_max": 1,
+        "minutes_min": 75,
+        "minutes_max": 75,
+        "minutes_arithmetic": "75 = 75 minutes",
+        "contacts": [
+          {
+            "event_key": "HG-E105",
+            "encounter_id": "HG-E105",
+            "date": "2026-01-12",
+            "weekday": "Monday",
+            "category": "group_therapy",
+            "category_name": "Group therapy",
+            "status": "counted",
+            "reason": "Group therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+            "minutes_min": 75,
+            "minutes_max": 75,
+            "arithmetic": "present 10:00-11:30, less break 10:40-10:55 = 75 minutes",
+            "source_documents": [
+              "BH-D005",
+              "BH-D006",
+              "BH-D009"
+            ],
+            "citations": [
+              "BH-D005 L11",
+              "BH-D005 L9-11",
+              "BH-D006 L14",
+              "BH-D009 L12",
+              "BH-D009 L4-8"
+            ],
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "counted": true,
+            "may_count": false
+          }
+        ],
+        "events": [
+          {
+            "event_key": "HG-E105",
+            "patient_key": "HG-M042",
+            "encounter_id": "HG-E105",
+            "service_date": "2026-01-12",
+            "category": {
+              "field": "service category",
+              "status": "resolved",
+              "value": "group_therapy",
+              "tier": 1,
+              "rule": "R4",
+              "explanation": "tier 1 (signed record) states group_therapy.",
+              "candidates": [
+                {
+                  "value": "group_therapy",
+                  "tier": 1,
+                  "citations": [
+                    "BH-D005 L9-11",
+                    "BH-D006 L14",
+                    "BH-D009 L4-8"
+                  ],
+                  "assertion_ids": [
+                    195,
+                    228,
+                    307
+                  ]
+                }
+              ],
+              "overruled": [],
+              "is_settled": true
+            },
+            "service_labels": [
+              "Coping skills group"
+            ],
+            "modality": "in_person",
+            "disposition": {
+              "field": "disposition",
+              "status": "resolved",
+              "value": "took_place",
+              "tier": 1,
+              "rule": "R4",
+              "explanation": "tier 1 (signed record) states took_place.",
+              "candidates": [
+                {
+                  "value": "took_place",
+                  "tier": 1,
+                  "citations": [
+                    "BH-D005 L9-11",
+                    "BH-D006 L14"
+                  ],
+                  "assertion_ids": [
+                    196,
+                    229
+                  ]
+                }
+              ],
+              "overruled": [],
+              "is_settled": true
+            },
+            "patient_present": {
+              "field": "patient present",
+              "status": "resolved",
+              "value": "present",
+              "tier": 1,
+              "rule": "R4",
+              "explanation": "tier 1 (signed record) states present.",
+              "candidates": [
+                {
+                  "value": "present",
+                  "tier": 1,
+                  "citations": [
+                    "BH-D005 L9-11"
+                  ],
+                  "assertion_ids": [
+                    196
+                  ]
+                }
+              ],
+              "overruled": [],
+              "is_settled": true
+            },
+            "start": {
+              "field": "presence start",
+              "status": "resolved",
+              "value": "10:00",
+              "tier": 1,
+              "rule": "R4",
+              "explanation": "tier 1 (signed record) states 10:00.",
+              "candidates": [
+                {
+                  "value": "10:00",
+                  "tier": 1,
+                  "citations": [
+                    "BH-D005 L11",
+                    "BH-D005 L9-11"
+                  ],
+                  "assertion_ids": [
+                    196,
+                    197
+                  ]
+                }
+              ],
+              "overruled": [],
+              "is_settled": true
+            },
+            "end": {
+              "field": "presence end",
+              "status": "resolved",
+              "value": "11:30",
+              "tier": 1,
+              "rule": "R4",
+              "explanation": "tier 1 (signed record) states 11:30.",
+              "candidates": [
+                {
+                  "value": "11:30",
+                  "tier": 1,
+                  "citations": [
+                    "BH-D005 L11",
+                    "BH-D005 L9-11"
+                  ],
+                  "assertion_ids": [
+                    196,
+                    197
+                  ]
+                }
+              ],
+              "overruled": [],
+              "is_settled": true
+            },
+            "session_interval": {
+              "start": 600,
+              "end": 690,
+              "reason": "scheduled interval",
+              "citations": [
+                "BH-D005 L9-11",
+                "BH-D006 L14",
+                "BH-D009 L4-8"
+              ]
+            },
+            "excluded": [
+              {
+                "start": 640,
+                "end": 655,
+                "reason": "break",
+                "citations": [
+                  "BH-D009 L12"
+                ]
+              }
+            ],
+            "presence_from_roster": true,
+            "occurrence": "session",
+            "minutes_min": 75,
+            "minutes_max": 75,
+            "arithmetic": "present 10:00-11:30, less break 10:40-10:55 = 75 minutes",
+            "flags": [],
+            "discrepancies": [],
+            "needs": [],
+            "assertions": [
+              {
+                "assertion_id": 196,
+                "citation": "BH-D005 L9-11",
+                "kind": "attendance",
+                "quote": "2026-01-12 | HG-E105   | 10:00\u201311:30    | 10:00           | 11:30            | Attended full",
+                "record_type": "attendance_record",
+                "signed": "extract_of_signed",
+                "tier": 1,
+                "is_copy": false,
+                "statement_time": "2026-01-12 15:10",
+                "link_method": "encounter_id"
+              },
+              {
+                "assertion_id": 195,
+                "citation": "BH-D005 L9-11",
+                "kind": "encounter",
+                "quote": "2026-01-12 | HG-E105   | 10:00\u201311:30    | 10:00           | 11:30            | Attended full",
+                "record_type": "attendance_record",
+                "signed": "extract_of_signed",
+                "tier": 1,
+                "is_copy": false,
+                "statement_time": "2026-01-12 15:10",
+                "link_method": "encounter_id"
+              },
+              {
+                "assertion_id": 197,
+                "citation": "BH-D005 L11",
+                "kind": "presence",
+                "quote": "10:00           | 11:30",
+                "record_type": "attendance_record",
+                "signed": "extract_of_signed",
+                "tier": 1,
+                "is_copy": false,
+                "statement_time": "2026-01-12 15:10",
+                "link_method": "encounter_id"
+              },
+              {
+                "assertion_id": 229,
+                "citation": "BH-D006 L14",
+                "kind": "attendance",
+                "quote": "HG-E105   | Jan12 | Coping skills group    | 10:00\u201311:30    | Completed",
+                "record_type": "appointment_export",
+                "signed": "no",
+                "tier": 2,
+                "is_copy": false,
+                "statement_time": "2026-01-16 16:50",
+                "link_method": "encounter_id"
+              },
+              {
+                "assertion_id": 228,
+                "citation": "BH-D006 L14",
+                "kind": "encounter",
+                "quote": "HG-E105   | Jan12 | Coping skills group    | 10:00\u201311:30    | Completed",
+                "record_type": "appointment_export",
+                "signed": "no",
+                "tier": 2,
+                "is_copy": false,
+                "statement_time": "2026-01-16 16:50",
+                "link_method": "encounter_id"
+              },
+              {
+                "assertion_id": 307,
+                "citation": "BH-D009 L4-8",
+                "kind": "encounter",
+                "quote": "Harbor Grove Behavioral Health | Coping skills group",
+                "record_type": "clinical_note",
+                "signed": "yes",
+                "tier": 1,
+                "is_copy": false,
+                "statement_time": "2026-01-12 12:20",
+                "link_method": "encounter_id"
+              },
+              {
+                "assertion_id": 308,
+                "citation": "BH-D009 L12",
+                "kind": "excluded_interval",
+                "quote": "Group break: 10:40\u201310:55; no therapeutic activity occurred during the break.",
+                "record_type": "clinical_note",
+                "signed": "yes",
+                "tier": 1,
+                "is_copy": false,
+                "statement_time": "2026-01-12 12:20",
+                "link_method": "encounter_id"
+              }
+            ],
+            "source_documents": [
+              "BH-D005",
+              "BH-D006",
+              "BH-D009"
+            ],
+            "category_value": "group_therapy",
+            "minutes_settled": true
+          }
+        ],
+        "observations": [
+          {
+            "date": "2026-01-12",
+            "category": "reason_for_contact",
+            "summary": "Patient checked in before group started and stayed until the group was released.",
+            "quote": "Rowan checked in before the group began and remained until the group was released.",
+            "citation": "BH-D005 L15",
+            "encounter_id": "HG-E105",
+            "source": "desk log, unsigned",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-12",
+            "category": "reason_for_contact",
+            "summary": "No transport concern was reported at checkout on this date.",
+            "quote": "No transport concern was reported at that time.",
+            "citation": "BH-D005 L15",
+            "encounter_id": "HG-E105",
+            "source": "desk log, unsigned",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-12",
+            "category": "intervention",
+            "summary": "Group session focused on behavioral activation and distinguishing an activity\u0027s possibility from its perceived ease.",
+            "quote": "Today\u0027s group addressed behavioral activation and the difference between an activity being possible and it feeling easy.",
+            "citation": "BH-D009 L10",
+            "encounter_id": "HG-E105",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-12",
+            "category": "intervention",
+            "summary": "Group reviewed how postponing an activity can briefly reduce discomfort but make the next attempt harder.",
+            "quote": "Members reviewed how postponement can briefly reduce discomfort while making the next attempt feel harder.",
+            "citation": "BH-D009 L10",
+            "encounter_id": "HG-E105",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-12",
+            "category": "intervention",
+            "summary": "Group work included creating an activity ladder, anticipating obstacles, and rehearsing a neutral response to a missed attempt.",
+            "quote": "The second portion of the group included creating an activity ladder, anticipating obstacles, and rehearsing a neutral response to a missed attempt.",
+            "citation": "BH-D009 L12",
+            "encounter_id": "HG-E105",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-12",
+            "category": "functioning",
+            "summary": "Rowan described unopened work messages and identified looking at one message as an easier step than replying to all.",
+            "quote": "Rowan contributed an example about leaving work messages unopened. They identified looking at one message as a lower step than replying to every outstanding message.",
+            "citation": "BH-D009 L14",
+            "encounter_id": "HG-E105",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-12",
+            "category": "patient_reported_symptoms",
+            "summary": "Rowan reported that taking a weekend walk with Casey helped the evening feel less dominated by worry.",
+            "quote": "They also described taking a walk with Casey over the weekend and noted that it helped the evening feel less dominated by worry.",
+            "citation": "BH-D009 L14",
+            "encounter_id": "HG-E105",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-12",
+            "category": "intervention",
+            "summary": "Rowan wrote a planned action to try after breakfast and asked how to respond if the morning went poorly.",
+            "quote": "During the planning exercise, Rowan wrote down an action to try after breakfast and asked how to respond if the morning went poorly.",
+            "citation": "BH-D009 L14",
+            "encounter_id": "HG-E105",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-12",
+            "category": "intervention",
+            "summary": "Facilitator reinforced restarting with a smaller step and reviewing what interfered with the prior attempt.",
+            "quote": "The facilitator reinforced restarting with a smaller step and reviewing what interfered.",
+            "citation": "BH-D009 L16",
+            "encounter_id": "HG-E105",
+            "source": "clinical note, signed",
+            "is_copy": false
+          },
+          {
+            "date": "2026-01-12",
+            "category": "functioning",
+            "summary": "Rowan listened to peers and offered a supportive comment to another group member.",
+            "quote": "Rowan listened to peers and offered a supportive comment to another member.",
+            "citation": "BH-D009 L16",
+            "encounter_id": "HG-E105",
+            "source": "clinical note, signed",
+            "is_copy": false
+          }
+        ],
+        "other_records": []
+      }
+    },
+    {
+      "name": "search_passages",
+      "input": "{\u0022patient_key\u0022:\u0022HG-M042\u0022,\u0022terms\u0022:[\u0022BH-D009 L4\u0022,\u0022Facilitator\u0022,\u0022coping skills group\u0022],\u0022suggested_kind\u0022:\u0022group_facilitator_jan12\u0022}",
+      "elapsed_ms": 7.8913,
+      "failed": false,
+      "rendered": "These passages were found by text search, not taken from the abstraction. Counts must not be based on them.\n\nSearch terms: BH-D009 L4, Facilitator, coping skills group. 23 passage(s) found, 23 written to the gap log.\n\n| Source | Passage | Already covered by |\n|---|---|---|\n| BH-D101 L4 | Group encounter: HG-E110 \\| Facilitator: Leah Chen, LCSW | encounter |\n| BH-D101 L8 | Today\u0027s group addressed recognizing the sequence between a triggering situation, an anxious prediction, physical activation, and an avoidance response. The facilitator used a worked example involving an unanswered work email. Members then practiced describing the prediction without treating it as an established outcome, and selected a small approach behavior they could attempt during the week. The break was for restroom use and refreshments; there was no facilitated discussion, assigned therapeutic activity, or patient treatment during that interval. | observation |\n| BH-D101 L10 | Rowan initially followed the exercise and identified postponing a message to a supervisor as a familiar pattern. When discussion turned to returning to the workplace, Rowan became visibly tense and said the amount of discussion felt difficult to manage. The facilitator offered grounding and arranged a same-day individual meeting with the treating clinician. Patient-specific arrival and departure are maintained on the attendance roster. | observation, other |\n| BH-D102 L12 | This is the patient row from the facilitator\u0027s attendance sheet. Arrival and departure fields were entered at roster close. The room schedule appears above to identify the group and is retained with the attendance sheet. Group topics, exercises, and the scheduled break are recorded in the separate group clinical record. | other |\n| BH-D107 L5 | Facilitator: Leah Chen, LCSW | nothing |\n| BH-D107 L9 | The session addressed translating a broad intention into one observable action. Members practiced reducing a complicated task to an action that could be completed in a few minutes and identifying the cue that would prompt it. Rowan joined the discussion after it had begun; the arrival field is maintained in the attendance register. Rowan used opening a work calendar as an example and described concern that seeing outstanding items would become overwhelming. Facilitator encouraged a limited, planned review period and a stopping point. The patient contributed an example to the discussion after t [cut] | attendance, observation, presence |\n| BH-D107 L14 | The session reviewed setbacks when practicing approach behaviors. Members identified an initial effort, what made follow-through difficult, and one adjustment for the next attempt. Rowan reported opening the work calendar but delaying a follow-up conversation. The facilitator helped identify a specific question to ask rather than trying to anticipate every possible concern. Rowan participated in the paired rehearsal and accepted feedback about keeping the request brief. | attendance, observation |\n| BH-D107 L17 | For both dates, the break was unstructured time without therapeutic activity or facilitator treatment. Patient arrival, departure, and attendance status are entered in the separate attendance register. | other |\n| BH-D006 L11 | HG-E102   \\| Jan06 \\| Coping skills group    \\| 10:00\u201311:30    \\| Attended part | attendance, encounter |\n| BH-D006 L14 | HG-E105   \\| Jan12 \\| Coping skills group    \\| 10:00\u201311:30    \\| Completed | attendance, encounter |\n| BH-D006 L17 | HG-E108   \\| Jan15 \\| Coping skills group    \\| 10:00\u201311:30    \\| Clinic cancelled | attendance, encounter |\n| BH-D005 L13 | January 6 desk note: Rowan called from the building entrance to say they were running behind after difficulty finding parking. Reception directed them to the group room after check-in. Rowan advised the facilitator that they would need to leave early for a previously arranged ride. Departure was marked when Rowan returned their visitor badge. Rowan did not re-enter the group room after departing. | observation |\n| BH-D005 L17 | The desk records arrival and departure when members enter or leave the scheduled group. Session activities and room breaks are documented in the facilitator\u0027s record. Prepared from the signed reception attendance sheet for the two dates listed. | other |\n| BH-D008 L7 | Author: Leena Park, LPC, cofacilitator with Mara Voss, LCSW | encounter |\n| BH-D007 L8 | Clinicians: Mara Voss, LCSW; cofacilitator Leena Park, LPC | attendance, encounter |\n| BH-D016 L9 | The coping skills group scheduled for January 15 from 10:00 to 11:30 is cancelled by the clinic because of staff illness. A covering facilitator is unavailable for this morning\u0027s group. The group room has been released from the schedule, and registered participants are being contacted before the planned start time. | attendance, encounter, observation, other |\n| BH-D004 L4 | Harbor Grove Behavioral Health \\| Coping skills group | encounter |\n| BH-D004 L7 | Facilitator: Leena Park, LPC | encounter |\n| BH-D004 L10 | Group focus: recognizing early physical signs of anxiety and choosing a coping response before withdrawing from a task. Members used recent everyday situations to describe the relationship between thoughts, body sensations, and behavior. The facilitator demonstrated paced breathing, invited short practice rounds, and led discussion about using a skill during a manageable task rather than only after distress has peaked. | observation |\n| BH-D004 L12 | The whole group took a break from 10:45 to 11:00. No therapy was conducted during that interval. Following the break, the facilitator resumed with a paired planning exercise and a group discussion of barriers to practice at home. | excluded interval, observation |\n| BH-D009 L4 | Harbor Grove Behavioral Health \\| Coping skills group | encounter |\n| BH-D009 L7 | Facilitator: Leena Park, LPC | encounter |\n| BH-D009 L16 | The facilitator reinforced restarting with a smaller step and reviewing what interfered. Rowan listened to peers and offered a supportive comment to another member. The group closed with members naming their next practice attempt. Attendance is recorded on the group desk roster. | observation, other |\n\n\n",
+      "result": {
+        "note": "These passages were found by text search, not taken from the abstraction. Counts must not be based on them.",
+        "terms": [
+          "BH-D009 L4",
+          "Facilitator",
+          "coping skills group"
+        ],
+        "hits": [
+          {
+            "citation": "BH-D101 L4",
+            "passage": "Group encounter: HG-E110 | Facilitator: Leah Chen, LCSW",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D101 L8",
+            "passage": "Today\u0027s group addressed recognizing the sequence between a triggering situation, an anxious prediction, physical activation, and an avoidance response. The facilitator used a worked example involving an unanswered work email. Members then practiced describing the prediction without treating it as an established outcome, and selected a small approach behavior they could attempt during the week. The break was for restroom use and refreshments; there was no facilitated discussion, assigned therapeutic activity, or patient treatment during that interval.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D101 L10",
+            "passage": "Rowan initially followed the exercise and identified postponing a message to a supervisor as a familiar pattern. When discussion turned to returning to the workplace, Rowan became visibly tense and said the amount of discussion felt difficult to manage. The facilitator offered grounding and arranged a same-day individual meeting with the treating clinician. Patient-specific arrival and departure are maintained on the attendance roster.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation",
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D102 L12",
+            "passage": "This is the patient row from the facilitator\u0027s attendance sheet. Arrival and departure fields were entered at roster close. The room schedule appears above to identify the group and is retained with the attendance sheet. Group topics, exercises, and the scheduled break are recorded in the separate group clinical record.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D107 L5",
+            "passage": "Facilitator: Leah Chen, LCSW",
+            "covered_by_assertion": false,
+            "covering_kinds": []
+          },
+          {
+            "citation": "BH-D107 L9",
+            "passage": "The session addressed translating a broad intention into one observable action. Members practiced reducing a complicated task to an action that could be completed in a few minutes and identifying the cue that would prompt it. Rowan joined the discussion after it had begun; the arrival field is maintained in the attendance register. Rowan used opening a work calendar as an example and described concern that seeing outstanding items would become overwhelming. Facilitator encouraged a limited, planned review period and a stopping point. The patient contributed an example to the discussion after t [cut]",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "observation",
+              "presence"
+            ]
+          },
+          {
+            "citation": "BH-D107 L14",
+            "passage": "The session reviewed setbacks when practicing approach behaviors. Members identified an initial effort, what made follow-through difficult, and one adjustment for the next attempt. Rowan reported opening the work calendar but delaying a follow-up conversation. The facilitator helped identify a specific question to ask rather than trying to anticipate every possible concern. Rowan participated in the paired rehearsal and accepted feedback about keeping the request brief.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D107 L17",
+            "passage": "For both dates, the break was unstructured time without therapeutic activity or facilitator treatment. Patient arrival, departure, and attendance status are entered in the separate attendance register.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D006 L11",
+            "passage": "HG-E102   | Jan06 | Coping skills group    | 10:00\u201311:30    | Attended part",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D006 L14",
+            "passage": "HG-E105   | Jan12 | Coping skills group    | 10:00\u201311:30    | Completed",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D006 L17",
+            "passage": "HG-E108   | Jan15 | Coping skills group    | 10:00\u201311:30    | Clinic cancelled",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D005 L13",
+            "passage": "January 6 desk note: Rowan called from the building entrance to say they were running behind after difficulty finding parking. Reception directed them to the group room after check-in. Rowan advised the facilitator that they would need to leave early for a previously arranged ride. Departure was marked when Rowan returned their visitor badge. Rowan did not re-enter the group room after departing.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D005 L17",
+            "passage": "The desk records arrival and departure when members enter or leave the scheduled group. Session activities and room breaks are documented in the facilitator\u0027s record. Prepared from the signed reception attendance sheet for the two dates listed.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D008 L7",
+            "passage": "Author: Leena Park, LPC, cofacilitator with Mara Voss, LCSW",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D007 L8",
+            "passage": "Clinicians: Mara Voss, LCSW; cofacilitator Leena Park, LPC",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D016 L9",
+            "passage": "The coping skills group scheduled for January 15 from 10:00 to 11:30 is cancelled by the clinic because of staff illness. A covering facilitator is unavailable for this morning\u0027s group. The group room has been released from the schedule, and registered participants are being contacted before the planned start time.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "attendance",
+              "encounter",
+              "observation",
+              "other"
+            ]
+          },
+          {
+            "citation": "BH-D004 L4",
+            "passage": "Harbor Grove Behavioral Health | Coping skills group",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D004 L7",
+            "passage": "Facilitator: Leena Park, LPC",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D004 L10",
+            "passage": "Group focus: recognizing early physical signs of anxiety and choosing a coping response before withdrawing from a task. Members used recent everyday situations to describe the relationship between thoughts, body sensations, and behavior. The facilitator demonstrated paced breathing, invited short practice rounds, and led discussion about using a skill during a manageable task rather than only after distress has peaked.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D004 L12",
+            "passage": "The whole group took a break from 10:45 to 11:00. No therapy was conducted during that interval. Following the break, the facilitator resumed with a paired planning exercise and a group discussion of barriers to practice at home.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "excluded_interval",
+              "observation"
+            ]
+          },
+          {
+            "citation": "BH-D009 L4",
+            "passage": "Harbor Grove Behavioral Health | Coping skills group",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D009 L7",
+            "passage": "Facilitator: Leena Park, LPC",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "encounter"
+            ]
+          },
+          {
+            "citation": "BH-D009 L16",
+            "passage": "The facilitator reinforced restarting with a smaller step and reviewing what interfered. Rowan listened to peers and offered a supportive comment to another member. The group closed with members naming their next practice attempt. Attendance is recorded on the group desk roster.",
+            "covered_by_assertion": true,
+            "covering_kinds": [
+              "observation",
+              "other"
+            ]
+          }
+        ],
+        "gaps_recorded": 23
+      }
+    }
+  ],
+  "model_calls": 6,
+  "input_tokens": 89034,
+  "output_tokens": 5192,
+  "latency_ms": 58649
+}

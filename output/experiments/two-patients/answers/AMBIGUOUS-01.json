@@ -1,0 +1,552 @@
+{
+  "question_id": "AMBIGUOUS-01",
+  "question": "How many therapy minutes were delivered in the week of the plan change?",
+  "model": "us.anthropic.claude-sonnet-5",
+  "abstraction_version": "d0c9c62d81aa43e7-b02d950f",
+  "narrative": "For **Jordan Avery (NS-77120)**, the treatment plan changed effective 2026-02-16 [NS-0014 L9-12, NS-0014 L12]. In the week containing that change (2026-02-16 to 2026-02-22), **105 minutes** of therapy were delivered:\n\n- Individual therapy, 2026-02-16: 45 minutes (09:00\u201309:45) [NS-0031 L13]\n- Group therapy, 2026-02-18: 60 minutes (13:00\u201314:00) [NS-0031 L14]\n- 45 \u002B 60 = 105 minutes\n\nA third appointment that week \u2014 family therapy on 2026-02-20 \u2014 was cancelled by the clinic and contributed 0 minutes [NS-0031 L15].\n\nThis fell short of that week\u0027s goal of 3 therapy days / 150 minutes: 2 therapy days and 105 minutes were recorded, so the week was **not met** on both days and minutes.\n\nNote: the group therapy time is based on check\u2011in/check\u2011out records with no documented break, so 60 minutes is treated as an upper bound if a break occurred [assumption in weekly results].",
+  "checks": {
+    "citations_found": 5,
+    "citations_verified": 5,
+    "citations_not_in_results": [],
+    "numbers_found": 26,
+    "numbers_not_in_results": [],
+    "passed": true
+  },
+  "calculations": [
+    {
+      "name": "find_patient",
+      "input": "{\u0022query\u0022:\u0022\u0022}",
+      "elapsed_ms": 2.1797,
+      "failed": false,
+      "rendered": "The collection holds 2 patients. A question that names no patient cannot be answered for one of them without asking which is meant.\n\n| Patient | MRN | Date of birth | Episode | Plan versions | Encounters |\n|---|---|---|---|---|---|\n| Rowan Mercer | HG-M042 | 1991-04-12 | 2026-01-05 to 2026-01-30 | 1 | 20 |\n| Jordan Avery | NS-77120 | 1988-09-30 | 2026-02-02 to 2026-02-27 | 2 | 10 |\n\n",
+      "result": {
+        "query": "",
+        "matches": [
+          {
+            "patient_key": "HG-M042",
+            "mrn": "HG-M042",
+            "name": "Rowan Mercer",
+            "date_of_birth": "1991-04-12",
+            "episode_start": "2026-01-05",
+            "episode_end": "2026-01-30",
+            "plan_versions": 1,
+            "encounters": 20,
+            "abstraction_version": "c9e505146e97ad8e"
+          },
+          {
+            "patient_key": "NS-77120",
+            "mrn": "NS-77120",
+            "name": "Jordan Avery",
+            "date_of_birth": "1988-09-30",
+            "episode_start": "2026-02-02",
+            "episode_end": "2026-02-27",
+            "plan_versions": 2,
+            "encounters": 10,
+            "abstraction_version": "0cd5d5acddc1168b"
+          }
+        ],
+        "note": "The collection holds 2 patients. A question that names no patient cannot be answered for one of them without asking which is meant."
+      }
+    },
+    {
+      "name": "plan_change_comparison",
+      "input": "{\u0022patient_key\u0022:\u0022NS-77120\u0022}",
+      "elapsed_ms": 1.6722,
+      "failed": false,
+      "rendered": "| Parameter | Value | Source |\n|---|---|---|\n| Patient | Jordan Avery (NS-77120) | Matched by medical record number |\n| Dates | 2026-02-02 to 2026-02-27 | Not given, so the episode dates stated in the record (NS-0001 L8-11) are used; both dates are included |\n| Week | Monday to Sunday | From the treatment plan |\n| Abstraction version | 0cd5d5acddc1168b | Changes only when a conclusion about this patient changes |\n\n\nThe record contains 2 plan versions. Each period below runs from the day a version takes effect to the day before the next one.\n\n| Period | Days | Goal | Sessions | Minutes | Sessions per week | Minutes per week | Plan source |\n|---|---|---|---|---|---|---|---|\n| 2026-02-02 to 2026-02-15 | 14 | 2 days and 90 minutes | 3 | 155 | 1.5 | 77.5 | NS-0001 L8-11 |\n| 2026-02-16 to 2026-02-27 | 12 | 3 days and 150 minutes | 5 | 260 | 2.92 | 151.7 | NS-0014 L9-12, NS-0014 L12 |\n\n\n**By service type**\n\n| Period | Service | Sessions | Minutes |\n|---|---|---|---|\n| 2026-02-02 to 2026-02-15 | Group therapy | 1 | 60 |\n| 2026-02-02 to 2026-02-15 | Individual therapy | 2 | 95 |\n| 2026-02-16 to 2026-02-27 | Family therapy | 1 | 45 |\n| 2026-02-16 to 2026-02-27 | Group therapy | 2 | 120 |\n| 2026-02-16 to 2026-02-27 | Individual therapy | 2 | 95 |\n\n\n**Assumptions**\n\n- Rates per week divide each period\u0027s totals by its length in days over seven, so periods of different lengths can be compared.\n- Each contact is judged by the plan in effect on the day it happened.\n\n\n",
+      "result": {
+        "parameters": {
+          "patient_key": "NS-77120",
+          "patient_name": "Jordan Avery",
+          "from": "2026-02-02",
+          "to": "2026-02-27",
+          "date_range_source": "not given, so the episode dates stated in the record (NS-0001 L8-11) are used; both dates are included",
+          "week_definition": "Monday to Sunday, from the treatment plan",
+          "abstraction_version": "0cd5d5acddc1168b"
+        },
+        "plan_change_found": true,
+        "summary": "The record contains 2 plan versions. Each period below runs from the day a version takes effect to the day before the next one.",
+        "periods": [
+          {
+            "from": "2026-02-02",
+            "to": "2026-02-15",
+            "days": 14,
+            "required_days": 2,
+            "required_minutes": 90,
+            "counted_categories": [
+              "Group therapy",
+              "Individual therapy"
+            ],
+            "plan_citations": [
+              "NS-0001 L8-11"
+            ],
+            "sessions_by_category": {
+              "Group therapy": 1,
+              "Individual therapy": 2
+            },
+            "minutes_by_category": {
+              "Group therapy": "60",
+              "Individual therapy": "95"
+            },
+            "total_sessions": 3,
+            "minutes_min": 155,
+            "minutes_max": 155,
+            "sessions_per_week": 1.5,
+            "minutes_per_week_min": 77.5,
+            "minutes_per_week_max": 77.5
+          },
+          {
+            "from": "2026-02-16",
+            "to": "2026-02-27",
+            "days": 12,
+            "required_days": 3,
+            "required_minutes": 150,
+            "counted_categories": [
+              "Family therapy",
+              "Group therapy",
+              "Individual therapy"
+            ],
+            "plan_citations": [
+              "NS-0014 L9-12",
+              "NS-0014 L12"
+            ],
+            "sessions_by_category": {
+              "Family therapy": 1,
+              "Group therapy": 2,
+              "Individual therapy": 2
+            },
+            "minutes_by_category": {
+              "Family therapy": "45",
+              "Group therapy": "120",
+              "Individual therapy": "95"
+            },
+            "total_sessions": 5,
+            "minutes_min": 260,
+            "minutes_max": 260,
+            "sessions_per_week": 2.92,
+            "minutes_per_week_min": 151.7,
+            "minutes_per_week_max": 151.7
+          }
+        ],
+        "assumptions": [
+          "Rates per week divide each period\u0027s totals by its length in days over seven, so periods of different lengths can be compared.",
+          "Each contact is judged by the plan in effect on the day it happened."
+        ]
+      }
+    },
+    {
+      "name": "weekly_minutes_and_goals",
+      "input": "{\u0022patient_key\u0022:\u0022NS-77120\u0022}",
+      "elapsed_ms": 17.6895,
+      "failed": false,
+      "rendered": "| Parameter | Value | Source |\n|---|---|---|\n| Patient | Jordan Avery (NS-77120) | Matched by medical record number |\n| Dates | 2026-02-02 to 2026-02-27 | Not given, so the episode dates stated in the record (NS-0001 L8-11) are used; both dates are included |\n| Week | Monday to Sunday | From the treatment plan |\n| Abstraction version | 0cd5d5acddc1168b | Changes only when a conclusion about this patient changes |\n\n\n**By week**\n\n| Week | Therapy days | Minutes | Hours | Arithmetic | Goal | Result |\n|---|---|---|---|---|---|---|\n| 2026-02-02 to 2026-02-08 | 2 to 3 | 110 to 155 | 1.83 to 2.58 | 50 \u002B 60 \u002B (0 to 45) = 110 to 155 | 2 days and 90 minutes | met |\n| 2026-02-09 to 2026-02-15 | 1 | 45 | 0.75 | 45 = 45 | 2 days and 90 minutes | not met |\n| 2026-02-16 to 2026-02-22 | 2 | 105 | 1.75 | 45 \u002B 60 = 105 | 3 days and 150 minutes | not met |\n| 2026-02-23 to 2026-03-01 (partial) | 3 | 155 | 2.58 | 50 \u002B 60 \u002B 45 = 155 | 3 days and 150 minutes | met |\n\n\n**Total**: 415 to 460 minutes, 6.92 to 7.67 hours. (110 to 155) \u002B 45 \u002B 105 \u002B 155 = 415 to 460 minutes; divided by 60 = 6.92 to 7.67 hours.\n\n**Why each week has its result**\n\n- Week of 2026-02-02: 2 to 3 therapy day(s) against a goal of 2: met. 110 to 155 minutes against a goal of 90: met. Goal from NS-0001 L8-11.\n- Week of 2026-02-09: 1 therapy day(s) against a goal of 2: not met. 45 minutes against a goal of 90: not met. Goal from NS-0001 L8-11.\n- Week of 2026-02-16: 2 therapy day(s) against a goal of 3: not met. 105 minutes against a goal of 150: not met. Goal from NS-0014 L9-12, NS-0014 L12.\n- Week of 2026-02-23: 3 therapy day(s) against a goal of 3: met. 155 minutes against a goal of 150: met. Goal from NS-0014 L9-12, NS-0014 L12. Only 5 of 7 days (2026-02-23 to 2026-02-27) fall inside the period examined. The goal is applied in full and is not prorated.\n\n\n**Contacts behind the totals**\n\n| Date | Encounter | Service | Counted | Minutes | Detail | Sources |\n|---|---|---|---|---|---|---|\n| 2026-02-02 Mon | V-201 | Individual therapy | counted | 50 | present 09:00-09:50 = 50 minutes | NS-0031 L9 |\n| 2026-02-04 Wed | V-202 | Group therapy | counted | 60 | present 13:00-14:00 = 60 minutes | NS-0031 L10 |\n| 2026-02-06 Fri | V-209 | Family therapy | not addressed by plan | 0 to 45 | The treatment plan neither counts nor excludes family therapy. Totals are shown without it and with it. | NS-0031 L11 |\n| 2026-02-10 Tue | V-203 | Individual therapy | counted | 45 | present 09:00-09:45 = 45 minutes | NS-0009 L6-7, NS-0009 L6-8, NS-0009 L7, NS-0031 L12 |\n| 2026-02-16 Mon | V-204 | Individual therapy | counted | 45 | present 09:00-09:45 = 45 minutes | NS-0031 L13 |\n| 2026-02-18 Wed | V-205 | Group therapy | counted | 60 | present 13:00-14:00 = 60 minutes | NS-0031 L14 |\n| 2026-02-20 Fri | V-206 | Family therapy | not a session | 0 | The appointment was cancelled by the clinic. | NS-0031 L15 |\n| 2026-02-23 Mon | V-207 | Individual therapy | counted | 50 | present 09:00-09:50 = 50 minutes | NS-0031 L16 |\n| 2026-02-25 Wed | V-208 | Group therapy | counted | 60 | present 13:00-14:00 = 60 minutes | NS-0031 L17 |\n| 2026-02-26 Thu | NOID\\|2026-02-26\\|family_therapy | Family therapy | counted | 45 | present 15:00-15:45 = 45 minutes | NS-0027 L6-8, NS-0027 L7 |\n\n\n**What the record does not settle**\n\n- 2026-02-06 Family therapy (V-209): 0 to 45 minutes. The treatment plan neither counts nor excludes family therapy. Totals are shown without it and with it. Would be settled by: A treatment plan statement on whether family therapy counts toward the goal.\n\n\n**Assumptions**\n\n- A week that is only partly inside the period examined is judged against the full goal. The goal is not prorated.\n- Arrival and departure times from attendance and desk records are taken as the patient\u0027s time in the session. They record check-in and check-out, so time in the room may be slightly shorter.\n- 2026-02-04 Group therapy: No break is documented for this group. If the group had a break, the minutes are an upper bound.\n- 2026-02-18 Group therapy: No break is documented for this group. If the group had a break, the minutes are an upper bound.\n- 2026-02-25 Group therapy: No break is documented for this group. If the group had a break, the minutes are an upper bound.\n- 2026-02-26 Family therapy: No encounter identifier in any record. The records were grouped by service date and category.\n\n\n",
+      "result": {
+        "parameters": {
+          "patient_key": "NS-77120",
+          "patient_name": "Jordan Avery",
+          "from": "2026-02-02",
+          "to": "2026-02-27",
+          "date_range_source": "not given, so the episode dates stated in the record (NS-0001 L8-11) are used; both dates are included",
+          "week_definition": "Monday to Sunday, from the treatment plan",
+          "abstraction_version": "0cd5d5acddc1168b"
+        },
+        "weeks": [
+          {
+            "week_start": "2026-02-02",
+            "week_end": "2026-02-08",
+            "days_in_range": 7,
+            "partial_week": false,
+            "required_days": 2,
+            "required_minutes": 90,
+            "plan_citations": [
+              "NS-0001 L8-11"
+            ],
+            "days_min": 2,
+            "days_max": 3,
+            "therapy_dates": [
+              "2026-02-02",
+              "2026-02-04"
+            ],
+            "minutes_min": 110,
+            "minutes_max": 155,
+            "hours_min": 1.83,
+            "hours_max": 2.58,
+            "minutes_arithmetic": "50 \u002B 60 \u002B (0 to 45) = 110 to 155",
+            "days_result": "met",
+            "minutes_result": "met",
+            "result": "met",
+            "reason": "2 to 3 therapy day(s) against a goal of 2: met. 110 to 155 minutes against a goal of 90: met.",
+            "needs": [],
+            "contacts": [
+              {
+                "event_key": "V-201",
+                "encounter_id": "V-201",
+                "date": "2026-02-02",
+                "weekday": "Monday",
+                "category": "individual_therapy",
+                "category_name": "Individual therapy",
+                "status": "counted",
+                "reason": "Individual therapy with the patient present, counted by the treatment plan (NS-0001 L8-11).",
+                "minutes_min": 50,
+                "minutes_max": 50,
+                "arithmetic": "present 09:00-09:50 = 50 minutes",
+                "source_documents": [
+                  "NS-0031"
+                ],
+                "citations": [
+                  "NS-0031 L9"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "V-202",
+                "encounter_id": "V-202",
+                "date": "2026-02-04",
+                "weekday": "Wednesday",
+                "category": "group_therapy",
+                "category_name": "Group therapy",
+                "status": "counted",
+                "reason": "Group therapy with the patient present, counted by the treatment plan (NS-0001 L8-11).",
+                "minutes_min": 60,
+                "minutes_max": 60,
+                "arithmetic": "present 13:00-14:00 = 60 minutes",
+                "source_documents": [
+                  "NS-0031"
+                ],
+                "citations": [
+                  "NS-0031 L10"
+                ],
+                "flags": [
+                  "No break is documented for this group. If the group had a break, the minutes are an upper bound."
+                ],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "V-209",
+                "encounter_id": "V-209",
+                "date": "2026-02-06",
+                "weekday": "Friday",
+                "category": "family_therapy",
+                "category_name": "Family therapy",
+                "status": "not_addressed_by_plan",
+                "reason": "The treatment plan neither counts nor excludes family therapy. Totals are shown without it and with it.",
+                "minutes_min": 0,
+                "minutes_max": 45,
+                "arithmetic": "present 15:00-15:45 = 45 minutes",
+                "source_documents": [
+                  "NS-0031"
+                ],
+                "citations": [
+                  "NS-0031 L11"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [
+                  "A treatment plan statement on whether family therapy counts toward the goal."
+                ],
+                "counted": false,
+                "may_count": true
+              }
+            ]
+          },
+          {
+            "week_start": "2026-02-09",
+            "week_end": "2026-02-15",
+            "days_in_range": 7,
+            "partial_week": false,
+            "required_days": 2,
+            "required_minutes": 90,
+            "plan_citations": [
+              "NS-0001 L8-11"
+            ],
+            "days_min": 1,
+            "days_max": 1,
+            "therapy_dates": [
+              "2026-02-10"
+            ],
+            "minutes_min": 45,
+            "minutes_max": 45,
+            "hours_min": 0.75,
+            "hours_max": 0.75,
+            "minutes_arithmetic": "45 = 45",
+            "days_result": "not_met",
+            "minutes_result": "not_met",
+            "result": "not_met",
+            "reason": "1 therapy day(s) against a goal of 2: not met. 45 minutes against a goal of 90: not met.",
+            "needs": [],
+            "contacts": [
+              {
+                "event_key": "V-203",
+                "encounter_id": "V-203",
+                "date": "2026-02-10",
+                "weekday": "Tuesday",
+                "category": "individual_therapy",
+                "category_name": "Individual therapy",
+                "status": "counted",
+                "reason": "Individual therapy with the patient present, counted by the treatment plan (NS-0001 L8-11).",
+                "minutes_min": 45,
+                "minutes_max": 45,
+                "arithmetic": "present 09:00-09:45 = 45 minutes",
+                "source_documents": [
+                  "NS-0009",
+                  "NS-0031"
+                ],
+                "citations": [
+                  "NS-0009 L6-7",
+                  "NS-0009 L6-8",
+                  "NS-0009 L7",
+                  "NS-0031 L12"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              }
+            ]
+          },
+          {
+            "week_start": "2026-02-16",
+            "week_end": "2026-02-22",
+            "days_in_range": 7,
+            "partial_week": false,
+            "required_days": 3,
+            "required_minutes": 150,
+            "plan_citations": [
+              "NS-0014 L9-12",
+              "NS-0014 L12"
+            ],
+            "days_min": 2,
+            "days_max": 2,
+            "therapy_dates": [
+              "2026-02-16",
+              "2026-02-18"
+            ],
+            "minutes_min": 105,
+            "minutes_max": 105,
+            "hours_min": 1.75,
+            "hours_max": 1.75,
+            "minutes_arithmetic": "45 \u002B 60 = 105",
+            "days_result": "not_met",
+            "minutes_result": "not_met",
+            "result": "not_met",
+            "reason": "2 therapy day(s) against a goal of 3: not met. 105 minutes against a goal of 150: not met.",
+            "needs": [],
+            "contacts": [
+              {
+                "event_key": "V-204",
+                "encounter_id": "V-204",
+                "date": "2026-02-16",
+                "weekday": "Monday",
+                "category": "individual_therapy",
+                "category_name": "Individual therapy",
+                "status": "counted",
+                "reason": "Individual therapy with the patient present, counted by the treatment plan (NS-0014 L9-12, NS-0014 L12).",
+                "minutes_min": 45,
+                "minutes_max": 45,
+                "arithmetic": "present 09:00-09:45 = 45 minutes",
+                "source_documents": [
+                  "NS-0031"
+                ],
+                "citations": [
+                  "NS-0031 L13"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "V-205",
+                "encounter_id": "V-205",
+                "date": "2026-02-18",
+                "weekday": "Wednesday",
+                "category": "group_therapy",
+                "category_name": "Group therapy",
+                "status": "counted",
+                "reason": "Group therapy with the patient present, counted by the treatment plan (NS-0014 L9-12, NS-0014 L12).",
+                "minutes_min": 60,
+                "minutes_max": 60,
+                "arithmetic": "present 13:00-14:00 = 60 minutes",
+                "source_documents": [
+                  "NS-0031"
+                ],
+                "citations": [
+                  "NS-0031 L14"
+                ],
+                "flags": [
+                  "No break is documented for this group. If the group had a break, the minutes are an upper bound."
+                ],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "V-206",
+                "encounter_id": "V-206",
+                "date": "2026-02-20",
+                "weekday": "Friday",
+                "category": "family_therapy",
+                "category_name": "Family therapy",
+                "status": "not_a_session",
+                "reason": "The appointment was cancelled by the clinic.",
+                "minutes_min": 0,
+                "minutes_max": 0,
+                "arithmetic": "The appointment was cancelled by the clinic. 0 minutes. (NS-0031 L15)",
+                "source_documents": [
+                  "NS-0031"
+                ],
+                "citations": [
+                  "NS-0031 L15"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": false,
+                "may_count": false
+              }
+            ]
+          },
+          {
+            "week_start": "2026-02-23",
+            "week_end": "2026-03-01",
+            "days_in_range": 5,
+            "partial_week": true,
+            "partial_week_note": "Only 5 of 7 days (2026-02-23 to 2026-02-27) fall inside the period examined. The goal is applied in full and is not prorated.",
+            "required_days": 3,
+            "required_minutes": 150,
+            "plan_citations": [
+              "NS-0014 L9-12",
+              "NS-0014 L12"
+            ],
+            "days_min": 3,
+            "days_max": 3,
+            "therapy_dates": [
+              "2026-02-23",
+              "2026-02-25",
+              "2026-02-26"
+            ],
+            "minutes_min": 155,
+            "minutes_max": 155,
+            "hours_min": 2.58,
+            "hours_max": 2.58,
+            "minutes_arithmetic": "50 \u002B 60 \u002B 45 = 155",
+            "days_result": "met",
+            "minutes_result": "met",
+            "result": "met",
+            "reason": "3 therapy day(s) against a goal of 3: met. 155 minutes against a goal of 150: met.",
+            "needs": [],
+            "contacts": [
+              {
+                "event_key": "V-207",
+                "encounter_id": "V-207",
+                "date": "2026-02-23",
+                "weekday": "Monday",
+                "category": "individual_therapy",
+                "category_name": "Individual therapy",
+                "status": "counted",
+                "reason": "Individual therapy with the patient present, counted by the treatment plan (NS-0014 L9-12, NS-0014 L12).",
+                "minutes_min": 50,
+                "minutes_max": 50,
+                "arithmetic": "present 09:00-09:50 = 50 minutes",
+                "source_documents": [
+                  "NS-0031"
+                ],
+                "citations": [
+                  "NS-0031 L16"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "V-208",
+                "encounter_id": "V-208",
+                "date": "2026-02-25",
+                "weekday": "Wednesday",
+                "category": "group_therapy",
+                "category_name": "Group therapy",
+                "status": "counted",
+                "reason": "Group therapy with the patient present, counted by the treatment plan (NS-0014 L9-12, NS-0014 L12).",
+                "minutes_min": 60,
+                "minutes_max": 60,
+                "arithmetic": "present 13:00-14:00 = 60 minutes",
+                "source_documents": [
+                  "NS-0031"
+                ],
+                "citations": [
+                  "NS-0031 L17"
+                ],
+                "flags": [
+                  "No break is documented for this group. If the group had a break, the minutes are an upper bound."
+                ],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "NOID|2026-02-26|family_therapy",
+                "date": "2026-02-26",
+                "weekday": "Thursday",
+                "category": "family_therapy",
+                "category_name": "Family therapy",
+                "status": "counted",
+                "reason": "Family therapy with the patient present, counted by the treatment plan (NS-0014 L9-12, NS-0014 L12).",
+                "minutes_min": 45,
+                "minutes_max": 45,
+                "arithmetic": "present 15:00-15:45 = 45 minutes",
+                "source_documents": [
+                  "NS-0027"
+                ],
+                "citations": [
+                  "NS-0027 L6-8",
+                  "NS-0027 L7"
+                ],
+                "flags": [
+                  "No encounter identifier in any record. The records were grouped by service date and category."
+                ],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              }
+            ]
+          }
+        ],
+        "total_minutes_min": 415,
+        "total_minutes_max": 460,
+        "total_hours_min": 6.92,
+        "total_hours_max": 7.67,
+        "total_arithmetic": "(110 to 155) \u002B 45 \u002B 105 \u002B 155 = 415 to 460 minutes; divided by 60 = 6.92 to 7.67 hours",
+        "unsettled": [
+          "2026-02-06 Family therapy (V-209): 0 to 45 minutes. The treatment plan neither counts nor excludes family therapy. Totals are shown without it and with it. Would be settled by: A treatment plan statement on whether family therapy counts toward the goal."
+        ],
+        "assumptions": [
+          "A week that is only partly inside the period examined is judged against the full goal. The goal is not prorated.",
+          "Arrival and departure times from attendance and desk records are taken as the patient\u0027s time in the session. They record check-in and check-out, so time in the room may be slightly shorter.",
+          "2026-02-04 Group therapy: No break is documented for this group. If the group had a break, the minutes are an upper bound.",
+          "2026-02-18 Group therapy: No break is documented for this group. If the group had a break, the minutes are an upper bound.",
+          "2026-02-25 Group therapy: No break is documented for this group. If the group had a break, the minutes are an upper bound.",
+          "2026-02-26 Family therapy: No encounter identifier in any record. The records were grouped by service date and category."
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "model_calls": 3,
+  "input_tokens": 15231,
+  "output_tokens": 810,
+  "latency_ms": 12967
+}

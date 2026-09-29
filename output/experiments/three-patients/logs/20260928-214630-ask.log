@@ -1,0 +1,20 @@
+21:46:34.084  calculation find_patient {"query":""} -> ok in 26.3 ms
+21:46:37.757  calculation day_reconstruction {"date":"2026-01-19"} -> ok in 52.4 ms
+21:46:37.767  calculation day_reconstruction {"date":"2026-01-21"} -> ok in 8.8 ms
+21:46:53.029  NO-NAME-DEV-04 answered in 22058 ms; saved to output/experiments/three-patients/answers/NO-NAME-DEV-04.md
+21:46:55.873  calculation find_patient {"query":""} -> ok in 4.6 ms
+21:47:01.910  calculation day_reconstruction {"date":"2026-01-19"} -> ok in 4.3 ms
+21:47:15.369  calculation symptom_measures {"patient_key":"HG-M042"} -> ok in 8.7 ms
+21:47:15.369  calculation symptom_measures {"patient_key":"WD-40815"} -> ok in 0.4 ms
+21:47:15.373  calculation observations {"patient_key":"HG-M042"} -> ok in 3.8 ms
+21:47:15.376  calculation observations {"patient_key":"WD-40815"} -> ok in 0.4 ms
+21:47:39.154  NO-NAME-DEV-05 answered in 46024 ms; saved to output/experiments/three-patients/answers/NO-NAME-DEV-05.md
+21:47:41.406  calculation find_patient {"query":""} -> ok in 1.9 ms
+21:47:43.903  calculation collection_summary {} -> ok in 18.1 ms
+21:47:48.835  NO-NAME-GENERIC answered in 9678 ms; saved to output/experiments/three-patients/answers/NO-NAME-GENERIC.md
+21:47:53.350  calculation find_patient {"query":""} -> ok in 1.9 ms
+21:47:53.367  calculation consecutive_weeks_below_goal {} -> ok in 16.2 ms
+21:47:58.279  COLLECTION-01 answered in 9441 ms; saved to output/experiments/three-patients/answers/COLLECTION-01.md
+21:47:58.282  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 43 calls, 32779 input, 6995 cache write, 293790 cache read, 98797 output tokens, 731469 ms in total. Cost at list price: $1.1298.
+21:47:58.282  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.
+21:47:58.283  Model usage so far, question with us.anthropic.claude-sonnet-5: 148 calls, 782168 input, 22113 cache write, 560354 cache read, 79444 output tokens, 1058492 ms in total. Cost at list price: $2.5261.

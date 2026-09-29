@@ -1,0 +1,4680 @@
+{
+  "patient_key": "HG-M042",
+  "mrn": "HG-M042",
+  "name": "Rowan Mercer",
+  "date_of_birth": "1991-04-12",
+  "version": "8d999c6cbe5f02b7",
+  "episode": {
+    "start": "2026-01-05",
+    "end": "2026-01-30",
+    "citations": [
+      "BH-D003 L6",
+      "BH-D003 L12"
+    ]
+  },
+  "plans": [
+    {
+      "patient_key": "HG-M042",
+      "effective_from": "2026-01-05",
+      "effective_to": "2026-01-30",
+      "min_therapy_days_per_week": 3,
+      "min_minutes_per_week": 150,
+      "week_definition": "monday_sunday",
+      "counted_categories": [
+        "family_therapy",
+        "group_therapy",
+        "individual_therapy"
+      ],
+      "excluded_categories": [
+        "care_coordination",
+        "collateral_contact",
+        "medication_management"
+      ],
+      "citations": [
+        "BH-D003 L6",
+        "BH-D003 L12"
+      ],
+      "assertion_ids": [
+        390,
+        397,
+        396,
+        399,
+        398
+      ],
+      "signed_at": "2026-01-05 13:05"
+    }
+  ],
+  "encounters": [
+    {
+      "event_key": "HG-E101",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E101",
+      "service_date": "2026-01-05",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "individual_therapy",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states individual therapy.",
+        "candidates": [
+          {
+            "value": "individual_therapy",
+            "tier": 1,
+            "citations": [
+              "BH-D002 L6-8",
+              "BH-D006 L10"
+            ],
+            "assertion_ids": [
+              218,
+              330
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Individual therapy",
+        "Patient-present individual therapy"
+      ],
+      "modality": "in_person",
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D002 L8",
+              "BH-D006 L10"
+            ],
+            "assertion_ids": [
+              219,
+              331
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D002 L8"
+            ],
+            "assertion_ids": [
+              331
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "resolved",
+        "value": "09:00",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 09:00.",
+        "candidates": [
+          {
+            "value": "09:00",
+            "tier": 1,
+            "citations": [
+              "BH-D002 L8"
+            ],
+            "assertion_ids": [
+              332
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "09:50",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 09:50.",
+        "candidates": [
+          {
+            "value": "09:50",
+            "tier": 1,
+            "citations": [
+              "BH-D002 L8"
+            ],
+            "assertion_ids": [
+              332
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "session_interval": {
+        "start": 540,
+        "end": 590,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D006 L10"
+        ]
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "session",
+      "minutes_min": 50,
+      "minutes_max": 50,
+      "arithmetic": "present 09:00-09:50 = 50 minutes",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 330,
+          "citation": "BH-D002 L6-8",
+          "kind": "encounter",
+          "quote": "Encounter HG-E101 | Service date 2026-01-05",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-05 12:18",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 331,
+          "citation": "BH-D002 L8",
+          "kind": "attendance",
+          "quote": "Patient-present individual therapy: 09:00\u201309:50 local; completed, 50 minutes.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-05 12:18",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 332,
+          "citation": "BH-D002 L8",
+          "kind": "presence",
+          "quote": "Patient-present individual therapy: 09:00\u201309:50 local; completed, 50 minutes.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-05 12:18",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 333,
+          "citation": "BH-D002 L8",
+          "kind": "stated_duration",
+          "quote": "Patient-present individual therapy: 09:00\u201309:50 local; completed, 50 minutes.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-05 12:18",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 219,
+          "citation": "BH-D006 L10",
+          "kind": "attendance",
+          "quote": "HG-E101   | Jan05 | Individual therapy     | 09:00\u201309:50    | Completed",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 218,
+          "citation": "BH-D006 L10",
+          "kind": "encounter",
+          "quote": "HG-E101   | Jan05 | Individual therapy     | 09:00\u201309:50    | Completed",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D002",
+        "BH-D006"
+      ],
+      "category_value": "individual_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E102",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E102",
+      "service_date": "2026-01-06",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "group_therapy",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states group therapy.",
+        "candidates": [
+          {
+            "value": "group_therapy",
+            "tier": 1,
+            "citations": [
+              "BH-D004 L4-8",
+              "BH-D005 L9-10",
+              "BH-D006 L11"
+            ],
+            "assertion_ids": [
+              192,
+              220,
+              261
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Coping skills group"
+      ],
+      "modality": "in_person",
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D005 L9-10",
+              "BH-D006 L11"
+            ],
+            "assertion_ids": [
+              193,
+              221
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D005 L9-10",
+              "BH-D006 L11"
+            ],
+            "assertion_ids": [
+              193,
+              221
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "resolved",
+        "value": "10:15",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 10:15.",
+        "candidates": [
+          {
+            "value": "10:15",
+            "tier": 1,
+            "citations": [
+              "BH-D005 L10",
+              "BH-D005 L9-10"
+            ],
+            "assertion_ids": [
+              193,
+              194
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "11:15",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 11:15.",
+        "candidates": [
+          {
+            "value": "11:15",
+            "tier": 1,
+            "citations": [
+              "BH-D005 L10",
+              "BH-D005 L9-10"
+            ],
+            "assertion_ids": [
+              193,
+              194
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "session_interval": {
+        "start": 600,
+        "end": 690,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D004 L4-8",
+          "BH-D005 L9-10",
+          "BH-D006 L11"
+        ]
+      },
+      "excluded": [
+        {
+          "start": 645,
+          "end": 660,
+          "reason": "break",
+          "citations": [
+            "BH-D004 L12"
+          ]
+        }
+      ],
+      "presence_from_roster": true,
+      "occurrence": "session",
+      "minutes_min": 45,
+      "minutes_max": 45,
+      "arithmetic": "present 10:15-11:15, less break 10:45-11:00 = 45 minutes",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 261,
+          "citation": "BH-D004 L4-8",
+          "kind": "encounter",
+          "quote": "Harbor Grove Behavioral Health | Coping skills group\nService date 2026-01-06 | Group scheduled 10:00\u201311:30 local\nRowan Mercer | DOB 1991-04-12 | MRN HG-M042 | Encounter HG-E102\nFacilitator: Leena Park, LPC",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-06 12:02",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 262,
+          "citation": "BH-D004 L12",
+          "kind": "excluded_interval",
+          "quote": "The whole group took a break from 10:45 to 11:00. No therapy was conducted during that interval.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-06 12:02",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 193,
+          "citation": "BH-D005 L9-10",
+          "kind": "attendance",
+          "quote": "2026-01-06 | HG-E102   | 10:00\u201311:30    | 10:15           | 11:15            | Attended part",
+          "record_type": "attendance_record",
+          "signed": "extract_of_signed",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-12 15:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 192,
+          "citation": "BH-D005 L9-10",
+          "kind": "encounter",
+          "quote": "2026-01-06 | HG-E102   | 10:00\u201311:30    | 10:15           | 11:15            | Attended part",
+          "record_type": "attendance_record",
+          "signed": "extract_of_signed",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-12 15:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 194,
+          "citation": "BH-D005 L10",
+          "kind": "presence",
+          "quote": "10:15           | 11:15",
+          "record_type": "attendance_record",
+          "signed": "extract_of_signed",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-12 15:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 221,
+          "citation": "BH-D006 L11",
+          "kind": "attendance",
+          "quote": "HG-E102   | Jan06 | Coping skills group    | 10:00\u201311:30    | Attended part",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 220,
+          "citation": "BH-D006 L11",
+          "kind": "encounter",
+          "quote": "HG-E102   | Jan06 | Coping skills group    | 10:00\u201311:30    | Attended part",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D004",
+        "BH-D005",
+        "BH-D006"
+      ],
+      "category_value": "group_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E103",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E103",
+      "service_date": "2026-01-08",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "individual_therapy",
+        "tier": 2,
+        "rule": "R4",
+        "explanation": "Tier 2 (administrative record) states individual therapy.",
+        "candidates": [
+          {
+            "value": "individual_therapy",
+            "tier": 2,
+            "citations": [
+              "BH-D006 L12",
+              "BH-D015 L6"
+            ],
+            "assertion_ids": [
+              222,
+              318
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Individual therapy",
+        "individual visit"
+      ],
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "no_show",
+        "tier": 2,
+        "rule": "R4",
+        "explanation": "Tier 2 (administrative record) states \u0022no show\u0022.",
+        "candidates": [
+          {
+            "value": "no_show",
+            "tier": 2,
+            "citations": [
+              "BH-D006 L12",
+              "BH-D015 L11"
+            ],
+            "assertion_ids": [
+              223,
+              322
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "absent",
+        "tier": 2,
+        "rule": "R4",
+        "explanation": "Tier 2 (administrative record) states \u0022not present\u0022.",
+        "candidates": [
+          {
+            "value": "absent",
+            "tier": 2,
+            "citations": [
+              "BH-D006 L12",
+              "BH-D015 L11"
+            ],
+            "assertion_ids": [
+              223,
+              322
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "end": {
+        "field": "presence end",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "session_interval": {
+        "start": 660,
+        "end": 705,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D006 L12",
+          "BH-D015 L6"
+        ]
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "not_session",
+      "not_session_reason": "The appointment was a no show.",
+      "minutes_min": 0,
+      "minutes_max": 0,
+      "arithmetic": "The appointment was a no show. 0 minutes. (BH-D006 L12, BH-D015 L11)",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 223,
+          "citation": "BH-D006 L12",
+          "kind": "attendance",
+          "quote": "HG-E103   | Jan08 | Individual therapy     | 11:00\u201311:45    | No show",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 222,
+          "citation": "BH-D006 L12",
+          "kind": "encounter",
+          "quote": "HG-E103   | Jan08 | Individual therapy     | 11:00\u201311:45    | No show",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 318,
+          "citation": "BH-D015 L6",
+          "kind": "encounter",
+          "quote": "Related appointment: HG-E103, 2026-01-08, 11:00\u201311:45 local",
+          "record_type": "desk_log",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-08 15:52",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 322,
+          "citation": "BH-D015 L11",
+          "kind": "attendance",
+          "quote": "11:45: Appointment marked no show. Rowan was not seen for the scheduled individual visit.",
+          "record_type": "desk_log",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-08 15:52",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D006",
+        "BH-D015"
+      ],
+      "category_value": "individual_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E104",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E104",
+      "service_date": "2026-01-09",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "family_therapy",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states family therapy.",
+        "candidates": [
+          {
+            "value": "family_therapy",
+            "tier": 1,
+            "citations": [
+              "BH-D006 L13",
+              "BH-D007 L4-9",
+              "BH-D008 L4-9",
+              "BH-D015 L13"
+            ],
+            "assertion_ids": [
+              205,
+              226,
+              279,
+              324
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Family psychotherapy",
+        "Family service",
+        "Family therapy",
+        "family visit"
+      ],
+      "modality": "in_person",
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D006 L13",
+              "BH-D007 L7-9",
+              "BH-D008 L8"
+            ],
+            "assertion_ids": [
+              206,
+              227,
+              280
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D007 L7-9",
+              "BH-D008 L8"
+            ],
+            "assertion_ids": [
+              206,
+              280
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "resolved",
+        "value": "14:00",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 14:00.",
+        "candidates": [
+          {
+            "value": "14:00",
+            "tier": 1,
+            "citations": [
+              "BH-D008 L8"
+            ],
+            "assertion_ids": [
+              207
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "14:45",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 14:45.",
+        "candidates": [
+          {
+            "value": "14:45",
+            "tier": 1,
+            "citations": [
+              "BH-D008 L8"
+            ],
+            "assertion_ids": [
+              207
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "session_interval": {
+        "start": 840,
+        "end": 885,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D006 L13",
+          "BH-D007 L4-9",
+          "BH-D008 L4-9"
+        ]
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "session",
+      "minutes_min": 45,
+      "minutes_max": 45,
+      "arithmetic": "present 14:00-14:45 = 45 minutes",
+      "flags": [
+        "Some records carried no encounter identifier and were linked by service date and category."
+      ],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 227,
+          "citation": "BH-D006 L13",
+          "kind": "attendance",
+          "quote": "HG-E104   | Jan09 | Family therapy         | 14:00\u201314:45    | Completed",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 226,
+          "citation": "BH-D006 L13",
+          "kind": "encounter",
+          "quote": "HG-E104   | Jan09 | Family therapy         | 14:00\u201314:45    | Completed",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 279,
+          "citation": "BH-D007 L4-9",
+          "kind": "encounter",
+          "quote": "Encounter HG-E104 | 2026-01-09, 14:00\u201314:45 local",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-09 16:24",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 280,
+          "citation": "BH-D007 L7-9",
+          "kind": "attendance",
+          "quote": "Present: Rowan and partner, Casey Mercer",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-09 16:24",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 281,
+          "citation": "BH-D007 L9",
+          "kind": "stated_duration",
+          "quote": "Patient-present family therapy duration: 45 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-09 16:24",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 205,
+          "citation": "BH-D008 L4-9",
+          "kind": "encounter",
+          "quote": "Encounter HG-E104 | Date 2026-01-09 | 14:00\u201314:45 local",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-10 08:42",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 206,
+          "citation": "BH-D008 L8",
+          "kind": "attendance",
+          "quote": "Participants: Rowan Mercer and Casey Mercer; both present for the full 45 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-10 08:42",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 207,
+          "citation": "BH-D008 L8",
+          "kind": "presence",
+          "quote": "Participants: Rowan Mercer and Casey Mercer; both present for the full 45 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-10 08:42",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 208,
+          "citation": "BH-D008 L8",
+          "kind": "stated_duration",
+          "quote": "both present for the full 45 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-10 08:42",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 324,
+          "citation": "BH-D015 L13",
+          "kind": "encounter",
+          "quote": "The next scheduled appointment remained the family visit on January 9.",
+          "record_type": "desk_log",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-08 15:52",
+          "link_method": "date_and_category"
+        }
+      ],
+      "source_documents": [
+        "BH-D006",
+        "BH-D007",
+        "BH-D008",
+        "BH-D015"
+      ],
+      "category_value": "family_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E105",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E105",
+      "service_date": "2026-01-12",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "group_therapy",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states group therapy.",
+        "candidates": [
+          {
+            "value": "group_therapy",
+            "tier": 1,
+            "citations": [
+              "BH-D005 L9-11",
+              "BH-D006 L14",
+              "BH-D009 L4-8"
+            ],
+            "assertion_ids": [
+              195,
+              228,
+              307
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Coping skills group"
+      ],
+      "modality": "in_person",
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D005 L9-11",
+              "BH-D006 L14"
+            ],
+            "assertion_ids": [
+              196,
+              229
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D005 L9-11"
+            ],
+            "assertion_ids": [
+              196
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "resolved",
+        "value": "10:00",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 10:00.",
+        "candidates": [
+          {
+            "value": "10:00",
+            "tier": 1,
+            "citations": [
+              "BH-D005 L11",
+              "BH-D005 L9-11"
+            ],
+            "assertion_ids": [
+              196,
+              197
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "11:30",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 11:30.",
+        "candidates": [
+          {
+            "value": "11:30",
+            "tier": 1,
+            "citations": [
+              "BH-D005 L11",
+              "BH-D005 L9-11"
+            ],
+            "assertion_ids": [
+              196,
+              197
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "session_interval": {
+        "start": 600,
+        "end": 690,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D005 L9-11",
+          "BH-D006 L14",
+          "BH-D009 L4-8"
+        ]
+      },
+      "excluded": [
+        {
+          "start": 640,
+          "end": 655,
+          "reason": "break",
+          "citations": [
+            "BH-D009 L12"
+          ]
+        }
+      ],
+      "presence_from_roster": true,
+      "occurrence": "session",
+      "minutes_min": 75,
+      "minutes_max": 75,
+      "arithmetic": "present 10:00-11:30, less break 10:40-10:55 = 75 minutes",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 196,
+          "citation": "BH-D005 L9-11",
+          "kind": "attendance",
+          "quote": "2026-01-12 | HG-E105   | 10:00\u201311:30    | 10:00           | 11:30            | Attended full",
+          "record_type": "attendance_record",
+          "signed": "extract_of_signed",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-12 15:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 195,
+          "citation": "BH-D005 L9-11",
+          "kind": "encounter",
+          "quote": "2026-01-12 | HG-E105   | 10:00\u201311:30    | 10:00           | 11:30            | Attended full",
+          "record_type": "attendance_record",
+          "signed": "extract_of_signed",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-12 15:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 197,
+          "citation": "BH-D005 L11",
+          "kind": "presence",
+          "quote": "10:00           | 11:30",
+          "record_type": "attendance_record",
+          "signed": "extract_of_signed",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-12 15:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 229,
+          "citation": "BH-D006 L14",
+          "kind": "attendance",
+          "quote": "HG-E105   | Jan12 | Coping skills group    | 10:00\u201311:30    | Completed",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 228,
+          "citation": "BH-D006 L14",
+          "kind": "encounter",
+          "quote": "HG-E105   | Jan12 | Coping skills group    | 10:00\u201311:30    | Completed",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 307,
+          "citation": "BH-D009 L4-8",
+          "kind": "encounter",
+          "quote": "Harbor Grove Behavioral Health | Coping skills group",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-12 12:20",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 308,
+          "citation": "BH-D009 L12",
+          "kind": "excluded_interval",
+          "quote": "Group break: 10:40\u201310:55; no therapeutic activity occurred during the break.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-12 12:20",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D005",
+        "BH-D006",
+        "BH-D009"
+      ],
+      "category_value": "group_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E106",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E106",
+      "service_date": "2026-01-13",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "medication_management",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states medication management.",
+        "candidates": [
+          {
+            "value": "medication_management",
+            "tier": 1,
+            "citations": [
+              "BH-D006 L15",
+              "BH-D010 L4-9"
+            ],
+            "assertion_ids": [
+              230,
+              294
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Medication management",
+        "Prescriber visit"
+      ],
+      "modality": "in_person",
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D006 L15",
+              "BH-D010 L7"
+            ],
+            "assertion_ids": [
+              231,
+              295
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D010 L7"
+            ],
+            "assertion_ids": [
+              295
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "resolved",
+        "value": "09:00",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 09:00.",
+        "candidates": [
+          {
+            "value": "09:00",
+            "tier": 1,
+            "citations": [
+              "BH-D010 L7"
+            ],
+            "assertion_ids": [
+              296
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "09:25",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 09:25.",
+        "candidates": [
+          {
+            "value": "09:25",
+            "tier": 1,
+            "citations": [
+              "BH-D010 L7"
+            ],
+            "assertion_ids": [
+              296
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "session_interval": {
+        "start": 540,
+        "end": 565,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D006 L15"
+        ]
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "session",
+      "minutes_min": 25,
+      "minutes_max": 25,
+      "arithmetic": "present 09:00-09:25 = 25 minutes",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 231,
+          "citation": "BH-D006 L15",
+          "kind": "attendance",
+          "quote": "HG-E106   | Jan13 | Medication management  | 09:00\u201309:25    | Completed",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 230,
+          "citation": "BH-D006 L15",
+          "kind": "encounter",
+          "quote": "HG-E106   | Jan13 | Medication management  | 09:00\u201309:25    | Completed",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 294,
+          "citation": "BH-D010 L4-9",
+          "kind": "encounter",
+          "quote": "Encounter HG-E106 | Date 2026-01-13",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-13 10:04",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 295,
+          "citation": "BH-D010 L7",
+          "kind": "attendance",
+          "quote": "Actual visit 09:00\u201309:25 local; completed, 25 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-13 10:04",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 296,
+          "citation": "BH-D010 L7",
+          "kind": "presence",
+          "quote": "Actual visit 09:00\u201309:25 local; completed, 25 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-13 10:04",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 297,
+          "citation": "BH-D010 L7",
+          "kind": "stated_duration",
+          "quote": "Actual visit 09:00\u201309:25 local; completed, 25 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-13 10:04",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D006",
+        "BH-D010"
+      ],
+      "category_value": "medication_management",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E107",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E107",
+      "service_date": "2026-01-14",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "individual_therapy",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states individual therapy.",
+        "candidates": [
+          {
+            "value": "individual_therapy",
+            "tier": 1,
+            "citations": [
+              "BH-D006 L16",
+              "BH-D011 L4-9"
+            ],
+            "assertion_ids": [
+              232,
+              376
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Individual psychotherapy",
+        "Individual therapy"
+      ],
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D006 L16",
+              "BH-D011 L7"
+            ],
+            "assertion_ids": [
+              233,
+              378
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D011 L7"
+            ],
+            "assertion_ids": [
+              378
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "resolved",
+        "value": "11:00",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 11:00.",
+        "candidates": [
+          {
+            "value": "11:00",
+            "tier": 1,
+            "citations": [
+              "BH-D011 L7"
+            ],
+            "assertion_ids": [
+              377
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "11:45",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 11:45.",
+        "candidates": [
+          {
+            "value": "11:45",
+            "tier": 1,
+            "citations": [
+              "BH-D011 L7"
+            ],
+            "assertion_ids": [
+              377
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "session_interval": {
+        "start": 660,
+        "end": 705,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D006 L16"
+        ]
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "session",
+      "minutes_min": 45,
+      "minutes_max": 45,
+      "arithmetic": "present 11:00-11:45 = 45 minutes",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 233,
+          "citation": "BH-D006 L16",
+          "kind": "attendance",
+          "quote": "HG-E107   | Jan14 | Individual therapy     | 11:00\u201311:45    | Completed",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 232,
+          "citation": "BH-D006 L16",
+          "kind": "encounter",
+          "quote": "HG-E107   | Jan14 | Individual therapy     | 11:00\u201311:45    | Completed",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 376,
+          "citation": "BH-D011 L4-9",
+          "kind": "encounter",
+          "quote": "Harbor Grove Behavioral Health | Individual psychotherapy",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-14 13:16",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 378,
+          "citation": "BH-D011 L7",
+          "kind": "attendance",
+          "quote": "Patient-present session 11:00\u201311:45 local; completed, 45 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-14 13:16",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 377,
+          "citation": "BH-D011 L7",
+          "kind": "presence",
+          "quote": "Patient-present session 11:00\u201311:45 local; completed, 45 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-14 13:16",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 379,
+          "citation": "BH-D011 L7",
+          "kind": "stated_duration",
+          "quote": "Patient-present session 11:00\u201311:45 local; completed, 45 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-14 13:16",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D006",
+        "BH-D011"
+      ],
+      "category_value": "individual_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E108",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E108",
+      "service_date": "2026-01-15",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "group_therapy",
+        "tier": 2,
+        "rule": "R4",
+        "explanation": "Tier 2 (administrative record) states group therapy.",
+        "candidates": [
+          {
+            "value": "group_therapy",
+            "tier": 2,
+            "citations": [
+              "BH-D006 L17",
+              "BH-D016 L9"
+            ],
+            "assertion_ids": [
+              234,
+              250
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Coping skills group",
+        "coping skills group"
+      ],
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "clinic_cancelled",
+        "tier": 2,
+        "rule": "R4",
+        "explanation": "Tier 2 (administrative record) states \u0022cancelled by the clinic\u0022.",
+        "candidates": [
+          {
+            "value": "clinic_cancelled",
+            "tier": 2,
+            "citations": [
+              "BH-D006 L17",
+              "BH-D016 L9"
+            ],
+            "assertion_ids": [
+              235,
+              251
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "start": {
+        "field": "presence start",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "end": {
+        "field": "presence end",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "session_interval": {
+        "start": 600,
+        "end": 690,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D006 L17",
+          "BH-D016 L9"
+        ]
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "not_session",
+      "not_session_reason": "The appointment was cancelled by the clinic.",
+      "minutes_min": 0,
+      "minutes_max": 0,
+      "arithmetic": "The appointment was cancelled by the clinic. 0 minutes. (BH-D006 L17, BH-D016 L9)",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 235,
+          "citation": "BH-D006 L17",
+          "kind": "attendance",
+          "quote": "HG-E108   | Jan15 | Coping skills group    | 10:00\u201311:30    | Clinic cancelled",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 234,
+          "citation": "BH-D006 L17",
+          "kind": "encounter",
+          "quote": "HG-E108   | Jan15 | Coping skills group    | 10:00\u201311:30    | Clinic cancelled",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 251,
+          "citation": "BH-D016 L9",
+          "kind": "attendance",
+          "quote": "The coping skills group scheduled for January 15 from 10:00 to 11:30 is cancelled by the clinic because of staff illness.",
+          "record_type": "administrative_notice",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-15 08:12",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 250,
+          "citation": "BH-D016 L9",
+          "kind": "encounter",
+          "quote": "The coping skills group scheduled for January 15 from 10:00 to 11:30 is cancelled by the clinic because of staff illness.",
+          "record_type": "administrative_notice",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-15 08:12",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D006",
+        "BH-D016"
+      ],
+      "category_value": "group_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E109",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E109",
+      "service_date": "2026-01-16",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "collateral_contact",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states collateral contact.",
+        "candidates": [
+          {
+            "value": "collateral_contact",
+            "tier": 1,
+            "citations": [
+              "BH-D006 L18",
+              "BH-D012 L4-7"
+            ],
+            "assertion_ids": [
+              238,
+              348
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Family collateral"
+      ],
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D006 L18",
+              "BH-D006 L20",
+              "BH-D012 L11",
+              "BH-D012 L8"
+            ],
+            "assertion_ids": [
+              239,
+              240,
+              349,
+              350
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "absent",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022not present\u0022.",
+        "candidates": [
+          {
+            "value": "absent",
+            "tier": 1,
+            "citations": [
+              "BH-D006 L20",
+              "BH-D012 L11",
+              "BH-D012 L8"
+            ],
+            "assertion_ids": [
+              240,
+              349,
+              350
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "end": {
+        "field": "presence end",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "session_interval": {
+        "start": 840,
+        "end": 880,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D006 L18",
+          "BH-D012 L4-7"
+        ]
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "not_session",
+      "not_session_reason": "The patient was not present.",
+      "minutes_min": 0,
+      "minutes_max": 0,
+      "arithmetic": "The patient was not present. 0 minutes. (BH-D006 L20, BH-D012 L11, BH-D012 L8)",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 239,
+          "citation": "BH-D006 L18",
+          "kind": "attendance",
+          "quote": "HG-E109   | Jan16 | Family collateral      | 14:00\u201314:40    | Completed",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 238,
+          "citation": "BH-D006 L18",
+          "kind": "encounter",
+          "quote": "HG-E109   | Jan16 | Family collateral      | 14:00\u201314:40    | Completed",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 240,
+          "citation": "BH-D006 L20",
+          "kind": "attendance",
+          "quote": "Appointment HG-E109 was retained as a partner collateral contact after Rowan could not attend.",
+          "record_type": "desk_log",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:50",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 348,
+          "citation": "BH-D012 L4-7",
+          "kind": "encounter",
+          "quote": "Encounter HG-E109 | Date 2026-01-16 | 14:00\u201314:40 local\nClinician: Mara Voss, LCSW",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:08",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 349,
+          "citation": "BH-D012 L8",
+          "kind": "attendance",
+          "quote": "Participant: Casey Mercer, partner. Rowan was absent for the entire contact.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:08",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 350,
+          "citation": "BH-D012 L11",
+          "kind": "attendance",
+          "quote": "Casey attended the arranged contact after Rowan advised the office that they could not participate.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-16 16:08",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D006",
+        "BH-D012"
+      ],
+      "category_value": "collateral_contact",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E110",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E110",
+      "service_date": "2026-01-19",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "group_therapy",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states group therapy.",
+        "candidates": [
+          {
+            "value": "group_therapy",
+            "tier": 1,
+            "citations": [
+              "BH-D101 L3-6",
+              "BH-D102 L4-9",
+              "BH-D104 L10-14"
+            ],
+            "assertion_ids": [
+              1,
+              10,
+              30
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Group",
+        "Skills group"
+      ],
+      "modality": "in_person",
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D102 L9-10",
+              "BH-D104 L14"
+            ],
+            "assertion_ids": [
+              11,
+              31
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D102 L9-10",
+              "BH-D104 L14"
+            ],
+            "assertion_ids": [
+              11,
+              31
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "resolved",
+        "value": "10:00",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 10:00.",
+        "candidates": [
+          {
+            "value": "10:00",
+            "tier": 1,
+            "citations": [
+              "BH-D102 L9",
+              "BH-D102 L9-10",
+              "BH-D103 L7",
+              "BH-D104 L14"
+            ],
+            "assertion_ids": [
+              11,
+              12,
+              20,
+              31,
+              32
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "11:15",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 11:15.",
+        "candidates": [
+          {
+            "value": "11:15",
+            "tier": 1,
+            "citations": [
+              "BH-D103 L7"
+            ],
+            "assertion_ids": [
+              19
+            ]
+          }
+        ],
+        "overruled": [
+          {
+            "value": "11:30",
+            "citation": "BH-D102 L9",
+            "assertion_id": 32,
+            "rule": "R3",
+            "reason": "the value the correction replaces; corrected to 11:15 by BH-D103 L7"
+          },
+          {
+            "value": "11:30",
+            "citation": "BH-D102 L9-10",
+            "assertion_id": 31,
+            "rule": "R3",
+            "reason": "the value the correction replaces; corrected to 11:15 by BH-D103 L7"
+          },
+          {
+            "value": "11:30",
+            "citation": "BH-D104 L14",
+            "assertion_id": 11,
+            "rule": "R3",
+            "reason": "a copy of the record that was corrected; corrected to 11:15 by BH-D103 L7"
+          },
+          {
+            "value": "11:30",
+            "citation": "BH-D104 L14",
+            "assertion_id": 12,
+            "rule": "R3",
+            "reason": "a copy of the record that was corrected; corrected to 11:15 by BH-D103 L7"
+          }
+        ],
+        "is_settled": true
+      },
+      "session_interval": {
+        "start": 600,
+        "end": 690,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D101 L3-6",
+          "BH-D102 L4-9",
+          "BH-D104 L10-14"
+        ]
+      },
+      "excluded": [
+        {
+          "start": 645,
+          "end": 660,
+          "reason": "break",
+          "citations": [
+            "BH-D101 L6"
+          ]
+        }
+      ],
+      "presence_from_roster": false,
+      "occurrence": "session",
+      "minutes_min": 60,
+      "minutes_max": 60,
+      "arithmetic": "present 10:00-11:15, less break 10:45-11:00 = 60 minutes",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 1,
+          "citation": "BH-D101 L3-6",
+          "kind": "encounter",
+          "quote": "Group encounter: HG-E110 | Facilitator: Leah Chen, LCSW",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-19 12:08",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 2,
+          "citation": "BH-D101 L6",
+          "kind": "excluded_interval",
+          "quote": "Nontherapeutic break: 10:45\u201311:00.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-19 12:08",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 30,
+          "citation": "BH-D102 L4-9",
+          "kind": "encounter",
+          "quote": "Service date: January 19, 2026 | Group encounter: HG-E110",
+          "record_type": "attendance_record",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-19 12:14",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 32,
+          "citation": "BH-D102 L9",
+          "kind": "presence",
+          "quote": "Patient arrival: 10:00 | Patient departure: 11:30 | Status: Attended",
+          "record_type": "attendance_record",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-19 12:14",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 31,
+          "citation": "BH-D102 L9-10",
+          "kind": "attendance",
+          "quote": "Patient arrival: 10:00 | Patient departure: 11:30 | Status: Attended",
+          "record_type": "attendance_record",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-19 12:14",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 19,
+          "citation": "BH-D103 L7",
+          "kind": "correction",
+          "quote": "Patient departure for HG-E110 is 11:15, replacing the original roster value of 11:30.",
+          "record_type": "correction",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-20 08:42",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 20,
+          "citation": "BH-D103 L7",
+          "kind": "presence",
+          "quote": "Patient arrival remains 10:00.",
+          "record_type": "correction",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-20 08:42",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 24,
+          "citation": "BH-D103 L9",
+          "kind": "attendance",
+          "quote": "The group continued for other members until its scheduled close.",
+          "record_type": "correction",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-20 08:42",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 10,
+          "citation": "BH-D104 L10-14",
+          "kind": "encounter",
+          "quote": "Service date: January 19, 2026 | Group encounter: HG-E110\nLocation: Outpatient skills room B\nScheduled opening: 10:00 | Scheduled closing: 11:30",
+          "record_type": "attendance_record",
+          "signed": "extract_of_signed",
+          "tier": 1,
+          "is_copy": true,
+          "statement_time": "2026-01-19 12:14",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 11,
+          "citation": "BH-D104 L14",
+          "kind": "attendance",
+          "quote": "Patient arrival: 10:00 | Patient departure: 11:30 | Status: Attended",
+          "record_type": "attendance_record",
+          "signed": "extract_of_signed",
+          "tier": 1,
+          "is_copy": true,
+          "statement_time": "2026-01-19 12:14",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 12,
+          "citation": "BH-D104 L14",
+          "kind": "presence",
+          "quote": "Patient arrival: 10:00 | Patient departure: 11:30 | Status: Attended",
+          "record_type": "attendance_record",
+          "signed": "extract_of_signed",
+          "tier": 1,
+          "is_copy": true,
+          "statement_time": "2026-01-19 12:14",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D101",
+        "BH-D102",
+        "BH-D103",
+        "BH-D104"
+      ],
+      "category_value": "group_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E111",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E111",
+      "service_date": "2026-01-19",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "individual_therapy",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states individual therapy.",
+        "candidates": [
+          {
+            "value": "individual_therapy",
+            "tier": 1,
+            "citations": [
+              "BH-D105 L3-7"
+            ],
+            "assertion_ids": [
+              75
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Individual psychotherapy"
+      ],
+      "modality": "in_person",
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D105 L6"
+            ],
+            "assertion_ids": [
+              78
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D105 L6"
+            ],
+            "assertion_ids": [
+              78
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "resolved",
+        "value": "11:15",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 11:15.",
+        "candidates": [
+          {
+            "value": "11:15",
+            "tier": 1,
+            "citations": [
+              "BH-D105 L6"
+            ],
+            "assertion_ids": [
+              76
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "11:45",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 11:45.",
+        "candidates": [
+          {
+            "value": "11:45",
+            "tier": 1,
+            "citations": [
+              "BH-D105 L6"
+            ],
+            "assertion_ids": [
+              76
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "session",
+      "minutes_min": 30,
+      "minutes_max": 30,
+      "arithmetic": "present 11:15-11:45 = 30 minutes",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 75,
+          "citation": "BH-D105 L3-7",
+          "kind": "encounter",
+          "quote": "Individual psychotherapy | Encounter HG-E111",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-19 12:32",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 78,
+          "citation": "BH-D105 L6",
+          "kind": "attendance",
+          "quote": "Patient contact: 11:15\u201311:45 | Completed: 30 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-19 12:32",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 76,
+          "citation": "BH-D105 L6",
+          "kind": "presence",
+          "quote": "Patient contact: 11:15\u201311:45 | Completed: 30 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-19 12:32",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 77,
+          "citation": "BH-D105 L6",
+          "kind": "stated_duration",
+          "quote": "Completed: 30 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-19 12:32",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D105"
+      ],
+      "category_value": "individual_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E112",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E112",
+      "service_date": "2026-01-21",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "individual_therapy",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states individual therapy.",
+        "candidates": [
+          {
+            "value": "individual_therapy",
+            "tier": 1,
+            "citations": [
+              "BH-D106 L3-5"
+            ],
+            "assertion_ids": [
+              43
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Individual psychotherapy"
+      ],
+      "modality": "video",
+      "disposition": {
+        "field": "disposition",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "start": {
+        "field": "presence start",
+        "status": "resolved",
+        "value": "13:00",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 13:00.",
+        "candidates": [
+          {
+            "value": "13:00",
+            "tier": 1,
+            "citations": [
+              "BH-D106 L17",
+              "BH-D106 L18",
+              "BH-D106 L7"
+            ],
+            "assertion_ids": [
+              44,
+              56,
+              57
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "13:55",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 13:55.",
+        "candidates": [
+          {
+            "value": "13:55",
+            "tier": 1,
+            "citations": [
+              "BH-D106 L17",
+              "BH-D106 L18",
+              "BH-D106 L7"
+            ],
+            "assertion_ids": [
+              44,
+              56,
+              57
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "excluded": [
+        {
+          "start": 800,
+          "end": 810,
+          "reason": "connection lost",
+          "citations": [
+            "BH-D106 L17",
+            "BH-D106 L18",
+            "BH-D106 L7"
+          ]
+        }
+      ],
+      "presence_from_roster": false,
+      "occurrence": "session",
+      "minutes_min": 45,
+      "minutes_max": 45,
+      "arithmetic": "present 13:00-13:55, less connection lost 13:20-13:30 = 45 minutes",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 43,
+          "citation": "BH-D106 L3-5",
+          "kind": "encounter",
+          "quote": "Individual psychotherapy | Encounter HG-E112 | Appointment HG-A112",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-21 15:04",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 45,
+          "citation": "BH-D106 L7",
+          "kind": "excluded_interval",
+          "quote": "Connection was lost from 13:20\u201313:30; there was no therapeutic contact during that interval.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-21 15:04",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 44,
+          "citation": "BH-D106 L7",
+          "kind": "presence",
+          "quote": "Patient contact occurred 13:00\u201313:20 and 13:30\u201313:55.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-21 15:04",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 46,
+          "citation": "BH-D106 L7",
+          "kind": "stated_duration",
+          "quote": "Total patient psychotherapy contact: 45 minutes.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-21 15:04",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 56,
+          "citation": "BH-D106 L17",
+          "kind": "presence",
+          "quote": "HG-A112 | VC-112A | January 21 13:00 | January 21 13:20",
+          "record_type": "platform_log",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-21 14:06",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 57,
+          "citation": "BH-D106 L18",
+          "kind": "presence",
+          "quote": "HG-A112 | VC-112B | January 21 13:30 | January 21 13:55",
+          "record_type": "platform_log",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-21 14:06",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D106"
+      ],
+      "category_value": "individual_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E113",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E113",
+      "service_date": "2026-01-22",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "group_therapy",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states group therapy.",
+        "candidates": [
+          {
+            "value": "group_therapy",
+            "tier": 1,
+            "citations": [
+              "BH-D107 L7-8",
+              "BH-D108 L9"
+            ],
+            "assertion_ids": [
+              59,
+              128
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Skills group"
+      ],
+      "modality": "in_person",
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D107 L9",
+              "BH-D108 L14",
+              "BH-D108 L9"
+            ],
+            "assertion_ids": [
+              62,
+              129,
+              138
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D107 L9",
+              "BH-D108 L14",
+              "BH-D108 L9"
+            ],
+            "assertion_ids": [
+              62,
+              129,
+              138
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "resolved",
+        "value": "10:30",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 10:30.",
+        "candidates": [
+          {
+            "value": "10:30",
+            "tier": 1,
+            "citations": [
+              "BH-D108 L14",
+              "BH-D108 L9"
+            ],
+            "assertion_ids": [
+              130,
+              139
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "11:30",
+        "tier": 2,
+        "rule": "R4",
+        "explanation": "Tier 2 (administrative record) states 11:30.",
+        "candidates": [
+          {
+            "value": "11:30",
+            "tier": 2,
+            "citations": [
+              "BH-D108 L9"
+            ],
+            "assertion_ids": [
+              130
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "session_interval": {
+        "start": 600,
+        "end": 690,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D107 L7-8",
+          "BH-D108 L9"
+        ]
+      },
+      "excluded": [
+        {
+          "start": 645,
+          "end": 660,
+          "reason": "break",
+          "citations": [
+            "BH-D107 L8"
+          ]
+        }
+      ],
+      "presence_from_roster": true,
+      "occurrence": "session",
+      "minutes_min": 45,
+      "minutes_max": 45,
+      "arithmetic": "present 10:30-11:30, less break 10:45-11:00 = 45 minutes",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 59,
+          "citation": "BH-D107 L7-8",
+          "kind": "encounter",
+          "quote": "Scheduled group 10:00\u201311:30. Nontherapeutic break 10:45\u201311:00.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-22 12:06",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 60,
+          "citation": "BH-D107 L8",
+          "kind": "excluded_interval",
+          "quote": "Nontherapeutic break 10:45\u201311:00.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-22 12:06",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 62,
+          "citation": "BH-D107 L9",
+          "kind": "attendance",
+          "quote": "Rowan joined the discussion after it had begun; the arrival field is maintained in the attendance register.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-22 12:06",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 65,
+          "citation": "BH-D107 L9",
+          "kind": "presence",
+          "quote": "The patient contributed an example to the discussion after the break.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-22 12:06",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 129,
+          "citation": "BH-D108 L9",
+          "kind": "attendance",
+          "quote": "January 22 | HG-E113 | Skills group | 10:00\u201311:30 | 10:30 | 11:30 | Attended, late arrival",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-30 17:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 128,
+          "citation": "BH-D108 L9",
+          "kind": "encounter",
+          "quote": "January 22 | HG-E113 | Skills group | 10:00\u201311:30 | 10:30 | 11:30 | Attended, late arrival",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-30 17:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 130,
+          "citation": "BH-D108 L9",
+          "kind": "presence",
+          "quote": "10:30 | 11:30 | Attended, late arrival",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-30 17:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 138,
+          "citation": "BH-D108 L14",
+          "kind": "attendance",
+          "quote": "Rowan arrived at 10:30 and remained until the group closed.",
+          "record_type": "attendance_record",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-22 12:09",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 139,
+          "citation": "BH-D108 L14",
+          "kind": "presence",
+          "quote": "Rowan arrived at 10:30 and remained until the group closed.",
+          "record_type": "attendance_record",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-22 12:09",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D107",
+        "BH-D108"
+      ],
+      "category_value": "group_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E114",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E114",
+      "service_date": "2026-01-23",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "care_coordination",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states care coordination.",
+        "candidates": [
+          {
+            "value": "care_coordination",
+            "tier": 1,
+            "citations": [
+              "BH-D109 L2-6"
+            ],
+            "assertion_ids": [
+              89
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Care coordination"
+      ],
+      "modality": "telephone",
+      "disposition": {
+        "field": "disposition",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "absent",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022not present\u0022.",
+        "candidates": [
+          {
+            "value": "absent",
+            "tier": 1,
+            "citations": [
+              "BH-D109 L7"
+            ],
+            "assertion_ids": [
+              90
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "end": {
+        "field": "presence end",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "session_interval": {
+        "start": 540,
+        "end": 560,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D109 L2-6"
+        ]
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "not_session",
+      "not_session_reason": "The patient was not present.",
+      "minutes_min": 0,
+      "minutes_max": 0,
+      "arithmetic": "The patient was not present. 0 minutes. (BH-D109 L7)",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 89,
+          "citation": "BH-D109 L2-6",
+          "kind": "encounter",
+          "quote": "Care coordination | Encounter HG-E114",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-23 10:02",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 90,
+          "citation": "BH-D109 L7",
+          "kind": "attendance",
+          "quote": "Patient participation: None. No patient contact occurred.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-23 10:02",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D109"
+      ],
+      "category_value": "care_coordination",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E115",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E115",
+      "service_date": "2026-01-26",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "individual_therapy",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states individual therapy.",
+        "candidates": [
+          {
+            "value": "individual_therapy",
+            "tier": 1,
+            "citations": [
+              "BH-D110 L3-6",
+              "BH-D111 L4-8"
+            ],
+            "assertion_ids": [
+              99,
+              113
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Individual psychotherapy",
+        "Individual psychotherapy, in person"
+      ],
+      "modality": "in_person",
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D111 L10",
+              "BH-D111 L14"
+            ],
+            "assertion_ids": [
+              116,
+              117
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D111 L10",
+              "BH-D111 L14"
+            ],
+            "assertion_ids": [
+              116,
+              117
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "unresolved",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Records of tier 1 (signed record) state 09:00 and 09:10, and no correction or independent record settles it.",
+        "candidates": [
+          {
+            "value": "09:00",
+            "tier": 1,
+            "citations": [
+              "BH-D110 L7"
+            ],
+            "assertion_ids": [
+              100
+            ]
+          },
+          {
+            "value": "09:10",
+            "tier": 1,
+            "citations": [
+              "BH-D111 L10"
+            ],
+            "assertion_ids": [
+              115,
+              116
+            ]
+          }
+        ],
+        "overruled": [],
+        "needs": [
+          "A signed correction or addendum for HG-E115 stating when the patient\u0027s contact began, or an independent record of arrival such as a check-in, room or platform log."
+        ],
+        "is_settled": false
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "09:50",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 09:50.",
+        "candidates": [
+          {
+            "value": "09:50",
+            "tier": 1,
+            "citations": [
+              "BH-D110 L7",
+              "BH-D111 L10",
+              "BH-D111 L14"
+            ],
+            "assertion_ids": [
+              100,
+              115,
+              117
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "session",
+      "minutes_min": 40,
+      "minutes_max": 50,
+      "arithmetic": "present 09:00-09:50 = 50 minutes; or present 09:10-09:50 = 40 minutes",
+      "flags": [],
+      "discrepancies": [
+        {
+          "rule": "R4",
+          "description": "Unresolved presence start: 09:00 (BH-D110 L7) versus 09:10 (BH-D111 L10).",
+          "citations": [
+            "BH-D110 L7",
+            "BH-D111 L10"
+          ]
+        }
+      ],
+      "needs": [
+        "A signed correction or addendum for HG-E115 stating when the patient\u0027s contact began, or an independent record of arrival such as a check-in, room or platform log."
+      ],
+      "assertions": [
+        {
+          "assertion_id": 99,
+          "citation": "BH-D110 L3-6",
+          "kind": "encounter",
+          "quote": "Individual psychotherapy | Encounter HG-E115 | Appointment HG-A115",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-26 11:16",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 100,
+          "citation": "BH-D110 L7",
+          "kind": "presence",
+          "quote": "Actual patient psychotherapy contact: 09:00\u201309:50, 50 minutes.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-26 11:16",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 101,
+          "citation": "BH-D110 L7",
+          "kind": "stated_duration",
+          "quote": "Actual patient psychotherapy contact: 09:00\u201309:50, 50 minutes.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-26 11:16",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 113,
+          "citation": "BH-D111 L4-8",
+          "kind": "encounter",
+          "quote": "Encounter HG-E115 | Appointment HG-A115 | Service date January 26, 2026",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-26 12:03",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 114,
+          "citation": "BH-D111 L7",
+          "kind": "stated_duration",
+          "quote": "Actual patient psychotherapy contact: 09:10\u201309:50, 40 minutes.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-26 12:03",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 116,
+          "citation": "BH-D111 L10",
+          "kind": "attendance",
+          "quote": "Rowan entered the treatment room at 09:10, when we began the session.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-26 12:03",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 115,
+          "citation": "BH-D111 L10",
+          "kind": "presence",
+          "quote": "The full patient-contact interval for the encounter was 09:10\u201309:50.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-26 12:03",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 117,
+          "citation": "BH-D111 L14",
+          "kind": "attendance",
+          "quote": "The session concluded with Rowan at 09:50.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-26 12:03",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D110",
+        "BH-D111"
+      ],
+      "category_value": "individual_therapy",
+      "minutes_settled": false
+    },
+    {
+      "event_key": "HG-E116",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E116",
+      "service_date": "2026-01-27",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "group_therapy",
+        "tier": 2,
+        "rule": "R4",
+        "explanation": "Tier 2 (administrative record) states group therapy.",
+        "candidates": [
+          {
+            "value": "group_therapy",
+            "tier": 2,
+            "citations": [
+              "BH-D108 L10"
+            ],
+            "assertion_ids": [
+              131
+            ]
+          }
+        ],
+        "overruled": [
+          {
+            "value": "group_therapy",
+            "citation": "BH-D112 L5-10",
+            "assertion_id": 162,
+            "rule": "R4",
+            "reason": "an unsigned draft or billing entry is not evidence of what happened"
+          }
+        ],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Skills group"
+      ],
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "no_show",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022no show\u0022.",
+        "candidates": [
+          {
+            "value": "no_show",
+            "tier": 1,
+            "citations": [
+              "BH-D108 L10",
+              "BH-D108 L16"
+            ],
+            "assertion_ids": [
+              132,
+              140
+            ]
+          }
+        ],
+        "overruled": [
+          {
+            "value": "took_place",
+            "citation": "BH-D112 L9-11",
+            "assertion_id": 163,
+            "rule": "R6",
+            "reason": "recorded at 2026-01-27 09:45, before the session began at 2026-01-27 10:00"
+          }
+        ],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "absent",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022not present\u0022.",
+        "candidates": [
+          {
+            "value": "absent",
+            "tier": 1,
+            "citations": [
+              "BH-D108 L10",
+              "BH-D108 L16"
+            ],
+            "assertion_ids": [
+              132,
+              140
+            ]
+          }
+        ],
+        "overruled": [
+          {
+            "value": "present",
+            "citation": "BH-D112 L9-11",
+            "assertion_id": 163,
+            "rule": "R6",
+            "reason": "recorded at 2026-01-27 09:45, before the session began at 2026-01-27 10:00"
+          }
+        ],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "end": {
+        "field": "presence end",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "session_interval": {
+        "start": 600,
+        "end": 690,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D108 L10",
+          "BH-D112 L5-10"
+        ]
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "not_session",
+      "not_session_reason": "The appointment was a no show.",
+      "minutes_min": 0,
+      "minutes_max": 0,
+      "arithmetic": "The appointment was a no show. 0 minutes. (BH-D108 L10, BH-D108 L16)",
+      "flags": [],
+      "discrepancies": [
+        {
+          "rule": "R5",
+          "description": "A charge was posted for this encounter (\u0022Group psychotherapy\u0022, quantity 1). The appointment was a no show. Billing is not evidence of attendance.",
+          "citations": [
+            "BH-D112 L18-23"
+          ]
+        },
+        {
+          "rule": "R5",
+          "description": "An unsigned draft says the patient attended. The appointment was a no show. A draft is not evidence of attendance.",
+          "citations": [
+            "BH-D112 L9-11"
+          ]
+        }
+      ],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 132,
+          "citation": "BH-D108 L10",
+          "kind": "attendance",
+          "quote": "January 27 | HG-E116 | Skills group | 10:00\u201311:30 | \u2014 | \u2014 | No show; patient did not attend",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-30 17:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 131,
+          "citation": "BH-D108 L10",
+          "kind": "encounter",
+          "quote": "January 27 | HG-E116 | Skills group | 10:00\u201311:30 | \u2014 | \u2014 | No show; patient did not attend",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-30 17:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 140,
+          "citation": "BH-D108 L16",
+          "kind": "attendance",
+          "quote": "Final roster confirms Rowan was absent for the entire group.",
+          "record_type": "attendance_record",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-27 11:54",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 162,
+          "citation": "BH-D112 L5-10",
+          "kind": "encounter",
+          "quote": "Scheduled service: Skills group, 10:00\u201311:30",
+          "record_type": "draft_note",
+          "signed": "no",
+          "tier": 3,
+          "is_copy": false,
+          "statement_time": "2026-01-27 09:45",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 163,
+          "citation": "BH-D112 L9-11",
+          "kind": "attendance",
+          "quote": "Template attendance text: Patient attended the full session and participated in the skills discussion.",
+          "record_type": "draft_note",
+          "signed": "no",
+          "tier": 3,
+          "is_copy": false,
+          "statement_time": "2026-01-27 09:45",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 168,
+          "citation": "BH-D112 L18-23",
+          "kind": "charge",
+          "quote": "Charge ID: CH-116 | Encounter: HG-E116",
+          "record_type": "billing_charge",
+          "signed": "no",
+          "tier": 3,
+          "is_copy": false,
+          "statement_time": "2026-01-27 18:06",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D108",
+        "BH-D112"
+      ],
+      "category_value": "group_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E117",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E117",
+      "service_date": "2026-01-28",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "individual_therapy",
+        "tier": 2,
+        "rule": "R4",
+        "explanation": "Tier 2 (administrative record) states individual therapy.",
+        "candidates": [
+          {
+            "value": "individual_therapy",
+            "tier": 2,
+            "citations": [
+              "BH-D108 L11"
+            ],
+            "assertion_ids": [
+              133
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Individual"
+      ],
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "patient_cancelled",
+        "tier": 2,
+        "rule": "R4",
+        "explanation": "Tier 2 (administrative record) states \u0022cancelled by the patient\u0022.",
+        "candidates": [
+          {
+            "value": "patient_cancelled",
+            "tier": 2,
+            "citations": [
+              "BH-D108 L11",
+              "BH-D108 L18"
+            ],
+            "assertion_ids": [
+              134,
+              144
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "absent",
+        "tier": 2,
+        "rule": "R4",
+        "explanation": "Tier 2 (administrative record) states \u0022not present\u0022.",
+        "candidates": [
+          {
+            "value": "absent",
+            "tier": 2,
+            "citations": [
+              "BH-D108 L11",
+              "BH-D108 L18"
+            ],
+            "assertion_ids": [
+              134,
+              144
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "end": {
+        "field": "presence end",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "session_interval": {
+        "start": 840,
+        "end": 885,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D108 L11"
+        ]
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "not_session",
+      "not_session_reason": "The appointment was cancelled by the patient.",
+      "minutes_min": 0,
+      "minutes_max": 0,
+      "arithmetic": "The appointment was cancelled by the patient. 0 minutes. (BH-D108 L11, BH-D108 L18)",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 134,
+          "citation": "BH-D108 L11",
+          "kind": "attendance",
+          "quote": "January 28 | HG-E117 | Individual | 14:00\u201314:45 | \u2014 | \u2014 | Patient cancelled before appointment",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-30 17:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 133,
+          "citation": "BH-D108 L11",
+          "kind": "encounter",
+          "quote": "January 28 | HG-E117 | Individual | 14:00\u201314:45 | \u2014 | \u2014 | Patient cancelled before appointment",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-30 17:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 144,
+          "citation": "BH-D108 L18",
+          "kind": "attendance",
+          "quote": "Appointment HG-E117 was cancelled before the scheduled start; no replacement appointment was booked within January 2026.",
+          "record_type": "scheduling_entry",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-28 08:18",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D108"
+      ],
+      "category_value": "individual_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E118",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E118",
+      "service_date": "2026-01-29",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "group_therapy",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states group therapy.",
+        "candidates": [
+          {
+            "value": "group_therapy",
+            "tier": 1,
+            "citations": [
+              "BH-D107 L12-13",
+              "BH-D108 L12"
+            ],
+            "assertion_ids": [
+              66,
+              135
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Skills group"
+      ],
+      "modality": "in_person",
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D107 L14",
+              "BH-D108 L12",
+              "BH-D108 L20"
+            ],
+            "assertion_ids": [
+              71,
+              136,
+              146
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D107 L14",
+              "BH-D108 L12",
+              "BH-D108 L20"
+            ],
+            "assertion_ids": [
+              71,
+              136,
+              146
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "resolved",
+        "value": "10:00",
+        "tier": 2,
+        "rule": "R4",
+        "explanation": "Tier 2 (administrative record) states 10:00.",
+        "candidates": [
+          {
+            "value": "10:00",
+            "tier": 2,
+            "citations": [
+              "BH-D108 L12"
+            ],
+            "assertion_ids": [
+              137
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "11:30",
+        "tier": 2,
+        "rule": "R4",
+        "explanation": "Tier 2 (administrative record) states 11:30.",
+        "candidates": [
+          {
+            "value": "11:30",
+            "tier": 2,
+            "citations": [
+              "BH-D108 L12"
+            ],
+            "assertion_ids": [
+              137
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "session_interval": {
+        "start": 600,
+        "end": 690,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D107 L12-13",
+          "BH-D108 L12"
+        ]
+      },
+      "excluded": [
+        {
+          "start": 645,
+          "end": 660,
+          "reason": "break",
+          "citations": [
+            "BH-D107 L13"
+          ]
+        }
+      ],
+      "presence_from_roster": true,
+      "occurrence": "session",
+      "minutes_min": 75,
+      "minutes_max": 75,
+      "arithmetic": "present 10:00-11:30, less break 10:45-11:00 = 75 minutes",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 66,
+          "citation": "BH-D107 L12-13",
+          "kind": "encounter",
+          "quote": "Scheduled group 10:00\u201311:30. Nontherapeutic break 10:45\u201311:00.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-29 12:11",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 67,
+          "citation": "BH-D107 L13",
+          "kind": "excluded_interval",
+          "quote": "Nontherapeutic break 10:45\u201311:00.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-29 12:11",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 71,
+          "citation": "BH-D107 L14",
+          "kind": "attendance",
+          "quote": "Rowan participated in the paired rehearsal and accepted feedback about keeping the request brief.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-29 12:11",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 136,
+          "citation": "BH-D108 L12",
+          "kind": "attendance",
+          "quote": "January 29 | HG-E118 | Skills group | 10:00\u201311:30 | 10:00 | 11:30 | Attended",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-30 17:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 135,
+          "citation": "BH-D108 L12",
+          "kind": "encounter",
+          "quote": "January 29 | HG-E118 | Skills group | 10:00\u201311:30 | 10:00 | 11:30 | Attended",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-30 17:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 137,
+          "citation": "BH-D108 L12",
+          "kind": "presence",
+          "quote": "10:00 | 11:30 | Attended",
+          "record_type": "appointment_export",
+          "signed": "no",
+          "tier": 2,
+          "is_copy": false,
+          "statement_time": "2026-01-30 17:10",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 146,
+          "citation": "BH-D108 L20",
+          "kind": "attendance",
+          "quote": "Rowan was present from opening through closing.",
+          "record_type": "attendance_record",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-29 12:15",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 147,
+          "citation": "BH-D108 L20",
+          "kind": "presence",
+          "quote": "Rowan was present from opening through closing.",
+          "record_type": "attendance_record",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-29 12:15",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D107",
+        "BH-D108"
+      ],
+      "category_value": "group_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E119",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E119",
+      "service_date": "2026-01-30",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "family_therapy",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states family therapy.",
+        "candidates": [
+          {
+            "value": "family_therapy",
+            "tier": 1,
+            "citations": [
+              "BH-D113 L3-6"
+            ],
+            "assertion_ids": [
+              148
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Family psychotherapy"
+      ],
+      "modality": "in_person",
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D113 L7-9"
+            ],
+            "assertion_ids": [
+              152
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D113 L7-9"
+            ],
+            "assertion_ids": [
+              152
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "resolved",
+        "value": "13:15",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 13:15.",
+        "candidates": [
+          {
+            "value": "13:15",
+            "tier": 1,
+            "citations": [
+              "BH-D113 L7"
+            ],
+            "assertion_ids": [
+              151
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "end": {
+        "field": "presence end",
+        "status": "resolved",
+        "value": "13:45",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states 13:45.",
+        "candidates": [
+          {
+            "value": "13:45",
+            "tier": 1,
+            "citations": [
+              "BH-D113 L7"
+            ],
+            "assertion_ids": [
+              151
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "session_interval": {
+        "start": 780,
+        "end": 825,
+        "reason": "actual session interval",
+        "citations": [
+          "BH-D113 L6"
+        ]
+      },
+      "excluded": [
+        {
+          "start": 780,
+          "end": 795,
+          "reason": "no therapy in this interval",
+          "citations": [
+            "BH-D113 L9"
+          ]
+        }
+      ],
+      "presence_from_roster": false,
+      "occurrence": "session",
+      "minutes_min": 30,
+      "minutes_max": 30,
+      "arithmetic": "present 13:15-13:45 = 30 minutes",
+      "flags": [],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 148,
+          "citation": "BH-D113 L3-6",
+          "kind": "encounter",
+          "quote": "Family psychotherapy | Encounter HG-E119",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-30 14:18",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 149,
+          "citation": "BH-D113 L6",
+          "kind": "stated_duration",
+          "quote": "Therapist session interval: 13:00\u201313:45, 45 minutes.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-30 14:18",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 151,
+          "citation": "BH-D113 L7",
+          "kind": "presence",
+          "quote": "Rowan present with partner: 13:15\u201313:45, 30 minutes.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-30 14:18",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 150,
+          "citation": "BH-D113 L7",
+          "kind": "stated_duration",
+          "quote": "Rowan present with partner: 13:15\u201313:45, 30 minutes.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-30 14:18",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 152,
+          "citation": "BH-D113 L7-9",
+          "kind": "attendance",
+          "quote": "Partner only: 13:00\u201313:15. Rowan present with partner: 13:15\u201313:45, 30 minutes.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-30 14:18",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 153,
+          "citation": "BH-D113 L9",
+          "kind": "excluded_interval",
+          "quote": "Rowan was not present for that portion.",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-30 14:18",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D113"
+      ],
+      "category_value": "family_therapy",
+      "minutes_settled": true
+    },
+    {
+      "event_key": "HG-E120",
+      "patient_key": "HG-M042",
+      "encounter_id": "HG-E120",
+      "service_date": "2026-01-30",
+      "category": {
+        "field": "service category",
+        "status": "resolved",
+        "value": "medication_management",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states medication management.",
+        "candidates": [
+          {
+            "value": "medication_management",
+            "tier": 1,
+            "citations": [
+              "BH-D114 L3-6"
+            ],
+            "assertion_ids": [
+              182
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "service_labels": [
+        "Medication management"
+      ],
+      "disposition": {
+        "field": "disposition",
+        "status": "resolved",
+        "value": "took_place",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022took place\u0022.",
+        "candidates": [
+          {
+            "value": "took_place",
+            "tier": 1,
+            "citations": [
+              "BH-D114 L5"
+            ],
+            "assertion_ids": [
+              183
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "patient_present": {
+        "field": "patient present",
+        "status": "resolved",
+        "value": "present",
+        "tier": 1,
+        "rule": "R4",
+        "explanation": "Tier 1 (signed record) states \u0022present\u0022.",
+        "candidates": [
+          {
+            "value": "present",
+            "tier": 1,
+            "citations": [
+              "BH-D114 L5"
+            ],
+            "assertion_ids": [
+              183
+            ]
+          }
+        ],
+        "overruled": [],
+        "is_settled": true
+      },
+      "start": {
+        "field": "presence start",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "end": {
+        "field": "presence end",
+        "status": "missing",
+        "rule": "R4",
+        "explanation": "No record states this.",
+        "candidates": [],
+        "overruled": [],
+        "is_settled": false
+      },
+      "session_interval": {
+        "start": 900,
+        "end": 920,
+        "reason": "scheduled interval",
+        "citations": [
+          "BH-D114 L3-6"
+        ]
+      },
+      "excluded": [],
+      "presence_from_roster": false,
+      "occurrence": "session",
+      "minutes_min": 20,
+      "minutes_max": 20,
+      "arithmetic": "No arrival or departure recorded. Full attendance assumed: session 15:00-15:20 = 20 minutes",
+      "flags": [
+        "Attendance times were not recorded. The session interval is assumed."
+      ],
+      "discrepancies": [],
+      "needs": [],
+      "assertions": [
+        {
+          "assertion_id": 182,
+          "citation": "BH-D114 L3-6",
+          "kind": "encounter",
+          "quote": "Medication management | Encounter HG-E120",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-30 16:02",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 183,
+          "citation": "BH-D114 L5",
+          "kind": "attendance",
+          "quote": "January 30, 2026 | 15:00\u201315:20 | Completed, 20 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-30 16:02",
+          "link_method": "encounter_id"
+        },
+        {
+          "assertion_id": 184,
+          "citation": "BH-D114 L5",
+          "kind": "stated_duration",
+          "quote": "January 30, 2026 | 15:00\u201315:20 | Completed, 20 minutes",
+          "record_type": "clinical_note",
+          "signed": "yes",
+          "tier": 1,
+          "is_copy": false,
+          "statement_time": "2026-01-30 16:02",
+          "link_method": "encounter_id"
+        }
+      ],
+      "source_documents": [
+        "BH-D114"
+      ],
+      "category_value": "medication_management",
+      "minutes_settled": true
+    }
+  ],
+  "measurements": [
+    {
+      "patient_key": "HG-M042",
+      "instrument": "PHQ-9",
+      "completed_on": "2026-01-05",
+      "completed_at": "2026-01-05",
+      "total_score": 18,
+      "item_scores": [],
+      "original_citations": [
+        "BH-D002 L15"
+      ],
+      "repeat_citations": [
+        "BH-D013 L11"
+      ],
+      "assertion_ids": [
+        341,
+        365
+      ],
+      "discrepancies": []
+    },
+    {
+      "patient_key": "HG-M042",
+      "instrument": "PHQ-9",
+      "completed_on": "2026-01-16",
+      "completed_at": "2026-01-16T08:17",
+      "total_score": 14,
+      "form_id": "HG-Q116",
+      "item_scores": [],
+      "original_citations": [
+        "BH-D013 L6-8"
+      ],
+      "repeat_citations": [
+        "BH-D014 L12-13"
+      ],
+      "assertion_ids": [
+        364,
+        271
+      ],
+      "discrepancies": []
+    },
+    {
+      "patient_key": "HG-M042",
+      "instrument": "PHQ-9",
+      "completed_on": "2026-01-30",
+      "completed_at": "2026-01-30T12:42",
+      "total_score": 10,
+      "item_scores": [
+        {
+          "item": "9",
+          "score": 0
+        }
+      ],
+      "original_citations": [
+        "BH-D115 L5-6"
+      ],
+      "repeat_citations": [],
+      "assertion_ids": [
+        172
+      ],
+      "discrepancies": []
+    }
+  ],
+  "non_encounter_records": [
+    {
+      "citation": "BH-D001 L10",
+      "kind": "no_service_contact",
+      "description": "Authorization does not cover individual therapy, family therapy, or medication appointments under the group service quantity.",
+      "quote": "This letter does not authorize individual therapy, family therapy, or medication appointments under the group service quantity."
+    },
+    {
+      "citation": "BH-D001 L15",
+      "kind": "no_service_contact",
+      "description": "No service attendance record accompanies this letter.",
+      "quote": "No service attendance record accompanies this letter."
+    },
+    {
+      "citation": "BH-D006 L20",
+      "kind": "no_service_contact",
+      "date": "2026-01-08",
+      "description": "Patient did not arrive by the close of the appointment slot",
+      "quote": "HG-E103 remained unarrived at close of its appointment slot on January 8."
+    },
+    {
+      "citation": "BH-D006 L20",
+      "kind": "no_service_contact",
+      "date": "2026-01-15",
+      "description": "The group session did not take place; it was removed from the active room schedule due to staff illness",
+      "quote": "HG-E108 was removed from the active room schedule after staff illness was reported."
+    },
+    {
+      "citation": "BH-D010 L17",
+      "kind": "no_service_contact",
+      "description": "No separate psychotherapy component was provided or documented during this visit.",
+      "quote": "No separate psychotherapy component was provided or documented."
+    },
+    {
+      "citation": "BH-D012 L17",
+      "kind": "no_service_contact",
+      "description": "A new treatment decision made with Rowan",
+      "quote": "No new treatment decision was made with Rowan during this appointment."
+    },
+    {
+      "citation": "BH-D012 L17",
+      "kind": "no_service_contact",
+      "description": "Patient-present psychotherapy",
+      "quote": "No patient-present psychotherapy occurred during this contact."
+    },
+    {
+      "citation": "BH-D012 L17",
+      "kind": "no_service_contact",
+      "description": "Rowan joining the contact in person, by telephone, or by video",
+      "quote": "Rowan did not join in person, by telephone, or by video."
+    },
+    {
+      "citation": "BH-D013 L11",
+      "kind": "no_service_contact",
+      "description": "Submission of an additional questionnaire with this update",
+      "quote": "No additional questionnaire was submitted with this update."
+    },
+    {
+      "citation": "BH-D013 L15",
+      "kind": "no_service_contact",
+      "description": "A clinical appointment at the time of this review",
+      "quote": "This entry records review of the portal submission; no clinical appointment occurred at the time of review."
+    },
+    {
+      "citation": "BH-D014 L17",
+      "kind": "no_service_contact",
+      "description": "Completion of a new patient questionnaire in this batch",
+      "quote": "No newly completed patient questionnaire is included in this batch."
+    },
+    {
+      "citation": "BH-D014 L19",
+      "kind": "no_service_contact",
+      "description": "A visit with the patient",
+      "quote": "This receipt was entered by the administrative desk and does not document a visit with Rowan."
+    },
+    {
+      "citation": "BH-D015 L9",
+      "kind": "no_service_contact",
+      "description": "arrival call or cancellation message on the scheduling line",
+      "quote": "There was no arrival call or cancellation message on the scheduling line."
+    },
+    {
+      "citation": "BH-D015 L17",
+      "kind": "no_service_contact",
+      "description": "therapy intervention during the callback",
+      "quote": "The callback addressed scheduling and contact information. No therapy intervention was conducted."
+    },
+    {
+      "citation": "BH-D016 L15",
+      "kind": "no_service_contact",
+      "description": "The coping skills group was not held and no participants were seen.",
+      "quote": "No group was held and no participants were seen for HG-E108."
+    },
+    {
+      "citation": "BH-D016 L15",
+      "kind": "no_service_contact",
+      "description": "No replacement group was conducted in the January 15 slot.",
+      "quote": "No replacement group was conducted in the January 15 slot."
+    },
+    {
+      "citation": "BH-D103 L13",
+      "kind": "no_service_contact",
+      "description": "additional clinical service in making this correction",
+      "quote": "No additional clinical service was provided in making this correction."
+    },
+    {
+      "citation": "BH-D108 L16",
+      "kind": "no_service_contact",
+      "date": "2026-01-27",
+      "description": "Patient treatment contact",
+      "quote": "No patient treatment contact occurred."
+    },
+    {
+      "citation": "BH-D108 L18",
+      "kind": "no_service_contact",
+      "date": "2026-01-28",
+      "description": "A replacement appointment being booked within January 2026",
+      "quote": "no replacement appointment was booked within January 2026"
+    },
+    {
+      "citation": "BH-D109 L7",
+      "kind": "no_service_contact",
+      "description": "No patient contact occurred during this care coordination call.",
+      "quote": "Patient participation: None. No patient contact occurred."
+    },
+    {
+      "citation": "BH-D109 L13",
+      "kind": "no_service_contact",
+      "description": "Patient did not join by telephone or video, and no psychotherapy was delivered during the call.",
+      "quote": "This contact was between professionals only. Rowan did not join by telephone or video, and no psychotherapy was delivered to the patient during the call."
+    },
+    {
+      "citation": "BH-D112 L16",
+      "kind": "no_service_contact",
+      "description": "clinician attestation or finalized patient-specific narrative in the draft",
+      "quote": "It was generated from the appointment template before the scheduled group. No clinician attestation or finalized patient-specific narrative appears in this draft."
+    },
+    {
+      "citation": "BH-D115 L14",
+      "kind": "no_service_contact",
+      "description": "A separate treatment appointment or additional patient-contact interval beyond the questionnaire review",
+      "quote": "This entry records questionnaire review within ongoing care and is not a separate treatment appointment. No additional patient-contact interval is claimed in this entry."
+    }
+  ],
+  "unlinked": [],
+  "warnings": [],
+  "document_count": 31,
+  "assertion_count": 405
+}

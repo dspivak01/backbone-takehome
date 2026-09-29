@@ -1,0 +1,165 @@
+{
+  "question_id": "NO-NAME-GENERIC",
+  "question": "How many therapy sessions were attended, by service type?",
+  "model": "us.anthropic.claude-sonnet-5",
+  "abstraction_version": "7069255b5cc58700-ae73a1cf",
+  "narrative": "The question named no patient, so it is answered for all three patients in the collection, each over their own episode (all three fit, none excluded).\n\n**Rowan Mercer (HG-M042)** \u2014 episode 2026\u201101\u201105 to 2026\u201101\u201130, total 12 sessions:\n- Individual therapy: 5\n- Group therapy: 5\n- Family therapy: 2\n\n**Jordan Avery (NS-77120)** \u2014 episode 2026\u201102\u201102 to 2026\u201102\u201127, total 8 sessions (up to 9 possible \u2014 see note):\n- Individual therapy: 4\n- Group therapy: 3\n- Family therapy: 1\nNote: total sessions range from 8 to 9 because the record leaves at least one contact\u0027s countability unsettled.\n\n**Imani Castell (WD-40815)** \u2014 episode 2026\u201101\u201119 to 2026\u201101\u201125, total 2 sessions:\n- Individual therapy: 1\n- Group therapy: 1\n\nEach patient\u0027s figures reflect their own episode dates (no common date range was specified).",
+  "checks": {
+    "citations_found": 0,
+    "citations_verified": 0,
+    "citations_not_in_results": [],
+    "numbers_found": 32,
+    "numbers_not_in_results": [],
+    "passed": true
+  },
+  "calculations": [
+    {
+      "name": "find_patient",
+      "input": "{\u0022query\u0022:\u0022\u0022}",
+      "elapsed_ms": 1.5993,
+      "failed": false,
+      "rendered": "The collection holds 3 patients. A question that names no patient applies to every one of them who fits what the question specifies. Do not choose one of them.\n\n| Patient | MRN | Date of birth | Episode | Plan versions | Encounters |\n|---|---|---|---|---|---|\n| Rowan Mercer | HG-M042 | 1991-04-12 | 2026-01-05 to 2026-01-30 | 1 | 20 |\n| Jordan Avery | NS-77120 | 1988-09-30 | 2026-02-02 to 2026-02-27 | 2 | 10 |\n| Imani Castell | WD-40815 | 1996-11-08 | 2026-01-19 to 2026-01-25 | 1 | 2 |\n\n",
+      "result": {
+        "query": "",
+        "matches": [
+          {
+            "patient_key": "HG-M042",
+            "mrn": "HG-M042",
+            "name": "Rowan Mercer",
+            "date_of_birth": "1991-04-12",
+            "episode_start": "2026-01-05",
+            "episode_end": "2026-01-30",
+            "plan_versions": 1,
+            "encounters": 20,
+            "abstraction_version": "c9e505146e97ad8e"
+          },
+          {
+            "patient_key": "NS-77120",
+            "mrn": "NS-77120",
+            "name": "Jordan Avery",
+            "date_of_birth": "1988-09-30",
+            "episode_start": "2026-02-02",
+            "episode_end": "2026-02-27",
+            "plan_versions": 2,
+            "encounters": 10,
+            "abstraction_version": "0cd5d5acddc1168b"
+          },
+          {
+            "patient_key": "WD-40815",
+            "mrn": "WD-40815",
+            "name": "Imani Castell",
+            "date_of_birth": "1996-11-08",
+            "episode_start": "2026-01-19",
+            "episode_end": "2026-01-25",
+            "plan_versions": 1,
+            "encounters": 2,
+            "abstraction_version": "0624d7eaf57e2e05"
+          }
+        ],
+        "note": "The collection holds 3 patients. A question that names no patient applies to every one of them who fits what the question specifies. Do not choose one of them."
+      }
+    },
+    {
+      "name": "collection_summary",
+      "input": "{}",
+      "elapsed_ms": 12.9013,
+      "failed": false,
+      "rendered": "Period: each patient\u0027s episode start to each patient\u0027s episode end. Not given, so each patient\u0027s own episode is used, and the period can differ from one patient to the next.\n\nNo dates were given, so every patient in the collection is covered, each over their own episode. The collection holds 3 patients.\n\n**Sessions attended, by patient**\n\n| Patient | Period examined | Family therapy | Group therapy | Individual therapy | Total sessions | Distinct therapy days | Minutes |\n|---|---|---|---|---|---|---|---|\n| Rowan Mercer (HG-M042) | 2026-01-05 to 2026-01-30 | 2 | 5 | 5 | 12 | 11 | 585 to 595 |\n| Jordan Avery (NS-77120) | 2026-02-02 to 2026-02-27 | 1 | 3 | 4 | 8 to 9 | 8 to 9 | 415 to 460 |\n| Imani Castell (WD-40815) | 2026-01-19 to 2026-01-25 | 0 | 1 | 1 | 2 | 2 | 110 |\n\n\n**Weeks against the treatment plan goal, by patient**\n\n| Patient | Weeks examined | Goal met | Goal not met | Cannot be determined | No goal in effect | Weeks only partly inside the period |\n|---|---|---|---|---|---|---|\n| Rowan Mercer (HG-M042) | 4 | 1 | 2 | 1 | 0 | 1 |\n| Jordan Avery (NS-77120) | 4 | 2 | 2 | 0 | 0 | 1 |\n| Imani Castell (WD-40815) | 1 | 1 | 0 | 0 | 0 | 0 |\n\n\n**Assumptions**\n\n- Each contact is judged by the treatment plan in effect for that patient on the day it happened.\n- A session is counted when the patient was present and the treatment plan counts that service. Where the record leaves this unsettled, the lowest and highest possible values are both shown.\n- A week that is only partly inside the period examined is judged against the full goal. The goal is not prorated.\n- Arrival and departure times from attendance and desk records are taken as the patient\u0027s time in the session. They record check-in and check-out, so time in the room may be slightly shorter.\n\n\n",
+      "result": {
+        "from": "each patient\u0027s episode start",
+        "to": "each patient\u0027s episode end",
+        "date_range_source": "not given, so each patient\u0027s own episode is used, and the period can differ from one patient to the next",
+        "patients_in_collection": 3,
+        "patients_who_fit": 3,
+        "full_detail_limit": 10,
+        "full_detail_allowed": true,
+        "patients": [
+          {
+            "patient_key": "HG-M042",
+            "patient_name": "Rowan Mercer",
+            "from": "2026-01-05",
+            "to": "2026-01-30",
+            "sessions_by_category": {
+              "Family therapy": 2,
+              "Group therapy": 5,
+              "Individual therapy": 5
+            },
+            "total_sessions": 12,
+            "total_sessions_max": 12,
+            "distinct_days": 11,
+            "distinct_days_max": 11,
+            "minutes_min": 585,
+            "minutes_max": 595,
+            "weeks_examined": 4,
+            "weeks_met": 1,
+            "weeks_not_met": 2,
+            "weeks_undetermined": 1,
+            "weeks_with_no_goal": 0,
+            "partial_weeks": 1,
+            "warnings": []
+          },
+          {
+            "patient_key": "NS-77120",
+            "patient_name": "Jordan Avery",
+            "from": "2026-02-02",
+            "to": "2026-02-27",
+            "sessions_by_category": {
+              "Family therapy": 1,
+              "Group therapy": 3,
+              "Individual therapy": 4
+            },
+            "total_sessions": 8,
+            "total_sessions_max": 9,
+            "distinct_days": 8,
+            "distinct_days_max": 9,
+            "minutes_min": 415,
+            "minutes_max": 460,
+            "weeks_examined": 4,
+            "weeks_met": 2,
+            "weeks_not_met": 2,
+            "weeks_undetermined": 0,
+            "weeks_with_no_goal": 0,
+            "partial_weeks": 1,
+            "warnings": []
+          },
+          {
+            "patient_key": "WD-40815",
+            "patient_name": "Imani Castell",
+            "from": "2026-01-19",
+            "to": "2026-01-25",
+            "sessions_by_category": {
+              "Group therapy": 1,
+              "Individual therapy": 1
+            },
+            "total_sessions": 2,
+            "total_sessions_max": 2,
+            "distinct_days": 2,
+            "distinct_days_max": 2,
+            "minutes_min": 110,
+            "minutes_max": 110,
+            "weeks_examined": 1,
+            "weeks_met": 1,
+            "weeks_not_met": 0,
+            "weeks_undetermined": 0,
+            "weeks_with_no_goal": 0,
+            "partial_weeks": 0,
+            "warnings": []
+          }
+        ],
+        "notes": [
+          "No dates were given, so every patient in the collection is covered, each over their own episode. The collection holds 3 patients."
+        ],
+        "assumptions": [
+          "Each contact is judged by the treatment plan in effect for that patient on the day it happened.",
+          "A session is counted when the patient was present and the treatment plan counts that service. Where the record leaves this unsettled, the lowest and highest possible values are both shown.",
+          "A week that is only partly inside the period examined is judged against the full goal. The goal is not prorated.",
+          "Arrival and departure times from attendance and desk records are taken as the patient\u0027s time in the session. They record check-in and check-out, so time in the room may be slightly shorter."
+        ]
+      }
+    }
+  ],
+  "model_calls": 3,
+  "input_tokens": 15088,
+  "output_tokens": 491,
+  "latency_ms": 10541
+}

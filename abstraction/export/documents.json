@@ -1,0 +1,250 @@
+[
+  {
+    "doc_hash": "5a5962a8dbeadca3aff4535bf5295a9f699606997380f28dcd4a888ca7206f40",
+    "raw_hash": "05a234a8adc98e72a51ba9e82c13e5975ee5026f03bb03e66575015b22562fb6",
+    "printed_id": "BH-D101",
+    "path": "documents/BH-D101_group_content_2026-01-19.txt",
+    "line_count": 14,
+    "byte_size": 1654
+  },
+  {
+    "doc_hash": "49df839a0715c325d73252e7ce57e936c96ab7f0ee7b895cb7b68ea7992c9e6d",
+    "raw_hash": "514ca20809f682607e91b924c6cef0bb22f43a3d12cedbd23ea5fa362910cce5",
+    "printed_id": "BH-D102",
+    "path": "documents/BH-D102_original_attendance_2026-01-19.txt",
+    "line_count": 19,
+    "byte_size": 1442
+  },
+  {
+    "doc_hash": "6e90bb7d77bb384d9a43262b30dba6d7e62c835f8599bd196fb5f8e29e65974d",
+    "raw_hash": "674440968b5d6d38d68b8b513cc7ac3b3516ddd97285bde1e4af69cb9f128bd9",
+    "printed_id": "BH-D103",
+    "path": "documents/BH-D103_attendance_correction_2026-01-20.txt",
+    "line_count": 16,
+    "byte_size": 1445
+  },
+  {
+    "doc_hash": "ff8680de198155442350231093759b8335e3704a45e8e89f6d07c8919fadf81a",
+    "raw_hash": "f3f25065559f4e82b110b5c284df5c2c4f81c55c950721e7bd6a9c23a91241d5",
+    "printed_id": "BH-D104",
+    "path": "documents/BH-D104_resent_roster_received_2026-01-26.txt",
+    "line_count": 20,
+    "byte_size": 1399
+  },
+  {
+    "doc_hash": "e4c7e1c6ed93393db69073a8172e1a77fe55de6a416f3fb4df70eef1cce4c0d0",
+    "raw_hash": "91fd8e8b1b3182207971dbecd77e3d2bd13e5f49608f4083e4a9245b8a2d8935",
+    "printed_id": "BH-D105",
+    "path": "documents/BH-D105_individual_2026-01-19.txt",
+    "line_count": 15,
+    "byte_size": 1620
+  },
+  {
+    "doc_hash": "b9158ab16c50edb93c24c59d8b30719717f2c4f6f803671c53c1a15e1d265d01",
+    "raw_hash": "09c946a2248a5a81b2c1dc85b7620babe57b72f1bd4bed3d49eba574be5ccd46",
+    "printed_id": "BH-D106",
+    "path": "documents/BH-D106_telehealth_2026-01-21.txt",
+    "line_count": 20,
+    "byte_size": 1705
+  },
+  {
+    "doc_hash": "7943c47e4b1775d604049fb5e7ccdcb15957dbd6f8defb4ef71b8d81a0bb9c92",
+    "raw_hash": "c5953bcb242ef0143301019cf06964a4b759d432e26dc0e34f0ad1c2b819df70",
+    "printed_id": "BH-D107",
+    "path": "documents/BH-D107_group_activity_records_2026-01-22_and_29.txt",
+    "line_count": 17,
+    "byte_size": 1777
+  },
+  {
+    "doc_hash": "030d45df5e323d6047e1d5a366372155f14d5319f7571a7e814d1cb62fd4e8d1",
+    "raw_hash": "805b2c69c7fa18ab31b618b4a313c39dcdbde570cc0890de2dfd52d77ca547e1",
+    "printed_id": "BH-D108",
+    "path": "documents/BH-D108_final_attendance_and_cancellation_register.txt",
+    "line_count": 22,
+    "byte_size": 1768
+  },
+  {
+    "doc_hash": "d66ae1672d870ef175fc5b5fdee1e9b6b8f7334cfcd1386100d39ee3ec18ef7f",
+    "raw_hash": "069ea4112779b68e7ba7bc9d06a73a6ad6dbb8110d7a1e7dfd3307769c6305be",
+    "printed_id": "BH-D109",
+    "path": "documents/BH-D109_care_coordination_2026-01-23.txt",
+    "line_count": 15,
+    "byte_size": 1538
+  },
+  {
+    "doc_hash": "51ccfc0f6dcd44de9917096457c3946d2e521841dcffec95b34b4aff6e9dc81e",
+    "raw_hash": "4b64c46a13b80c09ec46d1cbb7b577dbfe8027cb62366631c15efa8ec1a1f58b",
+    "printed_id": "BH-D110",
+    "path": "documents/BH-D110_individual_primary_record_2026-01-26.txt",
+    "line_count": 16,
+    "byte_size": 1626
+  },
+  {
+    "doc_hash": "1146e767a5693d4253666d14496ecd3842b30773a3e14f0ad65a05a1daa1e528",
+    "raw_hash": "d03451942797c3fb189a5083c80950887657a79d0d1da9bb7f74bda8731d9380",
+    "printed_id": "BH-D111",
+    "path": "documents/BH-D111_individual_second_record_2026-01-26.txt",
+    "line_count": 17,
+    "byte_size": 1779
+  },
+  {
+    "doc_hash": "321c63d7f6aa678f5209983aca493292e5b2d06f97e8a2604900eff7150f5d8a",
+    "raw_hash": "b4390ed6b672381f671aae23dbfa937d9c5585ca4b6db83cd811797e2a34505f",
+    "printed_id": "BH-D112",
+    "path": "documents/BH-D112_draft_note_and_charge_extract_2026-01-27.txt",
+    "line_count": 27,
+    "byte_size": 1471
+  },
+  {
+    "doc_hash": "faf8d06055707f975bce1c613502e0613654af1512be9a39d43c4e93bb2ec931",
+    "raw_hash": "36764827bcb39caf2e9304c881f55e4acba9744a9792228bf36981f19a0feaf9",
+    "printed_id": "BH-D113",
+    "path": "documents/BH-D113_family_therapy_2026-01-30.txt",
+    "line_count": 15,
+    "byte_size": 1587
+  },
+  {
+    "doc_hash": "c98b81f3cee89d1d3e72e65acbbdc430d5880016fd0e8845ce704f33a57cd4b5",
+    "raw_hash": "9942bd886fcd2158bbd56914551519397d70eef7103b6d33ba2fa90cc424093c",
+    "printed_id": "BH-D114",
+    "path": "documents/BH-D114_medication_management_2026-01-30.txt",
+    "line_count": 15,
+    "byte_size": 1579
+  },
+  {
+    "doc_hash": "8f842b632c7e1e61266622a666c7d5285b32e6fd3819b3216d99261dbb0979f2",
+    "raw_hash": "4a3859fd81fc5afc5533e9add8718ce4b89492121bf68f812f73db92d319755e",
+    "printed_id": "BH-D115",
+    "path": "documents/BH-D115_symptom_measure_review_2026-01-30.txt",
+    "line_count": 16,
+    "byte_size": 1632
+  },
+  {
+    "doc_hash": "c5ba771551b8948fa8e0dd3d1b8ea552ba1e955b8eef3b50b7c22b7943396566",
+    "raw_hash": "0bf056f3769e7daf39941514e6f3e1c40c99cbc00dbb4228ee0fac07d9f75f96",
+    "printed_id": "BH-D006",
+    "path": "documents/early_appointment_status_export.txt",
+    "line_count": 20,
+    "byte_size": 1423
+  },
+  {
+    "doc_hash": "b3f1ff4f6a15d447657db2b53e6bbfc208d81ec2ebd02be1ddf360ef5c6177b9",
+    "raw_hash": "6f205f89f8d3dbd05094e647925bb3c5955f11e9fb44f255f8cdedc3edb49616",
+    "printed_id": "BH-D005",
+    "path": "documents/early_group_attendance_roster.txt",
+    "line_count": 17,
+    "byte_size": 1484
+  },
+  {
+    "doc_hash": "a09c9b3263d0169e1e6c60859ef736410f203d13fa7b6329225096bae7727acd",
+    "raw_hash": "ad416fbda80683308baa15c433c7d1df7fe9221b9e8baf1f2189964bc0421aed",
+    "printed_id": "BH-D008",
+    "path": "documents/family_cofacilitator_jan09.txt",
+    "line_count": 15,
+    "byte_size": 1529
+  },
+  {
+    "doc_hash": "0e11466750654ef7ca0400715c1f8e72577668fdf5a78386b3b051366b62b184",
+    "raw_hash": "924dee06b05c0a841c3f86d0c394c7af39447db6c9ea7b643cc6eb3a3c40df6b",
+    "printed_id": "BH-D007",
+    "path": "documents/family_primary_jan09.txt",
+    "line_count": 18,
+    "byte_size": 1747
+  },
+  {
+    "doc_hash": "65058e301a13644c3abe21238f546460d03192d5d614210a9677a25875bfd327",
+    "raw_hash": "d2240979a2de7d7782a34a6ca26e289ee829d01eea9932e4d61b3588c724ceb1",
+    "printed_id": "BH-D001",
+    "path": "documents/group_authorization_letter.txt",
+    "line_count": 15,
+    "byte_size": 1367
+  },
+  {
+    "doc_hash": "c5a92d55e06905cd046ca4b3f785368a599869e047c264e8e4161d863ccc1b1b",
+    "raw_hash": "5f3375f11c857ad3e9917ad2eefffffd5ee0412e6ab56885901c1b5d5b2115f9",
+    "printed_id": "BH-D016",
+    "path": "documents/group_cancellation_notice_jan15.txt",
+    "line_count": 15,
+    "byte_size": 1353
+  },
+  {
+    "doc_hash": "54ba37211e1dae197041025e291fa9f29d7511e29485a0d61af34456ebd356ed",
+    "raw_hash": "5edddc6b20937ecdadf834b331c399375d0889d12a8595eb4084f1da2d4f4a11",
+    "printed_id": "BH-D004",
+    "path": "documents/group_facilitator_jan06.txt",
+    "line_count": 14,
+    "byte_size": 1482
+  },
+  {
+    "doc_hash": "7d1db7e115851295faff82c5dd0ffc027b1facf06403b5a47d8fdb1bc26fa0ab",
+    "raw_hash": "d30d18d0335d5d428acea2e5ee0334fbbafc10665133a462061a01c94baa09b7",
+    "printed_id": "BH-D009",
+    "path": "documents/group_facilitator_jan12.txt",
+    "line_count": 16,
+    "byte_size": 1621
+  },
+  {
+    "doc_hash": "462ec9d069a00f13675a62f17cd6e4e4ae5a132ba8feb544d2ea9811286f6c54",
+    "raw_hash": "85e2c780abded9efe663fd61ac6e6a7a56e5b30c9597b24f35f90076b6f7358b",
+    "printed_id": "BH-D014",
+    "path": "documents/imported_measure_summary_received_jan26.txt",
+    "line_count": 19,
+    "byte_size": 1380
+  },
+  {
+    "doc_hash": "a64a37568f111adab3de4842a31bd87e7dd9996d37896d8b6ee98c015f555ca9",
+    "raw_hash": "8c2fbaf5bb4545cc4590b288d768ab893a4d727f6946bcc88339669d0629eb8a",
+    "printed_id": "BH-D011",
+    "path": "documents/individual_therapy_jan14.txt",
+    "line_count": 17,
+    "byte_size": 1886
+  },
+  {
+    "doc_hash": "4d45fd8d3e6200c22e78790e050ad16d6721c0ce3d504e8b9c2a873910c5676a",
+    "raw_hash": "7f5f7d4bbfc9b47a632fb33cca1b261999078d058cbd7601c63f6c6e5be3c747",
+    "printed_id": "BH-D002",
+    "path": "documents/intake_and_individual_jan05.txt",
+    "line_count": 19,
+    "byte_size": 2384
+  },
+  {
+    "doc_hash": "3cbc32cd91d9337e5d54f98443d8d056cd944d8035ac6fcfbfdc18b7b7360d47",
+    "raw_hash": "95debafd3a72e32fd806d7aa4b420b1984f9c565d2af3c0d807269ee71aa8482",
+    "printed_id": "BH-D010",
+    "path": "documents/medication_review_jan13.txt",
+    "line_count": 17,
+    "byte_size": 1711
+  },
+  {
+    "doc_hash": "ad66d95650f4373a262fa84581c7388db1b7807e57e81d325b87d055e4c501dc",
+    "raw_hash": "4521a120a4d7a8f896d5fe9137a44f72719adc5cadbd839ef1b9d9646316b7c4",
+    "printed_id": "BH-D015",
+    "path": "documents/missed_visit_outreach_jan08.txt",
+    "line_count": 17,
+    "byte_size": 1381
+  },
+  {
+    "doc_hash": "1a43d926e91e9d5d8241c1c2530dd2ea67999d64110745de2bb100708a2653f8",
+    "raw_hash": "432c973d1a4d505b49ba85c3c92dead5c2a70faca6b6dd66e87db92b95329fea",
+    "printed_id": "BH-D012",
+    "path": "documents/partner_collateral_jan16.txt",
+    "line_count": 17,
+    "byte_size": 1739
+  },
+  {
+    "doc_hash": "3ab7566cda49d60d468b76b6476f76e49532a64ed3b1fa43e8e549bab732644c",
+    "raw_hash": "3b3f50db40b348bdd9e3baeb64b67a11d5edaf12699954762bec9633ad79ad12",
+    "printed_id": "BH-D003",
+    "path": "documents/signed_treatment_plan_jan05.txt",
+    "line_count": 20,
+    "byte_size": 2221
+  },
+  {
+    "doc_hash": "90a4c133add7fa86b4a17ce04e71a7ed8990960c4d73b771550c5be7b1627e86",
+    "raw_hash": "300a30dbe42be8dcfdf7ad644f23c583259611467ae32e944e8d7154c78b968e",
+    "printed_id": "BH-D013",
+    "path": "documents/symptom_measure_review_jan16.txt",
+    "line_count": 15,
+    "byte_size": 1376
+  }
+]

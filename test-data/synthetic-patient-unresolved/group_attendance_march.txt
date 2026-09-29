@@ -1,0 +1,15 @@
+File reference: RV-G-03
+Riverbend Wellness Group (fictional, test data)
+Group attendance sheet, signed
+
+Name: Tomas Lindqvist
+Date of birth: 1979-11-03
+Chart: RV-20931
+Group: Mood and routine group. Leader: Owen Baptiste, LCSW
+
+Session S-302, 5 March 2026. Booked 14:00 to 15:00. Tomas arrived 14:00 and left 15:00. Attended.
+Session S-305, 19 March 2026. Booked 14:00 to 15:00. Tomas arrived 14:00 and left 15:00. Attended.
+
+The group runs for one hour without a break.
+
+Signed by Owen Baptiste, LCSW, on 19 March 2026 at 15:30

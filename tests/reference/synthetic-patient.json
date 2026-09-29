@@ -1,0 +1,135 @@
+{
+  "about": "Expected results for the synthetic second patient in test-data/synthetic-patient. Used only to score the system's output.",
+  "patient_key": "NS-77120",
+  "from": "2026-02-02",
+  "to": "2026-02-27",
+  "encounters": [
+    {
+      "id": "V-201",
+      "date": "2026-02-02",
+      "category": "individual_therapy",
+      "status": "counted",
+      "minutes_min": 50,
+      "minutes_max": 50
+    },
+    {
+      "id": "V-202",
+      "date": "2026-02-04",
+      "category": "group_therapy",
+      "status": "counted",
+      "minutes_min": 60,
+      "minutes_max": 60
+    },
+    {
+      "id": "V-209",
+      "date": "2026-02-06",
+      "category": "family_therapy",
+      "status": "not_addressed_by_plan",
+      "minutes_min": 0,
+      "minutes_max": 45
+    },
+    {
+      "id": "V-203",
+      "date": "2026-02-10",
+      "category": "individual_therapy",
+      "status": "counted",
+      "minutes_min": 45,
+      "minutes_max": 45
+    },
+    {
+      "id": "V-204",
+      "date": "2026-02-16",
+      "category": "individual_therapy",
+      "status": "counted",
+      "minutes_min": 45,
+      "minutes_max": 45
+    },
+    {
+      "id": "V-205",
+      "date": "2026-02-18",
+      "category": "group_therapy",
+      "status": "counted",
+      "minutes_min": 60,
+      "minutes_max": 60
+    },
+    {
+      "id": "V-206",
+      "date": "2026-02-20",
+      "category": "family_therapy",
+      "status": "not_a_session",
+      "minutes_min": 0,
+      "minutes_max": 0
+    },
+    {
+      "id": "V-207",
+      "date": "2026-02-23",
+      "category": "individual_therapy",
+      "status": "counted",
+      "minutes_min": 50,
+      "minutes_max": 50
+    },
+    {
+      "id": "V-208",
+      "date": "2026-02-25",
+      "category": "group_therapy",
+      "status": "counted",
+      "minutes_min": 60,
+      "minutes_max": 60
+    },
+    {
+      "id": "NOID|2026-02-26|family_therapy",
+      "date": "2026-02-26",
+      "category": "family_therapy",
+      "status": "counted",
+      "minutes_min": 45,
+      "minutes_max": 45
+    }
+  ],
+  "weeks": [
+    {
+      "week_start": "2026-02-02",
+      "days_min": 2,
+      "days_max": 3,
+      "minutes_min": 110,
+      "minutes_max": 155,
+      "result": "met"
+    },
+    {
+      "week_start": "2026-02-09",
+      "days_min": 1,
+      "days_max": 1,
+      "minutes_min": 45,
+      "minutes_max": 45,
+      "result": "not_met"
+    },
+    {
+      "week_start": "2026-02-16",
+      "days_min": 2,
+      "days_max": 2,
+      "minutes_min": 105,
+      "minutes_max": 105,
+      "result": "not_met"
+    },
+    {
+      "week_start": "2026-02-23",
+      "days_min": 3,
+      "days_max": 3,
+      "minutes_min": 155,
+      "minutes_max": 155,
+      "result": "met"
+    }
+  ],
+  "sessions": {
+    "Individual therapy": 4,
+    "Group therapy": 3,
+    "Family therapy": 1
+  },
+  "total_sessions": "8 to 9",
+  "distinct_days": "8 to 9",
+  "measures": [],
+  "plan": {
+    "min_days": 2,
+    "min_minutes": 90,
+    "versions": 2
+  }
+}

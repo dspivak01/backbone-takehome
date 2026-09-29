@@ -1,0 +1,56 @@
+{
+  "question_id": "NO-NAME-GENERIC",
+  "question": "How many therapy sessions were attended, by service type?",
+  "model": "us.anthropic.claude-sonnet-5",
+  "abstraction_version": "d0c9c62d81aa43e7-b02d950f",
+  "narrative": "The question doesn\u0027t name a patient, and the collection holds two: **Rowan Mercer** (HG-M042) and **Jordan Avery** (NS-77120). Please specify which patient you mean so I can report the therapy session counts by service type.",
+  "checks": {
+    "citations_found": 0,
+    "citations_verified": 0,
+    "citations_not_in_results": [],
+    "numbers_found": 0,
+    "numbers_not_in_results": [],
+    "passed": true
+  },
+  "calculations": [
+    {
+      "name": "find_patient",
+      "input": "{\u0022query\u0022:\u0022\u0022}",
+      "elapsed_ms": 1.3585,
+      "failed": false,
+      "rendered": "The collection holds 2 patients. A question that names no patient cannot be answered for one of them without asking which is meant.\n\n| Patient | MRN | Date of birth | Episode | Plan versions | Encounters |\n|---|---|---|---|---|---|\n| Rowan Mercer | HG-M042 | 1991-04-12 | 2026-01-05 to 2026-01-30 | 1 | 20 |\n| Jordan Avery | NS-77120 | 1988-09-30 | 2026-02-02 to 2026-02-27 | 2 | 10 |\n\n",
+      "result": {
+        "query": "",
+        "matches": [
+          {
+            "patient_key": "HG-M042",
+            "mrn": "HG-M042",
+            "name": "Rowan Mercer",
+            "date_of_birth": "1991-04-12",
+            "episode_start": "2026-01-05",
+            "episode_end": "2026-01-30",
+            "plan_versions": 1,
+            "encounters": 20,
+            "abstraction_version": "c9e505146e97ad8e"
+          },
+          {
+            "patient_key": "NS-77120",
+            "mrn": "NS-77120",
+            "name": "Jordan Avery",
+            "date_of_birth": "1988-09-30",
+            "episode_start": "2026-02-02",
+            "episode_end": "2026-02-27",
+            "plan_versions": 2,
+            "encounters": 10,
+            "abstraction_version": "0cd5d5acddc1168b"
+          }
+        ],
+        "note": "The collection holds 2 patients. A question that names no patient cannot be answered for one of them without asking which is meant."
+      }
+    }
+  ],
+  "model_calls": 2,
+  "input_tokens": 6616,
+  "output_tokens": 142,
+  "latency_ms": 4660
+}

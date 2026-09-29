@@ -1,0 +1,82 @@
+{
+  "question_id": "COLLECTION-01",
+  "question": "Which patients had two consecutive weeks below their treatment plan\u0027s requirements?",
+  "model": "us.anthropic.claude-sonnet-5",
+  "abstraction_version": "7069255b5cc58700-ae73a1cf",
+  "narrative": "The question named no patient, so this covers every patient in the collection (3 patients examined).\n\n**Patients with two consecutive weeks below their treatment plan\u0027s goal:**\n\n1. **Rowan Mercer (HG-M042)** \u2014 weeks of 2026\u201101\u201105 and 2026\u201101\u201112, both \u0022not met.\u0022\n   - Week of 01\u201105: 3 therapy days vs. goal of 3 (met), but 140 minutes vs. goal of 150 (not met) [session data].\n   - Week of 01\u201112: 2 therapy days vs. goal of 3 (not met); 120 minutes vs. goal of 150 (not met).\n\n2. **Jordan Avery (NS-77120)** \u2014 weeks of 2026\u201102\u201109 and 2026\u201102\u201116, both \u0022not met.\u0022\n   - Week of 02\u201109: 1 therapy day vs. goal of 2 (not met); 45 minutes vs. goal of 90 (not met).\n   - Week of 02\u201116: 2 therapy days vs. goal of 3 (not met); 105 minutes vs. goal of 150 (not met).\n\n**Not included:** Imani Castell (WD-40815) \u2014 the record does not show a qualifying pair of consecutive below-goal weeks for this patient.\n\nNo patients\u0027 inclusion depended on unresolved documentation, and no pairs involved a partial week.",
+  "checks": {
+    "citations_found": 0,
+    "citations_verified": 0,
+    "citations_not_in_results": [],
+    "numbers_found": 39,
+    "numbers_not_in_results": [],
+    "passed": true
+  },
+  "calculations": [
+    {
+      "name": "consecutive_weeks_below_goal",
+      "input": "{}",
+      "elapsed_ms": 16.2437,
+      "failed": false,
+      "rendered": "Patients examined: 3. Period: each patient\u0027s episode start to each patient\u0027s episode end.\n\n| Group | Patients |\n|---|---|\n| Two consecutive weeks below the goal | Rowan Mercer (HG-M042), Jordan Avery (NS-77120) |\n| Inclusion depends on unresolved documentation | None |\n| Below only when a partial week is counted | None |\n| Not included | Imani Castell (WD-40815) |\n\n\n**Rowan Mercer (HG-M042)**: included\n\n| Pair | Kind | First week | Second week | Would be settled by |\n|---|---|---|---|---|\n| 2026-01-05 and 2026-01-12 | Definite | not met. 3 therapy day(s) against a goal of 3: met. 140 minutes against a goal of 150: not met. | not met. 2 therapy day(s) against a goal of 3: not met. 120 minutes against a goal of 150: not met. | Nothing needed |\n\n\n**Jordan Avery (NS-77120)**: included\n\n| Pair | Kind | First week | Second week | Would be settled by |\n|---|---|---|---|---|\n| 2026-02-09 and 2026-02-16 | Definite | not met. 1 therapy day(s) against a goal of 2: not met. 45 minutes against a goal of 90: not met. | not met. 2 therapy day(s) against a goal of 3: not met. 105 minutes against a goal of 150: not met. | Nothing needed |\n\n\n**Assumptions**\n\n- Two weeks are consecutive when one begins seven days after the other.\n- A pair that includes a week only partly inside the period examined is reported separately, because the goal is not prorated.\n\n\n",
+      "result": {
+        "from": "each patient\u0027s episode start",
+        "to": "each patient\u0027s episode end",
+        "patients_examined": 3,
+        "included": [
+          {
+            "patient_key": "HG-M042",
+            "patient_name": "Rowan Mercer",
+            "status": "included",
+            "definite_pairs": [
+              {
+                "first_week": "2026-01-05",
+                "second_week": "2026-01-12",
+                "first_result": "not met",
+                "second_result": "not met",
+                "first_detail": "3 therapy day(s) against a goal of 3: met. 140 minutes against a goal of 150: not met.",
+                "second_detail": "2 therapy day(s) against a goal of 3: not met. 120 minutes against a goal of 150: not met.",
+                "includes_partial_week": false,
+                "would_be_settled_by": []
+              }
+            ],
+            "possible_pairs": [],
+            "pairs_with_partial_week": []
+          },
+          {
+            "patient_key": "NS-77120",
+            "patient_name": "Jordan Avery",
+            "status": "included",
+            "definite_pairs": [
+              {
+                "first_week": "2026-02-09",
+                "second_week": "2026-02-16",
+                "first_result": "not met",
+                "second_result": "not met",
+                "first_detail": "1 therapy day(s) against a goal of 2: not met. 45 minutes against a goal of 90: not met.",
+                "second_detail": "2 therapy day(s) against a goal of 3: not met. 105 minutes against a goal of 150: not met.",
+                "includes_partial_week": false,
+                "would_be_settled_by": []
+              }
+            ],
+            "possible_pairs": [],
+            "pairs_with_partial_week": []
+          }
+        ],
+        "depends_on_unresolved_documentation": [],
+        "only_with_partial_week": [],
+        "not_included": [
+          "Imani Castell (WD-40815)"
+        ],
+        "assumptions": [
+          "Two weeks are consecutive when one begins seven days after the other.",
+          "A pair that includes a week only partly inside the period examined is reported separately, because the goal is not prorated."
+        ]
+      }
+    }
+  ],
+  "model_calls": 2,
+  "input_tokens": 9380,
+  "output_tokens": 500,
+  "latency_ms": 7592
+}

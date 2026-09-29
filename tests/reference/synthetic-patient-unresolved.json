@@ -1,0 +1,23 @@
+{
+  "about": "Expected results for the synthetic patient in test-data/synthetic-patient-unresolved. Used only to score the system's output.",
+  "patient_key": "RV-20931",
+  "from": "2026-03-02",
+  "to": "2026-03-22",
+  "encounters": [
+    { "id": "S-301", "date": "2026-03-03", "category": "individual_therapy", "status": "counted", "minutes_min": 50, "minutes_max": 50 },
+    { "id": "S-302", "date": "2026-03-05", "category": "group_therapy", "status": "counted", "minutes_min": 60, "minutes_max": 60 },
+    { "id": "S-303", "date": "2026-03-10", "category": "individual_therapy", "status": "counted", "minutes_min": 45, "minutes_max": 45 },
+    { "id": "S-304", "date": "2026-03-17", "category": "individual_therapy", "status": "counted", "minutes_min": 35, "minutes_max": 50 },
+    { "id": "S-305", "date": "2026-03-19", "category": "group_therapy", "status": "counted", "minutes_min": 60, "minutes_max": 60 }
+  ],
+  "weeks": [
+    { "week_start": "2026-03-02", "days_min": 2, "days_max": 2, "minutes_min": 110, "minutes_max": 110, "result": "met" },
+    { "week_start": "2026-03-09", "days_min": 1, "days_max": 1, "minutes_min": 45, "minutes_max": 45, "result": "not_met" },
+    { "week_start": "2026-03-16", "days_min": 2, "days_max": 2, "minutes_min": 95, "minutes_max": 110, "result": "cannot_be_determined" }
+  ],
+  "sessions": { "Individual therapy": 3, "Group therapy": 2 },
+  "total_sessions": "5",
+  "distinct_days": "5",
+  "measures": [],
+  "plan": { "min_days": 2, "min_minutes": 100, "versions": 1 }
+}

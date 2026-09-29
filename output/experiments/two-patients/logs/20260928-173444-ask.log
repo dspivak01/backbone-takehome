@@ -1,0 +1,16 @@
+17:34:46.620  calculation consecutive_weeks_below_goal {} -> ok in 34.7 ms
+17:34:51.561  COLLECTION-01 answered in 7122 ms; saved to output/experiments/two-patients/answers/COLLECTION-01.md
+17:34:53.959  calculation find_patient {"query":"Jordan Avery"} -> ok in 7.2 ms
+17:34:56.277  calculation plan_change_comparison {"patient_key":"NS-77120"} -> ok in 15.7 ms
+17:35:03.696  PLAN-CHANGE-01 answered in 12128 ms; saved to output/experiments/two-patients/answers/PLAN-CHANGE-01.md
+17:35:05.961  calculation find_patient {"query":""} -> ok in 2.2 ms
+17:35:09.539  calculation plan_change_comparison {"patient_key":"NS-77120"} -> ok in 1.7 ms
+17:35:09.557  calculation weekly_minutes_and_goals {"patient_key":"NS-77120"} -> ok in 17.7 ms
+17:35:16.669  AMBIGUOUS-01 answered in 12967 ms; saved to output/experiments/two-patients/answers/AMBIGUOUS-01.md
+17:35:19.185  calculation find_patient {"query":"Rowan"} -> ok in 2.6 ms
+17:35:21.774  calculation session_counts {"patient_key":"HG-M042"} -> ok in 10.7 ms
+17:35:21.794  calculation observations {"patient_key":"HG-M042","category":"reason_for_contact"} -> ok in 20.3 ms
+17:35:40.428  GAP-01 answered in 23751 ms; saved to output/experiments/two-patients/answers/GAP-01.md
+17:35:40.432  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 40 calls, 31292 input, 0 cache write, 279800 cache read, 94838 output tokens, 700774 ms in total. Cost at list price: $1.0669.
+17:35:40.432  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.
+17:35:40.432  Model usage so far, question with us.anthropic.claude-sonnet-5: 41 calls, 138752 input, 6023 cache write, 117806 cache read, 20349 output tokens, 265719 ms in total. Cost at list price: $0.5196.

@@ -1,0 +1,11 @@
+17:36:11.971  calculation find_patient {"query":"Rowan"} -> ok in 19.9 ms
+17:36:16.471  calculation session_counts {"patient_key":"HG-M042"} -> ok in 24.7 ms
+17:36:16.474  calculation search_passages {"patient_key":"HG-M042","terms":"clinician\u0022,\u0022therapist\u0022,\u0022LCSW\u0022,\u0022LMFT\u0022,\u0022provider\u0022,\u0022counselor","suggested_kind":"clinician_identity"} -> ok in 1.7 ms
+17:36:20.436  calculation search_passages {"patient_key":"HG-M042","terms":["clinician","therapist","LCSW","LMFT","provider","counselor","signed by"],"suggested_kind":"clinician_identity"} -> ok in 27.1 ms
+17:36:34.948  calculation day_reconstruction {"patient_key":"HG-M042","date":"2026-01-06"} -> ok in 28.6 ms
+17:36:34.950  calculation day_reconstruction {"patient_key":"HG-M042","date":"2026-01-12"} -> ok in 1.7 ms
+17:36:44.729  calculation search_passages {"patient_key":"HG-M042","terms":["BH-D009 L4","Facilitator","coping skills group"],"suggested_kind":"group_facilitator_jan12"} -> ok in 7.9 ms
+17:37:08.149  GAP-DEMO-01 answered in 58649 ms; saved to output/experiments/gap-log/answers/GAP-DEMO-01.md
+17:37:08.151  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 35 calls, 28231 input, 0 cache write, 244825 cache read, 85352 output tokens, 630956 ms in total. Cost at list price: $0.9589.
+17:37:08.151  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.
+17:37:08.151  Model usage so far, question with us.anthropic.claude-sonnet-5: 36 calls, 189331 input, 6023 cache write, 102586 cache read, 21781 output tokens, 268405 ms in total. Cost at list price: $0.6320.

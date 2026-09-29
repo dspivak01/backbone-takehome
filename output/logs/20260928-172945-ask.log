@@ -1,0 +1,20 @@
+17:29:47.765  calculation find_patient {"query":"Rowan"} -> ok in 18.6 ms
+17:29:50.393  calculation session_counts {"patient_key":"HG-M042","from":"2026-01-05","to":"2026-01-30"} -> ok in 25.9 ms
+17:30:07.662  DEV-01 answered in 22560 ms; saved to output/answers/DEV-01.md
+17:30:10.620  calculation find_patient {"query":"Rowan"} -> ok in 2.7 ms
+17:30:12.970  calculation weekly_minutes_and_goals {"patient_key":"HG-M042"} -> ok in 15.8 ms
+17:30:25.236  DEV-02 answered in 17569 ms; saved to output/answers/DEV-02.md
+17:30:28.655  calculation find_patient {"query":"Rowan"} -> ok in 0.8 ms
+17:30:30.769  calculation weekly_minutes_and_goals {"patient_key":"HG-M042"} -> ok in 1.4 ms
+17:30:45.283  DEV-03 answered in 20040 ms; saved to output/answers/DEV-03.md
+17:30:47.623  calculation find_patient {"query":""} -> ok in 0.9 ms
+17:30:51.722  calculation day_reconstruction {"patient_key":"HG-M042","date":"2026-01-19"} -> ok in 39.5 ms
+17:30:51.727  calculation day_reconstruction {"patient_key":"HG-M042","date":"2026-01-21"} -> ok in 5.3 ms
+17:31:03.746  DEV-04 answered in 18455 ms; saved to output/answers/DEV-04.md
+17:31:05.988  calculation find_patient {"query":""} -> ok in 1.0 ms
+17:31:09.183  calculation symptom_measures {"patient_key":"HG-M042"} -> ok in 10.6 ms
+17:31:09.186  calculation day_reconstruction {"patient_key":"HG-M042","date":"2026-01-19"} -> ok in 3.0 ms
+17:31:28.159  DEV-05 answered in 24403 ms; saved to output/answers/DEV-05.md
+17:31:28.162  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 35 calls, 28231 input, 0 cache write, 244825 cache read, 85352 output tokens, 630956 ms in total. Cost at list price: $0.9589.
+17:31:28.162  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.
+17:31:28.162  Model usage so far, question with us.anthropic.claude-sonnet-5: 15 calls, 46324 input, 2979 cache write, 41706 cache read, 7849 output tokens, 102814 ms in total. Cost at list price: $0.1869.

@@ -1,0 +1,22 @@
+Record No: NS-0031
+NORTHSHORE COUNSELING COLLECTIVE (fictional, test data)
+ATTENDANCE REGISTER, FEBRUARY 2026
+
+Client: Jordan Avery; Born 1988-09-30; Chart number NS-77120
+All times are local. "In" and "Out" are the client's own times in the room.
+
+Visit; Date; Service; Booked; In; Out; Outcome
+V-201; 02 Feb 2026; Individual psychotherapy; 09:00-09:50; 09:00; 09:50; Attended
+V-202; 04 Feb 2026; Process group; 13:00-14:00; 13:00; 14:00; Attended
+V-209; 06 Feb 2026; Family psychotherapy; 15:00-15:45; 15:00; 15:45; Attended
+V-203; 10 Feb 2026; Individual psychotherapy; 09:00-09:45; 09:00; 09:45; Attended
+V-204; 16 Feb 2026; Individual psychotherapy; 09:00-09:45; 09:00; 09:45; Attended
+V-205; 18 Feb 2026; Process group; 13:00-14:00; 13:00; 14:00; Attended
+V-206; 20 Feb 2026; Family psychotherapy; 15:00-15:45; ; ; Cancelled by the clinic
+V-207; 23 Feb 2026; Individual psychotherapy; 09:00-09:50; 09:00; 09:50; Attended
+V-208; 25 Feb 2026; Process group; 13:00-14:00; 13:00; 14:00; Attended
+
+Note on V-206: the family therapist was unwell and the session was cancelled by the clinic on the morning of 20 Feb 2026. No session was held.
+
+I certify that the rows above match the signed daily attendance sheets.
+Certified by: Priya Nand, LMFT, 27 Feb 2026 17:00

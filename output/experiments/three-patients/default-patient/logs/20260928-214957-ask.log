@@ -1,0 +1,7 @@
+21:50:00.744  calculation find_patient {"query":"WD-40815"} -> ok in 24.3 ms
+21:50:03.339  calculation day_reconstruction {"date":"2026-01-19","patient_key":"WD-40815"} -> ok in 25.6 ms
+21:50:03.340  calculation day_reconstruction {"date":"2026-01-21","patient_key":"WD-40815"} -> ok in 0.5 ms
+21:50:14.870  DEFAULT-PATIENT-DEV-04 answered in 17434 ms; saved to output/experiments/three-patients/default-patient/answers/DEFAULT-PATIENT-DEV-04.md
+21:50:14.873  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 43 calls, 32779 input, 6995 cache write, 293790 cache read, 98797 output tokens, 731469 ms in total. Cost at list price: $1.1298.
+21:50:14.873  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.
+21:50:14.873  Model usage so far, question with us.anthropic.claude-sonnet-5: 161 calls, 861890 input, 22113 cache write, 617775 cache read, 88179 output tokens, 1169299 ms in total. Cost at list price: $2.7844.

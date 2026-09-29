@@ -1,0 +1,14 @@
+21:24:31.632  Ingesting test-data/synthetic-patient-shared-dates into output/experiments/three-patients/collection.db
+21:24:31.641  new        26124736a041  test-data/synthetic-patient-shared-dates/attendance_register_jan.txt
+21:24:31.641  new        5af4dd92e78f  test-data/synthetic-patient-shared-dates/individual_note_jan19.txt
+21:24:31.641  new        0d70009ac26a  test-data/synthetic-patient-shared-dates/treatment_plan.txt
+21:24:31.641  Registered 3 files: 3 new, 0 already known. 3 need extraction.
+21:24:42.559  Extracted WD-007       7 assertions, 0 rejected, 1 attempt(s), 10892 ms  [attendance_register_jan.txt]
+21:24:51.193  Extracted WD-001       4 assertions, 0 rejected, 1 attempt(s), 8634 ms  [treatment_plan.txt]
+21:24:53.824  Extracted WD-004       7 assertions, 0 rejected, 1 attempt(s), 11264 ms  [individual_note_jan19.txt]
+21:24:53.897  Extraction: 3 documents, 18 assertions kept (0 with corrected line numbers), 0 rejected (0 critical).
+21:24:53.897  Reconciled 1 patient(s).
+21:24:53.897  Time: register 6 ms, extract 22182 ms, reconcile 70 ms, total 22261 ms.
+21:24:53.898  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 43 calls, 32779 input, 6995 cache write, 293790 cache read, 98797 output tokens, 731469 ms in total. Cost at list price: $1.1298.
+21:24:53.898  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.
+21:24:53.898  Model usage so far, question with us.anthropic.claude-sonnet-5: 48 calls, 152460 input, 9067 cache write, 136070 cache read, 22432 output tokens, 299192 ms in total. Cost at list price: $0.5791.

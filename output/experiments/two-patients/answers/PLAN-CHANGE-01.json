@@ -1,0 +1,131 @@
+{
+  "question_id": "PLAN-CHANGE-01",
+  "question": "How did the types and amounts of care delivered to Jordan Avery change before and after the treatment-plan change?",
+  "model": "us.anthropic.claude-sonnet-5",
+  "abstraction_version": "d0c9c62d81aa43e7-b02d950f",
+  "narrative": "**Jordan Avery \u2013 care before and after the treatment-plan change**\n\nThe record contains two plan versions [NS-0001 L8-11; NS-0014 L9-12, L12].\n\n**Before the change (2026-02-02 to 2026-02-15, 14 days)**\n- Plan required: 2 days/week, 90 minutes [NS-0001 L8-11]\n- Counted categories: Group therapy, Individual therapy\n- Sessions: Group therapy 1 (60 min), Individual therapy 2 (95 min)\n- Total: 3 sessions, 155 minutes\n- Rate: 1.5 sessions/week, 77.5 minutes/week\n\n**After the change (2026-02-16 to 2026-02-27, 12 days)**\n- Plan required: 3 days/week, 150 minutes [NS-0014 L9-12, L12]\n- Counted categories: Family therapy, Group therapy, Individual therapy (family therapy added)\n- Sessions: Family therapy 1 (45 min), Group therapy 2 (120 min), Individual therapy 2 (95 min)\n- Total: 5 sessions, 260 minutes\n- Rate: 2.92 sessions/week, 151.7 minutes/week\n\n**Change summary**\n- A new service type \u2014 Family therapy \u2014 appeared after the plan change, which was not counted before.\n- Group therapy sessions increased from 1 (60 min) to 2 (120 min).\n- Individual therapy stayed the same in both count (2) and minutes (95).\n- Total counted sessions rose from 3 to 5, and total minutes from 155 to 260.\n- The required target itself also increased, from 2 days/90 minutes per week to 3 days/150 minutes per week [NS-0001 L8-11; NS-0014 L9-12, L12].\n\nRates per week were calculated by dividing each period\u0027s totals by its length in days over seven, since the two periods are of different lengths (14 vs. 12 days).",
+  "checks": {
+    "citations_found": 6,
+    "citations_verified": 6,
+    "citations_not_in_results": [],
+    "numbers_found": 44,
+    "numbers_not_in_results": [],
+    "passed": true
+  },
+  "calculations": [
+    {
+      "name": "find_patient",
+      "input": "{\u0022query\u0022:\u0022Jordan Avery\u0022}",
+      "elapsed_ms": 7.1897,
+      "failed": false,
+      "rendered": "One patient matches.\n\n| Patient | MRN | Date of birth | Episode | Plan versions | Encounters |\n|---|---|---|---|---|---|\n| Jordan Avery | NS-77120 | 1988-09-30 | 2026-02-02 to 2026-02-27 | 2 | 10 |\n\n",
+      "result": {
+        "query": "Jordan Avery",
+        "matches": [
+          {
+            "patient_key": "NS-77120",
+            "mrn": "NS-77120",
+            "name": "Jordan Avery",
+            "date_of_birth": "1988-09-30",
+            "episode_start": "2026-02-02",
+            "episode_end": "2026-02-27",
+            "plan_versions": 2,
+            "encounters": 10,
+            "abstraction_version": "0cd5d5acddc1168b"
+          }
+        ],
+        "note": "One patient matches."
+      }
+    },
+    {
+      "name": "plan_change_comparison",
+      "input": "{\u0022patient_key\u0022:\u0022NS-77120\u0022}",
+      "elapsed_ms": 15.6758,
+      "failed": false,
+      "rendered": "| Parameter | Value | Source |\n|---|---|---|\n| Patient | Jordan Avery (NS-77120) | Matched by medical record number |\n| Dates | 2026-02-02 to 2026-02-27 | Not given, so the episode dates stated in the record (NS-0001 L8-11) are used; both dates are included |\n| Week | Monday to Sunday | From the treatment plan |\n| Abstraction version | 0cd5d5acddc1168b | Changes only when a conclusion about this patient changes |\n\n\nThe record contains 2 plan versions. Each period below runs from the day a version takes effect to the day before the next one.\n\n| Period | Days | Goal | Sessions | Minutes | Sessions per week | Minutes per week | Plan source |\n|---|---|---|---|---|---|---|---|\n| 2026-02-02 to 2026-02-15 | 14 | 2 days and 90 minutes | 3 | 155 | 1.5 | 77.5 | NS-0001 L8-11 |\n| 2026-02-16 to 2026-02-27 | 12 | 3 days and 150 minutes | 5 | 260 | 2.92 | 151.7 | NS-0014 L9-12, NS-0014 L12 |\n\n\n**By service type**\n\n| Period | Service | Sessions | Minutes |\n|---|---|---|---|\n| 2026-02-02 to 2026-02-15 | Group therapy | 1 | 60 |\n| 2026-02-02 to 2026-02-15 | Individual therapy | 2 | 95 |\n| 2026-02-16 to 2026-02-27 | Family therapy | 1 | 45 |\n| 2026-02-16 to 2026-02-27 | Group therapy | 2 | 120 |\n| 2026-02-16 to 2026-02-27 | Individual therapy | 2 | 95 |\n\n\n**Assumptions**\n\n- Rates per week divide each period\u0027s totals by its length in days over seven, so periods of different lengths can be compared.\n- Each contact is judged by the plan in effect on the day it happened.\n\n\n",
+      "result": {
+        "parameters": {
+          "patient_key": "NS-77120",
+          "patient_name": "Jordan Avery",
+          "from": "2026-02-02",
+          "to": "2026-02-27",
+          "date_range_source": "not given, so the episode dates stated in the record (NS-0001 L8-11) are used; both dates are included",
+          "week_definition": "Monday to Sunday, from the treatment plan",
+          "abstraction_version": "0cd5d5acddc1168b"
+        },
+        "plan_change_found": true,
+        "summary": "The record contains 2 plan versions. Each period below runs from the day a version takes effect to the day before the next one.",
+        "periods": [
+          {
+            "from": "2026-02-02",
+            "to": "2026-02-15",
+            "days": 14,
+            "required_days": 2,
+            "required_minutes": 90,
+            "counted_categories": [
+              "Group therapy",
+              "Individual therapy"
+            ],
+            "plan_citations": [
+              "NS-0001 L8-11"
+            ],
+            "sessions_by_category": {
+              "Group therapy": 1,
+              "Individual therapy": 2
+            },
+            "minutes_by_category": {
+              "Group therapy": "60",
+              "Individual therapy": "95"
+            },
+            "total_sessions": 3,
+            "minutes_min": 155,
+            "minutes_max": 155,
+            "sessions_per_week": 1.5,
+            "minutes_per_week_min": 77.5,
+            "minutes_per_week_max": 77.5
+          },
+          {
+            "from": "2026-02-16",
+            "to": "2026-02-27",
+            "days": 12,
+            "required_days": 3,
+            "required_minutes": 150,
+            "counted_categories": [
+              "Family therapy",
+              "Group therapy",
+              "Individual therapy"
+            ],
+            "plan_citations": [
+              "NS-0014 L9-12",
+              "NS-0014 L12"
+            ],
+            "sessions_by_category": {
+              "Family therapy": 1,
+              "Group therapy": 2,
+              "Individual therapy": 2
+            },
+            "minutes_by_category": {
+              "Family therapy": "45",
+              "Group therapy": "120",
+              "Individual therapy": "95"
+            },
+            "total_sessions": 5,
+            "minutes_min": 260,
+            "minutes_max": 260,
+            "sessions_per_week": 2.92,
+            "minutes_per_week_min": 151.7,
+            "minutes_per_week_max": 151.7
+          }
+        ],
+        "assumptions": [
+          "Rates per week divide each period\u0027s totals by its length in days over seven, so periods of different lengths can be compared.",
+          "Each contact is judged by the plan in effect on the day it happened."
+        ]
+      }
+    }
+  ],
+  "model_calls": 3,
+  "input_tokens": 10671,
+  "output_tokens": 767,
+  "latency_ms": 12128
+}

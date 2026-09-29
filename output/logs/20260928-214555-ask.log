@@ -1,0 +1,6 @@
+21:45:58.955  calculation find_patient {"query":"Rowan"} -> ok in 20.3 ms
+21:46:01.211  calculation session_counts {"patient_key":"HG-M042","from":"2026-01-05","to":"2026-01-30"} -> ok in 24.2 ms
+21:46:18.682  DEV-01 answered in 23538 ms; saved to output/answers/DEV-01.md
+21:46:18.684  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 35 calls, 28231 input, 0 cache write, 244825 cache read, 85352 output tokens, 630956 ms in total. Cost at list price: $0.9589.
+21:46:18.684  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.
+21:46:18.684  Model usage so far, question with us.anthropic.claude-sonnet-5: 48 calls, 199176 input, 10440 cache write, 159411 cache read, 27169 output tokens, 344658 ms in total. Cost at list price: $0.7280.

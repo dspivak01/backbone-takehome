@@ -1,0 +1,14 @@
+[
+  {
+    "id": "NO-NAME-DEV-04",
+    "question": "Reconstruct the care on January 19 and January 21. How many therapy contacts and patient therapy minutes occurred on each date, and how do the attendance records, clinical notes, later documents, and telehealth records affect your answer?"
+  },
+  {
+    "id": "NO-NAME-DEV-05",
+    "question": "Summarize the documented symptom course during the episode and the reason for the additional individual contact on January 19. Which symptom assessments are distinct, and what conclusions about progress can and cannot be supported?"
+  },
+  {
+    "id": "NO-NAME-GENERIC",
+    "question": "How many therapy sessions were attended, by service type?"
+  }
+]

@@ -1,0 +1,8 @@
+17:33:45.730  DEV-01 answered in 0 ms (from cache); saved to output/answers/DEV-01.md
+17:33:45.731  DEV-02 answered in 0 ms (from cache); saved to output/answers/DEV-02.md
+17:33:45.732  DEV-03 answered in 0 ms (from cache); saved to output/answers/DEV-03.md
+17:33:45.732  DEV-04 answered in 0 ms (from cache); saved to output/answers/DEV-04.md
+17:33:45.733  DEV-05 answered in 0 ms (from cache); saved to output/answers/DEV-05.md
+17:33:45.734  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 35 calls, 28231 input, 0 cache write, 244825 cache read, 85352 output tokens, 630956 ms in total. Cost at list price: $0.9589.
+17:33:45.734  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.
+17:33:45.734  Model usage so far, question with us.anthropic.claude-sonnet-5: 30 calls, 118561 input, 6023 cache write, 84322 cache read, 16589 output tokens, 209942 ms in total. Cost at list price: $0.4349.

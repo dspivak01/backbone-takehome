@@ -1,0 +1,773 @@
+{
+  "question_id": "DEV-02",
+  "question": "How many therapy minutes and hours did Rowan actually receive during the review period, overall and for each Monday\u2013Sunday week? Show calculations or supporting detail, and report any conclusion the available documents do not settle.",
+  "model": "us.anthropic.claude-sonnet-5",
+  "abstraction_version": "144ab3f3c5bead22-31f9775b",
+  "narrative": "Rowan Mercer\u0027s review period is 2026-01-05 to 2026-01-30 (Monday\u2013Sunday weeks) [BH-D003 L6, BH-D003 L12].\n\n**Overall total:** 585\u2013595 minutes (9.75\u20139.92 hours), because one contact\u0027s duration is unresolved. Calculation: 140 \u002B 120 \u002B 180 \u002B (145 to 155) = 585 to 595 minutes; \u00F760 = 9.75 to 9.92 hours.\n\n**Week-by-week (therapy minutes actually received, i.e., counted contacts only):**\n\n| Week (Mon\u2013Sun) | Therapy days | Minutes | Hours | Arithmetic |\n|---|---|---|---|---|\n| 2026-01-05 to 01-11 | 3 | 140 | 2.33 | 50 (individual, 01-05) \u002B 45 (group, 01-06) \u002B 45 (family, 01-09) = 140 |\n| 2026-01-12 to 01-18 | 2 | 120 | 2.00 | 75 (group, 01-12) \u002B 45 (individual, 01-14) = 120 |\n| 2026-01-19 to 01-25 | 3 | 180 | 3.00 | 60 (group) \u002B 30 (individual) both 01-19 \u002B 45 (individual, 01-21) \u002B 45 (group, 01-22) = 180 |\n| 2026-01-26 to 02-01 (partial: only 01-26\u201301-30 fall in the period) | 3 | 145\u2013155 | 2.42\u20132.58 | (40 to 50, individual 01-26) \u002B 75 (group, 01-29) \u002B 30 (family, 01-30) = 145 to 155 |\n\nNotes on exclusions (not counted toward minutes):\n- 2026-01-08 individual therapy: no-show, 0 minutes [BH-D006 L12, BH-D015 L11].\n- 2026-01-13 medication management: excluded by plan (does not count toward the therapy goal), 25 minutes present but not counted [BH-D006 L15, BH-D010 L7].\n- 2026-01-15 group therapy: cancelled by clinic, 0 minutes [BH-D006 L17, BH-D016 L9].\n- 2026-01-16 collateral contact: patient not present, 0 minutes [BH-D006 L18, BH-D006 L20, BH-D012 L11].\n- 2026-01-23 care coordination: patient not present, 0 minutes [BH-D109 L7].\n- 2026-01-27 group therapy: no-show, 0 minutes \u2014 despite a billing charge and an unsigned draft claiming attendance, both are noted as not evidence of attendance [BH-D108 L10, BH-D108 L16; BH-D112 L18-23; BH-D112 L9-11].\n- 2026-01-28 individual therapy: cancelled by patient, 0 minutes [BH-D108 L11, BH-D108 L18].\n- 2026-01-30 medication management: excluded by plan; attendance times were not recorded, so a 20-minute full-session interval is assumed but not counted toward therapy minutes [BH-D114 L5].\n\n**What the documents do not settle:**\n- The 2026-01-26 individual therapy session (HG-E115) has an unresolved start-time discrepancy: one record shows presence 09:00\u201309:50 (50 minutes), another shows 09:10\u201309:50 (40 minutes) [BH-D110 L7 vs BH-D111 L10]. This makes that week\u0027s minutes 145\u2013155 (goal 150) and the result \u0022cannot be determined.\u0022 It would be settled by a signed correction/addendum for HG-E115 or an independent arrival record (check-in, room, or platform log).\n- Because of this, the overall total across the period is a range (585\u2013595 minutes / 9.75\u20139.92 hours) rather than a single figure.\n\n**Weekly goal outcomes** (goal: 3 therapy days and 150 minutes per week):\n- 01-05\u201301-11: days met (3), minutes not met (140\u003C150) \u2192 not met.\n- 01-12\u201301-18: days not met (2\u003C3), minutes not met (120\u003C150) \u2192 not met.\n- 01-19\u201301-25: days met (3), minutes met (180\u2265150) \u2192 met.\n- 01-26\u201302-01 (partial week, goal applied in full, not prorated): days met (3), minutes cannot be determined (145\u2013155 spans the 150 threshold) \u2192 cannot be determined.",
+  "checks": {
+    "citations_found": 21,
+    "citations_verified": 21,
+    "citations_not_in_results": [],
+    "numbers_found": 127,
+    "numbers_not_in_results": [],
+    "passed": true
+  },
+  "calculations": [
+    {
+      "name": "find_patient",
+      "input": "{\u0022query\u0022:\u0022Rowan\u0022}",
+      "elapsed_ms": 1.6739,
+      "failed": false,
+      "rendered": "One patient matches.\n\n| Patient | MRN | Date of birth | Episode | Plan versions | Encounters |\n|---|---|---|---|---|---|\n| Rowan Mercer | HG-M042 | 1991-04-12 | 2026-01-05 to 2026-01-30 | 1 | 20 |\n\n",
+      "result": {
+        "query": "Rowan",
+        "matches": [
+          {
+            "patient_key": "HG-M042",
+            "mrn": "HG-M042",
+            "name": "Rowan Mercer",
+            "date_of_birth": "1991-04-12",
+            "episode_start": "2026-01-05",
+            "episode_end": "2026-01-30",
+            "plan_versions": 1,
+            "encounters": 20,
+            "abstraction_version": "8d999c6cbe5f02b7"
+          }
+        ],
+        "note": "One patient matches."
+      }
+    },
+    {
+      "name": "weekly_minutes_and_goals",
+      "input": "{\u0022patient_key\u0022:\u0022HG-M042\u0022}",
+      "elapsed_ms": 24.5234,
+      "failed": false,
+      "rendered": "| Parameter | Value | Source |\n|---|---|---|\n| Patient | Rowan Mercer (HG-M042) | Matched by medical record number |\n| Dates | 2026-01-05 to 2026-01-30 | Not given, so the episode dates stated in the record (BH-D003 L6, BH-D003 L12) are used; both dates are included |\n| Week | Monday to Sunday | From the treatment plan |\n| Abstraction version | 8d999c6cbe5f02b7 | Changes only when a conclusion about this patient changes |\n\n\n**By week**\n\n| Week | Therapy days | Minutes | Hours | Arithmetic | Goal | Result |\n|---|---|---|---|---|---|---|\n| 2026-01-05 to 2026-01-11 | 3 | 140 | 2.33 | 50 \u002B 45 \u002B 45 = 140 | 3 days and 150 minutes | not met |\n| 2026-01-12 to 2026-01-18 | 2 | 120 | 2 | 75 \u002B 45 = 120 | 3 days and 150 minutes | not met |\n| 2026-01-19 to 2026-01-25 | 3 | 180 | 3 | 60 \u002B 30 \u002B 45 \u002B 45 = 180 | 3 days and 150 minutes | met |\n| 2026-01-26 to 2026-02-01 (partial) | 3 | 145 to 155 | 2.42 to 2.58 | (40 to 50) \u002B 75 \u002B 30 = 145 to 155 | 3 days and 150 minutes | cannot be determined |\n\n\n**Total**: 585 to 595 minutes, 9.75 to 9.92 hours. 140 \u002B 120 \u002B 180 \u002B (145 to 155) = 585 to 595 minutes; divided by 60 = 9.75 to 9.92 hours.\n\n**Why each week has its result**\n\n- Week of 2026-01-05: 3 therapy day(s) against a goal of 3: met. 140 minutes against a goal of 150: not met. Goal from BH-D003 L6, BH-D003 L12.\n- Week of 2026-01-12: 2 therapy day(s) against a goal of 3: not met. 120 minutes against a goal of 150: not met. Goal from BH-D003 L6, BH-D003 L12.\n- Week of 2026-01-19: 3 therapy day(s) against a goal of 3: met. 180 minutes against a goal of 150: met. Goal from BH-D003 L6, BH-D003 L12.\n- Week of 2026-01-26: 3 therapy day(s) against a goal of 3: met. 145 to 155 minutes against a goal of 150: cannot be determined. Goal from BH-D003 L6, BH-D003 L12. Only 5 of 7 days (2026-01-26 to 2026-01-30) fall inside the period examined. The goal is applied in full and is not prorated. Would be settled by: A signed correction or addendum for HG-E115 stating when the patient\u0027s contact began, or an independent record of arrival such as a check-in, room or platform log.\n\n\n**Contacts behind the totals**\n\n| Date | Encounter | Service | Counted | Minutes | Detail | Sources |\n|---|---|---|---|---|---|---|\n| 2026-01-05 Mon | HG-E101 | Individual therapy | counted | 50 | present 09:00-09:50 = 50 minutes | BH-D002 L6-8, BH-D002 L8, BH-D006 L10 |\n| 2026-01-06 Tue | HG-E102 | Group therapy | counted | 45 | present 10:15-11:15, less break 10:45-11:00 = 45 minutes | BH-D004 L12, BH-D004 L4-8, BH-D005 L10, BH-D005 L9-10, BH-D006 L11 |\n| 2026-01-08 Thu | HG-E103 | Individual therapy | not a session | 0 | The appointment was a no show. | BH-D006 L12, BH-D015 L11, BH-D015 L6 |\n| 2026-01-09 Fri | HG-E104 | Family therapy | counted | 45 | present 14:00-14:45 = 45 minutes | BH-D006 L13, BH-D007 L4-9, BH-D007 L7-9, BH-D008 L4-9, BH-D008 L8, BH-D015 L13 |\n| 2026-01-12 Mon | HG-E105 | Group therapy | counted | 75 | present 10:00-11:30, less break 10:40-10:55 = 75 minutes | BH-D005 L11, BH-D005 L9-11, BH-D006 L14, BH-D009 L12, BH-D009 L4-8 |\n| 2026-01-13 Tue | HG-E106 | Medication management | excluded by plan | 0 | The treatment plan says medication management does not count toward the goal (BH-D003 L6, BH-D003 L12). | BH-D006 L15, BH-D010 L4-9, BH-D010 L7 |\n| 2026-01-14 Wed | HG-E107 | Individual therapy | counted | 45 | present 11:00-11:45 = 45 minutes | BH-D006 L16, BH-D011 L4-9, BH-D011 L7 |\n| 2026-01-15 Thu | HG-E108 | Group therapy | not a session | 0 | The appointment was cancelled by the clinic. | BH-D006 L17, BH-D016 L9 |\n| 2026-01-16 Fri | HG-E109 | Collateral contact | not a session | 0 | The patient was not present. | BH-D006 L18, BH-D006 L20, BH-D012 L11, BH-D012 L4-7, BH-D012 L8 |\n| 2026-01-19 Mon | HG-E110 | Group therapy | counted | 60 | present 10:00-11:15, less break 10:45-11:00 = 60 minutes | BH-D101 L3-6, BH-D101 L6, BH-D102 L4-9, BH-D102 L9, BH-D102 L9-10, BH-D103 L7, BH-D104 L10-14, BH-D104 L14 |\n| 2026-01-19 Mon | HG-E111 | Individual therapy | counted | 30 | present 11:15-11:45 = 30 minutes | BH-D105 L3-7, BH-D105 L6 |\n| 2026-01-21 Wed | HG-E112 | Individual therapy | counted | 45 | present 13:00-13:55, less connection lost 13:20-13:30 = 45 minutes | BH-D106 L17, BH-D106 L18, BH-D106 L3-5, BH-D106 L7 |\n| 2026-01-22 Thu | HG-E113 | Group therapy | counted | 45 | present 10:30-11:30, less break 10:45-11:00 = 45 minutes | BH-D107 L7-8, BH-D107 L8, BH-D107 L9, BH-D108 L14, BH-D108 L9 |\n| 2026-01-23 Fri | HG-E114 | Care coordination | not a session | 0 | The patient was not present. | BH-D109 L2-6, BH-D109 L7 |\n| 2026-01-26 Mon | HG-E115 | Individual therapy | counted | 40 to 50 | present 09:00-09:50 = 50 minutes; or present 09:10-09:50 = 40 minutes | BH-D110 L3-6, BH-D110 L7, BH-D111 L10, BH-D111 L14, BH-D111 L4-8 |\n| 2026-01-27 Tue | HG-E116 | Group therapy | not a session | 0 | The appointment was a no show. | BH-D108 L10, BH-D108 L16 |\n| 2026-01-28 Wed | HG-E117 | Individual therapy | not a session | 0 | The appointment was cancelled by the patient. | BH-D108 L11, BH-D108 L18 |\n| 2026-01-29 Thu | HG-E118 | Group therapy | counted | 75 | present 10:00-11:30, less break 10:45-11:00 = 75 minutes | BH-D107 L12-13, BH-D107 L13, BH-D107 L14, BH-D108 L12, BH-D108 L20 |\n| 2026-01-30 Fri | HG-E119 | Family therapy | counted | 30 | present 13:15-13:45 = 30 minutes | BH-D113 L3-6, BH-D113 L7, BH-D113 L7-9, BH-D113 L9 |\n| 2026-01-30 Fri | HG-E120 | Medication management | excluded by plan | 0 | The treatment plan says medication management does not count toward the goal (BH-D003 L6, BH-D003 L12). | BH-D114 L3-6, BH-D114 L5 |\n\n\n**What the record does not settle**\n\n- 2026-01-26 Individual therapy (HG-E115): 40 to 50 minutes. Present 09:00-09:50 = 50 minutes; or present 09:10-09:50 = 40 minutes. Would be settled by: A signed correction or addendum for HG-E115 stating when the patient\u0027s contact began, or an independent record of arrival such as a check-in, room or platform log.\n\n\n**Assumptions**\n\n- A week that is only partly inside the period examined is judged against the full goal. The goal is not prorated.\n- Arrival and departure times from attendance and desk records are taken as the patient\u0027s time in the session. They record check-in and check-out, so time in the room may be slightly shorter.\n- 2026-01-09 Family therapy: Some records carried no encounter identifier and were linked by service date and category.\n\n\n",
+      "result": {
+        "parameters": {
+          "patient_key": "HG-M042",
+          "patient_name": "Rowan Mercer",
+          "from": "2026-01-05",
+          "to": "2026-01-30",
+          "date_range_source": "not given, so the episode dates stated in the record (BH-D003 L6, BH-D003 L12) are used; both dates are included",
+          "week_definition": "Monday to Sunday, from the treatment plan",
+          "abstraction_version": "8d999c6cbe5f02b7"
+        },
+        "weeks": [
+          {
+            "week_start": "2026-01-05",
+            "week_end": "2026-01-11",
+            "days_in_range": 7,
+            "partial_week": false,
+            "required_days": 3,
+            "required_minutes": 150,
+            "plan_citations": [
+              "BH-D003 L6",
+              "BH-D003 L12"
+            ],
+            "days_min": 3,
+            "days_max": 3,
+            "therapy_dates": [
+              "2026-01-05",
+              "2026-01-06",
+              "2026-01-09"
+            ],
+            "minutes_min": 140,
+            "minutes_max": 140,
+            "hours_min": 2.33,
+            "hours_max": 2.33,
+            "minutes_arithmetic": "50 \u002B 45 \u002B 45 = 140",
+            "days_result": "met",
+            "minutes_result": "not_met",
+            "result": "not_met",
+            "reason": "3 therapy day(s) against a goal of 3: met. 140 minutes against a goal of 150: not met.",
+            "needs": [],
+            "contacts": [
+              {
+                "event_key": "HG-E101",
+                "encounter_id": "HG-E101",
+                "date": "2026-01-05",
+                "weekday": "Monday",
+                "category": "individual_therapy",
+                "category_name": "Individual therapy",
+                "status": "counted",
+                "reason": "Individual therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 50,
+                "minutes_max": 50,
+                "arithmetic": "present 09:00-09:50 = 50 minutes",
+                "source_documents": [
+                  "BH-D002",
+                  "BH-D006"
+                ],
+                "citations": [
+                  "BH-D002 L6-8",
+                  "BH-D002 L8",
+                  "BH-D006 L10"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E102",
+                "encounter_id": "HG-E102",
+                "date": "2026-01-06",
+                "weekday": "Tuesday",
+                "category": "group_therapy",
+                "category_name": "Group therapy",
+                "status": "counted",
+                "reason": "Group therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 45,
+                "minutes_max": 45,
+                "arithmetic": "present 10:15-11:15, less break 10:45-11:00 = 45 minutes",
+                "source_documents": [
+                  "BH-D004",
+                  "BH-D005",
+                  "BH-D006"
+                ],
+                "citations": [
+                  "BH-D004 L12",
+                  "BH-D004 L4-8",
+                  "BH-D005 L10",
+                  "BH-D005 L9-10",
+                  "BH-D006 L11"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E103",
+                "encounter_id": "HG-E103",
+                "date": "2026-01-08",
+                "weekday": "Thursday",
+                "category": "individual_therapy",
+                "category_name": "Individual therapy",
+                "status": "not_a_session",
+                "reason": "The appointment was a no show.",
+                "minutes_min": 0,
+                "minutes_max": 0,
+                "arithmetic": "The appointment was a no show. 0 minutes. (BH-D006 L12, BH-D015 L11)",
+                "source_documents": [
+                  "BH-D006",
+                  "BH-D015"
+                ],
+                "citations": [
+                  "BH-D006 L12",
+                  "BH-D015 L11",
+                  "BH-D015 L6"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": false,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E104",
+                "encounter_id": "HG-E104",
+                "date": "2026-01-09",
+                "weekday": "Friday",
+                "category": "family_therapy",
+                "category_name": "Family therapy",
+                "status": "counted",
+                "reason": "Family therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 45,
+                "minutes_max": 45,
+                "arithmetic": "present 14:00-14:45 = 45 minutes",
+                "source_documents": [
+                  "BH-D006",
+                  "BH-D007",
+                  "BH-D008",
+                  "BH-D015"
+                ],
+                "citations": [
+                  "BH-D006 L13",
+                  "BH-D007 L4-9",
+                  "BH-D007 L7-9",
+                  "BH-D008 L4-9",
+                  "BH-D008 L8",
+                  "BH-D015 L13"
+                ],
+                "flags": [
+                  "Some records carried no encounter identifier and were linked by service date and category."
+                ],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              }
+            ]
+          },
+          {
+            "week_start": "2026-01-12",
+            "week_end": "2026-01-18",
+            "days_in_range": 7,
+            "partial_week": false,
+            "required_days": 3,
+            "required_minutes": 150,
+            "plan_citations": [
+              "BH-D003 L6",
+              "BH-D003 L12"
+            ],
+            "days_min": 2,
+            "days_max": 2,
+            "therapy_dates": [
+              "2026-01-12",
+              "2026-01-14"
+            ],
+            "minutes_min": 120,
+            "minutes_max": 120,
+            "hours_min": 2,
+            "hours_max": 2,
+            "minutes_arithmetic": "75 \u002B 45 = 120",
+            "days_result": "not_met",
+            "minutes_result": "not_met",
+            "result": "not_met",
+            "reason": "2 therapy day(s) against a goal of 3: not met. 120 minutes against a goal of 150: not met.",
+            "needs": [],
+            "contacts": [
+              {
+                "event_key": "HG-E105",
+                "encounter_id": "HG-E105",
+                "date": "2026-01-12",
+                "weekday": "Monday",
+                "category": "group_therapy",
+                "category_name": "Group therapy",
+                "status": "counted",
+                "reason": "Group therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 75,
+                "minutes_max": 75,
+                "arithmetic": "present 10:00-11:30, less break 10:40-10:55 = 75 minutes",
+                "source_documents": [
+                  "BH-D005",
+                  "BH-D006",
+                  "BH-D009"
+                ],
+                "citations": [
+                  "BH-D005 L11",
+                  "BH-D005 L9-11",
+                  "BH-D006 L14",
+                  "BH-D009 L12",
+                  "BH-D009 L4-8"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E106",
+                "encounter_id": "HG-E106",
+                "date": "2026-01-13",
+                "weekday": "Tuesday",
+                "category": "medication_management",
+                "category_name": "Medication management",
+                "status": "excluded_by_plan",
+                "reason": "The treatment plan says medication management does not count toward the goal (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 0,
+                "minutes_max": 0,
+                "arithmetic": "present 09:00-09:25 = 25 minutes",
+                "source_documents": [
+                  "BH-D006",
+                  "BH-D010"
+                ],
+                "citations": [
+                  "BH-D006 L15",
+                  "BH-D010 L4-9",
+                  "BH-D010 L7"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": false,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E107",
+                "encounter_id": "HG-E107",
+                "date": "2026-01-14",
+                "weekday": "Wednesday",
+                "category": "individual_therapy",
+                "category_name": "Individual therapy",
+                "status": "counted",
+                "reason": "Individual therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 45,
+                "minutes_max": 45,
+                "arithmetic": "present 11:00-11:45 = 45 minutes",
+                "source_documents": [
+                  "BH-D006",
+                  "BH-D011"
+                ],
+                "citations": [
+                  "BH-D006 L16",
+                  "BH-D011 L4-9",
+                  "BH-D011 L7"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E108",
+                "encounter_id": "HG-E108",
+                "date": "2026-01-15",
+                "weekday": "Thursday",
+                "category": "group_therapy",
+                "category_name": "Group therapy",
+                "status": "not_a_session",
+                "reason": "The appointment was cancelled by the clinic.",
+                "minutes_min": 0,
+                "minutes_max": 0,
+                "arithmetic": "The appointment was cancelled by the clinic. 0 minutes. (BH-D006 L17, BH-D016 L9)",
+                "source_documents": [
+                  "BH-D006",
+                  "BH-D016"
+                ],
+                "citations": [
+                  "BH-D006 L17",
+                  "BH-D016 L9"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": false,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E109",
+                "encounter_id": "HG-E109",
+                "date": "2026-01-16",
+                "weekday": "Friday",
+                "category": "collateral_contact",
+                "category_name": "Collateral contact",
+                "status": "not_a_session",
+                "reason": "The patient was not present.",
+                "minutes_min": 0,
+                "minutes_max": 0,
+                "arithmetic": "The patient was not present. 0 minutes. (BH-D006 L20, BH-D012 L11, BH-D012 L8)",
+                "source_documents": [
+                  "BH-D006",
+                  "BH-D012"
+                ],
+                "citations": [
+                  "BH-D006 L18",
+                  "BH-D006 L20",
+                  "BH-D012 L11",
+                  "BH-D012 L4-7",
+                  "BH-D012 L8"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": false,
+                "may_count": false
+              }
+            ]
+          },
+          {
+            "week_start": "2026-01-19",
+            "week_end": "2026-01-25",
+            "days_in_range": 7,
+            "partial_week": false,
+            "required_days": 3,
+            "required_minutes": 150,
+            "plan_citations": [
+              "BH-D003 L6",
+              "BH-D003 L12"
+            ],
+            "days_min": 3,
+            "days_max": 3,
+            "therapy_dates": [
+              "2026-01-19",
+              "2026-01-21",
+              "2026-01-22"
+            ],
+            "minutes_min": 180,
+            "minutes_max": 180,
+            "hours_min": 3,
+            "hours_max": 3,
+            "minutes_arithmetic": "60 \u002B 30 \u002B 45 \u002B 45 = 180",
+            "days_result": "met",
+            "minutes_result": "met",
+            "result": "met",
+            "reason": "3 therapy day(s) against a goal of 3: met. 180 minutes against a goal of 150: met.",
+            "needs": [],
+            "contacts": [
+              {
+                "event_key": "HG-E110",
+                "encounter_id": "HG-E110",
+                "date": "2026-01-19",
+                "weekday": "Monday",
+                "category": "group_therapy",
+                "category_name": "Group therapy",
+                "status": "counted",
+                "reason": "Group therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 60,
+                "minutes_max": 60,
+                "arithmetic": "present 10:00-11:15, less break 10:45-11:00 = 60 minutes",
+                "source_documents": [
+                  "BH-D101",
+                  "BH-D102",
+                  "BH-D103",
+                  "BH-D104"
+                ],
+                "citations": [
+                  "BH-D101 L3-6",
+                  "BH-D101 L6",
+                  "BH-D102 L4-9",
+                  "BH-D102 L9",
+                  "BH-D102 L9-10",
+                  "BH-D103 L7",
+                  "BH-D104 L10-14",
+                  "BH-D104 L14"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E111",
+                "encounter_id": "HG-E111",
+                "date": "2026-01-19",
+                "weekday": "Monday",
+                "category": "individual_therapy",
+                "category_name": "Individual therapy",
+                "status": "counted",
+                "reason": "Individual therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 30,
+                "minutes_max": 30,
+                "arithmetic": "present 11:15-11:45 = 30 minutes",
+                "source_documents": [
+                  "BH-D105"
+                ],
+                "citations": [
+                  "BH-D105 L3-7",
+                  "BH-D105 L6"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E112",
+                "encounter_id": "HG-E112",
+                "date": "2026-01-21",
+                "weekday": "Wednesday",
+                "category": "individual_therapy",
+                "category_name": "Individual therapy",
+                "status": "counted",
+                "reason": "Individual therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 45,
+                "minutes_max": 45,
+                "arithmetic": "present 13:00-13:55, less connection lost 13:20-13:30 = 45 minutes",
+                "source_documents": [
+                  "BH-D106"
+                ],
+                "citations": [
+                  "BH-D106 L17",
+                  "BH-D106 L18",
+                  "BH-D106 L3-5",
+                  "BH-D106 L7"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E113",
+                "encounter_id": "HG-E113",
+                "date": "2026-01-22",
+                "weekday": "Thursday",
+                "category": "group_therapy",
+                "category_name": "Group therapy",
+                "status": "counted",
+                "reason": "Group therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 45,
+                "minutes_max": 45,
+                "arithmetic": "present 10:30-11:30, less break 10:45-11:00 = 45 minutes",
+                "source_documents": [
+                  "BH-D107",
+                  "BH-D108"
+                ],
+                "citations": [
+                  "BH-D107 L7-8",
+                  "BH-D107 L8",
+                  "BH-D107 L9",
+                  "BH-D108 L14",
+                  "BH-D108 L9"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E114",
+                "encounter_id": "HG-E114",
+                "date": "2026-01-23",
+                "weekday": "Friday",
+                "category": "care_coordination",
+                "category_name": "Care coordination",
+                "status": "not_a_session",
+                "reason": "The patient was not present.",
+                "minutes_min": 0,
+                "minutes_max": 0,
+                "arithmetic": "The patient was not present. 0 minutes. (BH-D109 L7)",
+                "source_documents": [
+                  "BH-D109"
+                ],
+                "citations": [
+                  "BH-D109 L2-6",
+                  "BH-D109 L7"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": false,
+                "may_count": false
+              }
+            ]
+          },
+          {
+            "week_start": "2026-01-26",
+            "week_end": "2026-02-01",
+            "days_in_range": 5,
+            "partial_week": true,
+            "partial_week_note": "Only 5 of 7 days (2026-01-26 to 2026-01-30) fall inside the period examined. The goal is applied in full and is not prorated.",
+            "required_days": 3,
+            "required_minutes": 150,
+            "plan_citations": [
+              "BH-D003 L6",
+              "BH-D003 L12"
+            ],
+            "days_min": 3,
+            "days_max": 3,
+            "therapy_dates": [
+              "2026-01-26",
+              "2026-01-29",
+              "2026-01-30"
+            ],
+            "minutes_min": 145,
+            "minutes_max": 155,
+            "hours_min": 2.42,
+            "hours_max": 2.58,
+            "minutes_arithmetic": "(40 to 50) \u002B 75 \u002B 30 = 145 to 155",
+            "days_result": "met",
+            "minutes_result": "cannot_be_determined",
+            "result": "cannot_be_determined",
+            "reason": "3 therapy day(s) against a goal of 3: met. 145 to 155 minutes against a goal of 150: cannot be determined.",
+            "needs": [
+              "A signed correction or addendum for HG-E115 stating when the patient\u0027s contact began, or an independent record of arrival such as a check-in, room or platform log."
+            ],
+            "contacts": [
+              {
+                "event_key": "HG-E115",
+                "encounter_id": "HG-E115",
+                "date": "2026-01-26",
+                "weekday": "Monday",
+                "category": "individual_therapy",
+                "category_name": "Individual therapy",
+                "status": "counted",
+                "reason": "Individual therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 40,
+                "minutes_max": 50,
+                "arithmetic": "present 09:00-09:50 = 50 minutes; or present 09:10-09:50 = 40 minutes",
+                "source_documents": [
+                  "BH-D110",
+                  "BH-D111"
+                ],
+                "citations": [
+                  "BH-D110 L3-6",
+                  "BH-D110 L7",
+                  "BH-D111 L10",
+                  "BH-D111 L14",
+                  "BH-D111 L4-8"
+                ],
+                "flags": [],
+                "discrepancies": [
+                  "R4: Unresolved presence start: 09:00 (BH-D110 L7) versus 09:10 (BH-D111 L10). (BH-D110 L7, BH-D111 L10)"
+                ],
+                "needs": [
+                  "A signed correction or addendum for HG-E115 stating when the patient\u0027s contact began, or an independent record of arrival such as a check-in, room or platform log."
+                ],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E116",
+                "encounter_id": "HG-E116",
+                "date": "2026-01-27",
+                "weekday": "Tuesday",
+                "category": "group_therapy",
+                "category_name": "Group therapy",
+                "status": "not_a_session",
+                "reason": "The appointment was a no show.",
+                "minutes_min": 0,
+                "minutes_max": 0,
+                "arithmetic": "The appointment was a no show. 0 minutes. (BH-D108 L10, BH-D108 L16)",
+                "source_documents": [
+                  "BH-D108",
+                  "BH-D112"
+                ],
+                "citations": [
+                  "BH-D108 L10",
+                  "BH-D108 L16"
+                ],
+                "flags": [],
+                "discrepancies": [
+                  "R5: A charge was posted for this encounter (\u0022Group psychotherapy\u0022, quantity 1). The appointment was a no show. Billing is not evidence of attendance. (BH-D112 L18-23)",
+                  "R5: An unsigned draft says the patient attended. The appointment was a no show. A draft is not evidence of attendance. (BH-D112 L9-11)"
+                ],
+                "needs": [],
+                "counted": false,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E117",
+                "encounter_id": "HG-E117",
+                "date": "2026-01-28",
+                "weekday": "Wednesday",
+                "category": "individual_therapy",
+                "category_name": "Individual therapy",
+                "status": "not_a_session",
+                "reason": "The appointment was cancelled by the patient.",
+                "minutes_min": 0,
+                "minutes_max": 0,
+                "arithmetic": "The appointment was cancelled by the patient. 0 minutes. (BH-D108 L11, BH-D108 L18)",
+                "source_documents": [
+                  "BH-D108"
+                ],
+                "citations": [
+                  "BH-D108 L11",
+                  "BH-D108 L18"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": false,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E118",
+                "encounter_id": "HG-E118",
+                "date": "2026-01-29",
+                "weekday": "Thursday",
+                "category": "group_therapy",
+                "category_name": "Group therapy",
+                "status": "counted",
+                "reason": "Group therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 75,
+                "minutes_max": 75,
+                "arithmetic": "present 10:00-11:30, less break 10:45-11:00 = 75 minutes",
+                "source_documents": [
+                  "BH-D107",
+                  "BH-D108"
+                ],
+                "citations": [
+                  "BH-D107 L12-13",
+                  "BH-D107 L13",
+                  "BH-D107 L14",
+                  "BH-D108 L12",
+                  "BH-D108 L20"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E119",
+                "encounter_id": "HG-E119",
+                "date": "2026-01-30",
+                "weekday": "Friday",
+                "category": "family_therapy",
+                "category_name": "Family therapy",
+                "status": "counted",
+                "reason": "Family therapy with the patient present, counted by the treatment plan (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 30,
+                "minutes_max": 30,
+                "arithmetic": "present 13:15-13:45 = 30 minutes",
+                "source_documents": [
+                  "BH-D113"
+                ],
+                "citations": [
+                  "BH-D113 L3-6",
+                  "BH-D113 L7",
+                  "BH-D113 L7-9",
+                  "BH-D113 L9"
+                ],
+                "flags": [],
+                "discrepancies": [],
+                "needs": [],
+                "counted": true,
+                "may_count": false
+              },
+              {
+                "event_key": "HG-E120",
+                "encounter_id": "HG-E120",
+                "date": "2026-01-30",
+                "weekday": "Friday",
+                "category": "medication_management",
+                "category_name": "Medication management",
+                "status": "excluded_by_plan",
+                "reason": "The treatment plan says medication management does not count toward the goal (BH-D003 L6, BH-D003 L12).",
+                "minutes_min": 0,
+                "minutes_max": 0,
+                "arithmetic": "No arrival or departure recorded. Full attendance assumed: session 15:00-15:20 = 20 minutes",
+                "source_documents": [
+                  "BH-D114"
+                ],
+                "citations": [
+                  "BH-D114 L3-6",
+                  "BH-D114 L5"
+                ],
+                "flags": [
+                  "Attendance times were not recorded. The session interval is assumed."
+                ],
+                "discrepancies": [],
+                "needs": [],
+                "counted": false,
+                "may_count": false
+              }
+            ]
+          }
+        ],
+        "total_minutes_min": 585,
+        "total_minutes_max": 595,
+        "total_hours_min": 9.75,
+        "total_hours_max": 9.92,
+        "total_arithmetic": "140 \u002B 120 \u002B 180 \u002B (145 to 155) = 585 to 595 minutes; divided by 60 = 9.75 to 9.92 hours",
+        "unsettled": [
+          "2026-01-26 Individual therapy (HG-E115): 40 to 50 minutes. Present 09:00-09:50 = 50 minutes; or present 09:10-09:50 = 40 minutes. Would be settled by: A signed correction or addendum for HG-E115 stating when the patient\u0027s contact began, or an independent record of arrival such as a check-in, room or platform log."
+        ],
+        "assumptions": [
+          "A week that is only partly inside the period examined is judged against the full goal. The goal is not prorated.",
+          "Arrival and departure times from attendance and desk records are taken as the patient\u0027s time in the session. They record check-in and check-out, so time in the room may be slightly shorter.",
+          "2026-01-09 Family therapy: Some records carried no encounter identifier and were linked by service date and category."
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "calculations_not_run": 0,
+  "model_calls": 3,
+  "input_tokens": 21429,
+  "output_tokens": 1630,
+  "latency_ms": 20499
+}

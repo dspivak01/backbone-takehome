@@ -1,0 +1,248 @@
+# NO-NAME-DEV-04
+
+**Question**: Reconstruct the care on January 19 and January 21. How many therapy contacts and patient therapy minutes occurred on each date, and how do the attendance records, clinical notes, later documents, and telehealth records affect your answer?
+
+## Answer
+
+*Written by the model from the calculation results below.*
+
+## Rowan Mercer (HG-M042) — January 19 & January 21
+
+*(No patient was named in the question. The collection holds two patients, but only Rowan Mercer's episode — 2026-01-05 to 2026-01-30 — covers these dates, so this record was used. Jordan Avery's episode does not include January 19 or 21.)*
+
+### January 19: 2 contacts, 90 minutes total
+
+| Contact | Type | Minutes | Basis |
+|---|---|---|---|
+| HG-E110 | Group therapy | 60 | Present 10:00–11:15, less a documented 10:45–11:00 break = 60 min [BH-D101 L6, L8] |
+| HG-E111 | Individual therapy | 30 | Present 11:15–11:45 = 30 min [BH-D105 L6] |
+
+**How the sources fit together:**
+- The signed clinical note (BH-D101) and the signed attendance record (BH-D102) both document the group session, but originally disagreed on the departure time: the attendance record and its extracted copy (BH-D104) stated 11:30 [BH-D102 L9, BH-D104 L14], while a later signed correction (BH-D103, dated 2026-01-20) fixed the departure at 11:15, explicitly replacing the original roster value: "Patient departure for HG-E110 is 11:15, replacing the original roster value of 11:30" [BH-D103 L7]. That correction is what the 60-minute figure relies on; the 11:30 entries are superseded copies, not independent confirmation.
+- The clinical note also documents a break from 10:45–11:00 with "no facilitated discussion, assigned therapeutic activity, or patient treatment during that interval" [BH-D101 L6, L8], which is excluded from the minutes.
+- The individual contact (HG-E111) was added same‑day: the group note records that when discussion turned to returning to work, Rowan "became visibly tense," and the facilitator "arranged a same-day individual meeting" [BH-D101 L10]. The individual clinical note (BH-D105) confirms this was added "because Rowan became anxious during group and needed individual grounding" [BH-D105 L9], and states the completed duration directly: "Patient contact: 11:15–11:45 | Completed: 30 minutes" [BH-D105 L6]. No discrepancies affect this contact.
+
+### January 21: 1 contact, 45 minutes
+
+| Contact | Type | Minutes | Basis |
+|---|---|---|---|
+| HG-E112 | Individual therapy (video) | 45 | Present 13:00–13:55, less a lost connection 13:20–13:30 = 45 min |
+
+**How the sources fit together:**
+- The signed clinical note states: "Patient contact occurred 13:00–13:20 and 13:30–13:55" and "Total patient psychotherapy contact: 45 minutes," with the gap explained as "Connection was lost from 13:20–13:30; there was no therapeutic contact during that interval" [BH-D106 L7].
+- Two unsigned telehealth platform logs corroborate the two connected segments: 13:00–13:20 and 13:30–13:55 [BH-D106 L17, L18]. These logs are lower-tier (unsigned) records but align with, rather than contradict, the signed note's timing and excluded interval.
+- Two fields on this contact — whether the visit is marked as having "taken place" and whether the patient was formally recorded as "present" — are listed as **missing/undetermined**: no document in the record states these explicitly, so they could not be resolved. This does not affect the minutes calculation, which rests on the timestamped contact periods above, but it means those two administrative fields remain unsettled in the record.
+
+### Summary
+- Jan 19: 2 therapy contacts, 90 minutes (60 group + 30 individual), with a same-day departure-time correction resolving an initial group-record discrepancy.
+- Jan 21: 1 therapy contact, 45 minutes, with unsigned telehealth logs supporting the signed note's account of a mid-session connection loss; disposition and presence fields for this contact are not stated anywhere in the record.
+
+## Checks on the answer
+
+*Run by code after the model finished.*
+
+| Check | Result |
+|---|---|
+| Sources cited | 11 cited, 11 found in the calculation results |
+| Sources not found in the results | None |
+| Numbers in the text | 88 found |
+| Numbers not found in the results or the question | None |
+| Outcome | Passed |
+
+
+## Calculations
+
+*Produced by code from the saved abstraction. No model wrote or edited these tables.*
+
+### 1. day reconstruction
+
+Inputs chosen by the model: `{"patient_key":"HG-M042","date":"2026-01-19"}`. Ran in 50.5 ms.
+
+| Parameter | Value | Source |
+|---|---|---|
+| Patient | Rowan Mercer (HG-M042) | Matched by medical record number |
+| Dates | 2026-01-19 to 2026-01-19 | Given in the request; both dates are included |
+| Week | Monday to Sunday | From the treatment plan |
+| Abstraction version | c9e505146e97ad8e | Changes only when a conclusion about this patient changes |
+
+
+**2026-01-19**: 2 therapy contact(s), 90 patient therapy minutes. 60 + 30 = 90 minutes.
+
+| Encounter | Service | Counted | Minutes | Detail |
+|---|---|---|---|---|
+| HG-E110 | Group therapy | counted | 60 | present 10:00-11:15, less break 10:45-11:00 = 60 minutes |
+| HG-E111 | Individual therapy | counted | 30 | present 11:15-11:45 = 30 minutes |
+
+
+### HG-E110: Group therapy
+
+| Field | Decision | Value | Rule | Explanation | Sources |
+|---|---|---|---|---|---|
+| Service category | resolved | group therapy | R4 | tier 1 (signed record) states group_therapy. | BH-D101 L3-6, BH-D102 L4-9, BH-D104 L10-14 |
+| Disposition | resolved | took place | R4 | tier 1 (signed record) states took_place. | BH-D102 L9-10, BH-D104 L14 |
+| Patient present | resolved | present | R4 | tier 1 (signed record) states present. | BH-D102 L9-10, BH-D104 L14 |
+| Presence start | resolved | 10:00 | R4 | tier 1 (signed record) states 10:00. | BH-D102 L9, BH-D102 L9-10, BH-D103 L7, BH-D104 L14 |
+| Presence end | resolved | 11:15 | R4 | tier 1 (signed record) states 11:15. | BH-D103 L7 |
+
+
+- Conclusion: session. 60 patient-present minutes. present 10:00-11:15, less break 10:45-11:00 = 60 minutes
+- Session interval: 10:00-11:30 (scheduled interval; BH-D101 L3-6, BH-D102 L4-9, BH-D104 L10-14).
+- Removed: break 10:45-11:00 (BH-D101 L6).
+
+
+Statements set aside:
+
+| Field | Value | Source | Rule | Reason |
+|---|---|---|---|---|
+| Presence end | 11:30 | BH-D102 L9 | R3 | The value the correction replaces; corrected to 11:15 by BH-D103 L7 |
+| Presence end | 11:30 | BH-D102 L9-10 | R3 | The value the correction replaces; corrected to 11:15 by BH-D103 L7 |
+| Presence end | 11:30 | BH-D104 L14 | R3 | A copy of the record that was corrected; corrected to 11:15 by BH-D103 L7 |
+| Presence end | 11:30 | BH-D104 L14 | R3 | A copy of the record that was corrected; corrected to 11:15 by BH-D103 L7 |
+
+
+Every statement linked to this encounter:
+
+| Source | Kind | Record | Signed | Tier | Stated at | Quote |
+|---|---|---|---|---|---|---|
+| BH-D101 L3-6 | encounter | clinical note | yes | 1 | 2026-01-19 12:08 | "Group encounter: HG-E110 \| Facilitator: Leah Chen, LCSW" |
+| BH-D101 L6 | excluded interval | clinical note | yes | 1 | 2026-01-19 12:08 | "Nontherapeutic break: 10:45–11:00." |
+| BH-D102 L4-9 | encounter | attendance record | yes | 1 | 2026-01-19 12:14 | "Service date: January 19, 2026 \| Group encounter: HG-E110" |
+| BH-D102 L9 | presence | attendance record | yes | 1 | 2026-01-19 12:14 | "Patient arrival: 10:00 \| Patient departure: 11:30 \| Status: Attended" |
+| BH-D102 L9-10 | attendance | attendance record | yes | 1 | 2026-01-19 12:14 | "Patient arrival: 10:00 \| Patient departure: 11:30 \| Status: Attended" |
+| BH-D103 L7 | correction | correction | yes | 1 | 2026-01-20 08:42 | "Patient departure for HG-E110 is 11:15, replacing the original roster value of 11:30." |
+| BH-D103 L7 | presence | correction | yes | 1 | 2026-01-20 08:42 | "Patient arrival remains 10:00." |
+| BH-D103 L9 | attendance | correction | yes | 1 | 2026-01-20 08:42 | "The group continued for other members until its scheduled close." |
+| BH-D104 L10-14 | encounter | attendance record (copy) | extract of signed | 1 | 2026-01-19 12:14 | "Service date: January 19, 2026 \| Group encounter: HG-E110 Location: Outpatient skills room B Scheduled opening: 10:00 \| Scheduled closing: 11:30" |
+| BH-D104 L14 | attendance | attendance record (copy) | extract of signed | 1 | 2026-01-19 12:14 | "Patient arrival: 10:00 \| Patient departure: 11:30 \| Status: Attended" |
+| BH-D104 L14 | presence | attendance record (copy) | extract of signed | 1 | 2026-01-19 12:14 | "Patient arrival: 10:00 \| Patient departure: 11:30 \| Status: Attended" |
+
+
+
+### HG-E111: Individual therapy
+
+| Field | Decision | Value | Rule | Explanation | Sources |
+|---|---|---|---|---|---|
+| Service category | resolved | individual therapy | R4 | tier 1 (signed record) states individual_therapy. | BH-D105 L3-7 |
+| Disposition | resolved | took place | R4 | tier 1 (signed record) states took_place. | BH-D105 L6 |
+| Patient present | resolved | present | R4 | tier 1 (signed record) states present. | BH-D105 L6 |
+| Presence start | resolved | 11:15 | R4 | tier 1 (signed record) states 11:15. | BH-D105 L6 |
+| Presence end | resolved | 11:45 | R4 | tier 1 (signed record) states 11:45. | BH-D105 L6 |
+
+
+- Conclusion: session. 30 patient-present minutes. present 11:15-11:45 = 30 minutes
+
+
+Every statement linked to this encounter:
+
+| Source | Kind | Record | Signed | Tier | Stated at | Quote |
+|---|---|---|---|---|---|---|
+| BH-D105 L3-7 | encounter | clinical note | yes | 1 | 2026-01-19 12:32 | "Individual psychotherapy \| Encounter HG-E111" |
+| BH-D105 L6 | attendance | clinical note | yes | 1 | 2026-01-19 12:32 | "Patient contact: 11:15–11:45 \| Completed: 30 minutes" |
+| BH-D105 L6 | presence | clinical note | yes | 1 | 2026-01-19 12:32 | "Patient contact: 11:15–11:45 \| Completed: 30 minutes" |
+| BH-D105 L6 | stated duration | clinical note | yes | 1 | 2026-01-19 12:32 | "Completed: 30 minutes" |
+
+
+
+**Observations recorded for this day**
+
+| Date | Category | What the record says | Source | Record |
+|---|---|---|---|---|
+| 2026-01-19 | intervention | "there was no facilitated discussion, assigned therapeutic activity, or patient treatment during that interval." | BH-D101 L8 | clinical note, signed |
+| 2026-01-19 | intervention | "Today's group addressed recognizing the sequence between a triggering situation, an anxious prediction, physical activation, and an avoidance response." | BH-D101 L8 | clinical note, signed |
+| 2026-01-19 | functioning | "Rowan initially followed the exercise and identified postponing a message to a supervisor as a familiar pattern." | BH-D101 L10 | clinical note, signed |
+| 2026-01-19 | patient reported symptoms | "When discussion turned to returning to the workplace, Rowan became visibly tense and said the amount of discussion felt difficult to manage." | BH-D101 L10 | clinical note, signed |
+| 2026-01-19 | intervention | "The facilitator offered grounding and arranged a same-day individual meeting with the treating clinician." | BH-D101 L10 | clinical note, signed |
+| 2026-01-19 | recommendation | "Coordinate with the individual clinician regarding the group experience so that future attendance can be supported without assuming that participation in a group exercise reflects completion of the patient's own work task." | BH-D101 L12 | clinical note, signed |
+| 2026-01-19 | functioning | "Rowan was present for the opening check-in." | BH-D102 L14 | attendance record, signed by Leah Chen, LCSW |
+| 2026-01-19 | patient reported symptoms | "The patient identified anxiety about reconnecting with work and accepted an exercise handout." | BH-D102 L14 | attendance record, signed by Leah Chen, LCSW |
+| 2026-01-19 | recommendation | "Staff arranged access to the individual clinician after Rowan requested additional help." | BH-D102 L14 | attendance record, signed by Leah Chen, LCSW |
+| 2026-01-19 | functioning | "No transportation assistance was requested." | BH-D102 L14 | attendance record, signed by Leah Chen, LCSW |
+| 2026-01-19 | reason for contact | "Rowan attended the opening check-in, accepted the exercise handout, and requested additional help from the individual clinician." | BH-D104 L18 | attendance record, signed (copy) |
+| 2026-01-19 | reason for contact | "Group content is recorded separately." | BH-D104 L18 | attendance record, signed (copy) |
+| 2026-01-19 | reason for contact | "This visit was added because Rowan became anxious during group and needed individual grounding and review of coping strategies." | BH-D105 L9 | clinical note, signed by Mira Patel, LCSW |
+| 2026-01-19 | patient reported symptoms | "The patient described feeling overwhelmed when other members discussed workplace demands and worried that returning to work would expose difficulties keeping up." | BH-D105 L9 | clinical note, signed by Mira Patel, LCSW |
+| 2026-01-19 | symptoms | "Rowan was able to identify muscle tension, rapid breathing, and an urge to leave as early signs of activation." | BH-D105 L9 | clinical note, signed by Mira Patel, LCSW |
+| 2026-01-19 | intervention | "Used paced breathing, orientation to the room, and a brief review of the patient's coping card." | BH-D105 L11 | clinical note, signed by Mira Patel, LCSW |
+| 2026-01-19 | symptoms | "Rowan participated throughout the individual contact and reported that the immediate intensity of anxiety eased enough to discuss a next step." | BH-D105 L11 | clinical note, signed by Mira Patel, LCSW |
+| 2026-01-19 | intervention | "We narrowed the work-related task to drafting two sentences to a supervisor, without requiring that the message be sent today." | BH-D105 L11 | clinical note, signed by Mira Patel, LCSW |
+| 2026-01-19 | safety | "Rowan denied current suicidal thoughts and remained future oriented in discussing the next appointment." | BH-D105 L13 | clinical note, signed by Mira Patel, LCSW |
+| 2026-01-19 | safety | "No acute safety concern was identified during this contact." | BH-D105 L13 | clinical note, signed by Mira Patel, LCSW |
+| 2026-01-19 | functioning | "Persistent avoidance and disrupted sleep continue to interfere with resuming a usual work routine." | BH-D105 L13 | clinical note, signed by Mira Patel, LCSW |
+| 2026-01-19 | recommendation | "Continue the established outpatient plan and review how the smaller task went at the next individual visit." | BH-D105 L13 | clinical note, signed by Mira Patel, LCSW |
+
+
+
+### 2. day reconstruction
+
+Inputs chosen by the model: `{"patient_key":"HG-M042","date":"2026-01-21"}`. Ran in 8.6 ms.
+
+| Parameter | Value | Source |
+|---|---|---|
+| Patient | Rowan Mercer (HG-M042) | Matched by medical record number |
+| Dates | 2026-01-21 to 2026-01-21 | Given in the request; both dates are included |
+| Week | Monday to Sunday | From the treatment plan |
+| Abstraction version | c9e505146e97ad8e | Changes only when a conclusion about this patient changes |
+
+
+**2026-01-21**: 1 therapy contact(s), 45 patient therapy minutes. 45 = 45 minutes.
+
+| Encounter | Service | Counted | Minutes | Detail |
+|---|---|---|---|---|
+| HG-E112 | Individual therapy | counted | 45 | present 13:00-13:55, less connection lost 13:20-13:30 = 45 minutes |
+
+
+### HG-E112: Individual therapy
+
+| Field | Decision | Value | Rule | Explanation | Sources |
+|---|---|---|---|---|---|
+| Service category | resolved | individual therapy | R4 | tier 1 (signed record) states individual_therapy. | BH-D106 L3-5 |
+| Disposition | missing | not stated | R4 | No record states this. |  |
+| Patient present | missing | not stated | R4 | No record states this. |  |
+| Presence start | resolved | 13:00 | R4 | tier 1 (signed record) states 13:00. | BH-D106 L17, BH-D106 L18, BH-D106 L7 |
+| Presence end | resolved | 13:55 | R4 | tier 1 (signed record) states 13:55. | BH-D106 L17, BH-D106 L18, BH-D106 L7 |
+
+
+- Conclusion: session. 45 patient-present minutes. present 13:00-13:55, less connection lost 13:20-13:30 = 45 minutes
+- Removed: connection lost 13:20-13:30 (BH-D106 L17, BH-D106 L18, BH-D106 L7).
+
+
+Every statement linked to this encounter:
+
+| Source | Kind | Record | Signed | Tier | Stated at | Quote |
+|---|---|---|---|---|---|---|
+| BH-D106 L3-5 | encounter | clinical note | yes | 1 | 2026-01-21 15:04 | "Individual psychotherapy \| Encounter HG-E112 \| Appointment HG-A112" |
+| BH-D106 L7 | excluded interval | clinical note | yes | 1 | 2026-01-21 15:04 | "Connection was lost from 13:20–13:30; there was no therapeutic contact during that interval." |
+| BH-D106 L7 | presence | clinical note | yes | 1 | 2026-01-21 15:04 | "Patient contact occurred 13:00–13:20 and 13:30–13:55." |
+| BH-D106 L7 | stated duration | clinical note | yes | 1 | 2026-01-21 15:04 | "Total patient psychotherapy contact: 45 minutes." |
+| BH-D106 L17 | presence | platform log | no | 2 | 2026-01-21 14:06 | "HG-A112 \| VC-112A \| January 21 13:00 \| January 21 13:20" |
+| BH-D106 L18 | presence | platform log | no | 2 | 2026-01-21 14:06 | "HG-A112 \| VC-112B \| January 21 13:30 \| January 21 13:55" |
+
+
+
+**Observations recorded for this day**
+
+| Date | Category | What the record says | Source | Record |
+|---|---|---|---|---|
+| 2026-01-21 | reason for contact | "Rowan reported drafting a short message about a possible gradual return to work but stopping before sending it." | BH-D106 L9 | clinical note, signed |
+| 2026-01-21 | patient reported symptoms | "The patient identified checking the draft repeatedly as another way the task was being delayed." | BH-D106 L9 | clinical note, signed |
+| 2026-01-21 | intervention | "Practiced reading the draft once and choosing a planned time to send it." | BH-D106 L9 | clinical note, signed |
+| 2026-01-21 | patient reported symptoms | "Rowan described one night of improved sleep followed by a night of prolonged wakefulness." | BH-D106 L11 | clinical note, signed |
+| 2026-01-21 | intervention | "Discussed keeping the wind-down routine brief and repeatable." | BH-D106 L11 | clinical note, signed |
+| 2026-01-21 | clinician assessment | "Rowan was engaged and able to restate the agreed task." | BH-D106 L11 | clinical note, signed |
+| 2026-01-21 | safety | "No urgent safety concern was reported." | BH-D106 L11 | clinical note, signed |
+| 2026-01-21 | recommendation | "Follow-up remains with the established outpatient team." | BH-D106 L11 | clinical note, signed |
+
+
+
+## How this answer was produced
+
+| Item | Value |
+|---|---|
+| Model | us.anthropic.claude-sonnet-5 |
+| Model calls | 3 |
+| Tokens | 21695 input, 1768 output |
+| Calculations run | find_patient, day_reconstruction, day_reconstruction |
+| Time | 22555 ms |
+| Abstraction version | d0c9c62d81aa43e7-b02d950f |
+
+

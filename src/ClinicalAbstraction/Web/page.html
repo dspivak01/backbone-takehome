@@ -1,0 +1,1609 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Clinical abstraction review</title>
+<style>
+:root {
+  color-scheme: light;
+  --accent: #1f5fae;
+  --accent-strong: #154784;
+  --accent-soft: #e6eef9;
+  --on-accent: #ffffff;
+  --bg: #f3f5f9;
+  --surface: #ffffff;
+  --surface-2: #ecf0f6;
+  --text: #18202b;
+  --muted: #536078;
+  --border: #d2dae6;
+  --met: #1b6a3a;
+  --met-soft: #e1f1e6;
+  --not-met: #a12a2e;
+  --not-met-soft: #f8e4e4;
+  --undetermined: #83540a;
+  --undetermined-soft: #f9eed7;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --accent: #82b2f1;
+    --accent-strong: #aacbf6;
+    --accent-soft: #1a2940;
+    --on-accent: #0d1219;
+    --bg: #0e131a;
+    --surface: #151c26;
+    --surface-2: #1b2430;
+    --text: #e2e7ee;
+    --muted: #9ca8bb;
+    --border: #2a3546;
+    --met: #86d6a1;
+    --met-soft: #14301f;
+    --not-met: #f1a3a3;
+    --not-met-soft: #3b1c1e;
+    --undetermined: #efc46e;
+    --undetermined-soft: #372a11;
+  }
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.5 var(--font); overflow-wrap: break-word; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:hover { color: var(--accent-strong); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+h1, h2, h3, h4 { line-height: 1.25; margin: 0 0 8px; }
+h1 { font-size: 22px; }
+h2 { font-size: 18px; }
+h3 { font-size: 16px; margin-top: 14px; }
+h4 { font-size: 14px; margin-top: 14px; }
+p { margin: 0 0 8px; }
+.bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; padding: 10px 16px; background: var(--surface); border-bottom: 1px solid var(--border); }
+.brand { font-weight: 650; }
+.bar ul { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.bar a { display: block; padding: 6px 12px; border-radius: 6px; color: var(--text); text-decoration: none; }
+.bar a:hover { background: var(--surface-2); color: var(--text); }
+.bar a[aria-current="page"] { background: var(--accent-soft); color: var(--accent-strong); font-weight: 600; }
+main { display: block; padding: 16px; max-width: 1180px; margin: 0 auto; min-width: 0; }
+main.wide { max-width: none; }
+main:focus { outline: none; }
+section { margin: 0 0 28px; }
+footer { padding: 8px 16px 28px; max-width: 1180px; margin: 0 auto; color: var(--muted); font-size: 13px; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.mono, .id { font-family: var(--mono); font-size: 0.92em; overflow-wrap: anywhere; }
+.figure { font-family: var(--mono); font-weight: 650; }
+.table-wrap { overflow-x: auto; max-width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin: 0 0 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 7px 10px; border-bottom: 1px solid var(--border); }
+th { background: var(--surface-2); font-weight: 600; font-size: 13px; }
+tbody tr:last-child td { border-bottom: 0; }
+th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td .id, td .mono, td a.source { overflow-wrap: normal; }
+td .id { white-space: nowrap; }
+tr.selected td { background: var(--accent-soft); }
+.result, .pill { display: inline-block; padding: 0 8px; border: 1px solid currentColor; border-radius: 999px; font-size: 13px; font-weight: 600; line-height: 1.6; }
+.result { white-space: nowrap; }
+.met { color: var(--met); background: var(--met-soft); }
+.not-met { color: var(--not-met); background: var(--not-met-soft); }
+.undetermined { color: var(--undetermined); background: var(--undetermined-soft); }
+.none, .not-counted { color: var(--muted); background: var(--surface-2); }
+.counted { color: var(--accent-strong); background: var(--accent-soft); }
+.may-count { color: var(--undetermined); background: var(--undetermined-soft); }
+.notice { padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); margin: 0 0 14px; }
+.notice.warning { border-color: var(--undetermined); background: var(--undetermined-soft); }
+.notice.error { border-color: var(--not-met); background: var(--not-met-soft); }
+.notice > :last-child { margin-bottom: 0; }
+.notice h2, .notice h3, .notice h4 { font-size: 15px; margin-top: 0; }
+ul.list { margin: 0 0 10px; padding-left: 20px; }
+ul.list li { margin: 0 0 4px; }
+dl.facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; margin: 0 0 12px; }
+dl.facts dt { color: var(--muted); }
+dl.facts dd { margin: 0; min-width: 0; }
+form.inline { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: flex-end; margin: 0 0 12px; }
+label { display: flex; flex-direction: column; gap: 2px; font-size: 13px; color: var(--muted); }
+input { font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px; max-width: 100%; }
+button { font: inherit; font-size: 14px; color: var(--on-accent); background: var(--accent); border: 1px solid var(--accent); border-radius: 6px; padding: 6px 14px; cursor: pointer; }
+button:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
+details { margin: 0 0 12px; }
+summary { cursor: pointer; color: var(--accent); }
+details[open] > summary { margin-bottom: 6px; }
+.quote { margin: 6px 0 0; padding: 4px 10px; border-left: 3px solid var(--border); font-family: var(--mono); font-size: 13px; white-space: pre-wrap; overflow-wrap: anywhere; }
+a.source { font-family: var(--mono); font-size: 0.92em; white-space: nowrap; }
+a[aria-current="true"] { font-weight: 700; background: var(--accent-soft); border-radius: 3px; padding: 0 2px; }
+.card { border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; margin: 0 0 8px; background: var(--surface); }
+.card.selected { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); background: var(--accent-soft); }
+.card.unresolved { border-color: var(--undetermined); }
+.card > :last-child { margin-bottom: 0; }
+.card-head { display: flex; flex-wrap: wrap; gap: 2px 10px; align-items: baseline; margin-bottom: 4px; }
+.card dl.facts { margin-bottom: 4px; }
+.trace-grid { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 780px) { .trace-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1240px) {
+  .trace-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr); }
+  .pane { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow-y: auto; }
+}
+.pane { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px; min-width: 0; }
+.pane > h2 { display: flex; gap: 8px; align-items: center; font-size: 15px; }
+.pane > h2:focus { outline: none; }
+.pane > h2:focus-visible { outline: 3px solid var(--accent); }
+.step { display: inline-grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; }
+.prompt { color: var(--muted); }
+.pane table { font-size: 13px; }
+.pane th, .pane td { padding: 5px 6px; }
+.pane .result { white-space: normal; border-radius: 8px; }
+.nowrap { white-space: nowrap; overflow-wrap: normal; }
+.doc-lines { font-family: var(--mono); font-size: 13px; border: 1px solid var(--border); border-radius: 8px; margin: 0 0 12px; overflow-x: auto; }
+.doc-line { display: grid; grid-template-columns: 1.2em 2.6em minmax(0, 1fr); gap: 0 6px; padding: 2px 8px; }
+.doc-line.cited { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); font-weight: 650; }
+.doc-line .no { color: var(--muted); text-align: right; }
+.doc-line .text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+textarea, select { font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px; max-width: 100%; }
+textarea { width: 100%; resize: vertical; }
+form.stack { display: grid; gap: 10px; max-width: 760px; margin: 0 0 12px; }
+button[disabled] { opacity: 0.55; cursor: not-allowed; }
+h5 { font-size: 14px; margin: 12px 0 6px; }
+h6 { font-size: 13px; margin: 12px 0 6px; }
+.part { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin: 0 0 14px; min-width: 0; }
+.part > h3:first-child { margin-top: 0; }
+.byline { color: var(--muted); font-size: 13px; font-style: italic; }
+code { font-family: var(--mono); font-size: 0.92em; background: var(--surface-2); border-radius: 4px; padding: 0 3px; overflow-wrap: anywhere; }
+pre.code { font-family: var(--mono); font-size: 13px; background: var(--surface-2); border-radius: 6px; padding: 8px 10px; margin: 0 0 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
+ol.list { margin: 0 0 10px; padding-left: 22px; }
+.list .list { margin: 4px 0 0; }
+.doc-line.marked .no { font-weight: 700; }
+.line-assertions { font-family: var(--font); font-size: 14px; padding: 10px 10px 4px; margin: 4px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); }
+.line-assertions h2 { font-size: 15px; }
+@media (max-width: 560px) {
+  dl.facts { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  dl.facts dd { margin-bottom: 6px; }
+  h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="brand">Clinical abstraction review</div>
+  <nav aria-label="Screens"><ul id="nav"></ul></nav>
+</header>
+<main id="main" tabindex="-1"></main>
+<footer id="status"></footer>
+<noscript><p>This page needs JavaScript to show the abstraction.</p></noscript>
+<script>
+'use strict';
+(() => {
+  // Every screen the page has, each with its own render function. Those with nav true appear in
+  // the navigation.
+  const SCREENS = {
+    patients: { label: 'Patients', nav: true, render: patientsScreen },
+    patient: { label: 'Patient', nav: false, render: patientScreen },
+    trace: { label: 'Trace', nav: true, render: traceScreen },
+    ask: { label: 'Ask', nav: true, render: askScreen },
+    documents: { label: 'Documents', nav: true, render: documentsScreen },
+    document: { label: 'Document', nav: false, render: documentScreen },
+    gaps: { label: 'Gap log', nav: true, render: gapsScreen },
+  };
+  const NAV_FOR = { patients: 'patients', patient: 'patients', trace: 'trace', ask: 'ask', documents: 'documents', document: 'documents', gaps: 'gaps' };
+  const STEPS = {
+    1: 'Weeks of the episode',
+    2: 'Sessions behind the week',
+    3: 'How the session was decided',
+    4: 'Document lines',
+  };
+  const TONES = new Set(['met', 'not-met', 'undetermined', 'none', 'counted', 'may-count', 'not-counted']);
+  const SEARCH_THRESHOLD = 10;
+  const WIDE = window.matchMedia('(min-width: 1240px)');
+
+  const main = document.getElementById('main');
+  const nav = document.getElementById('nav');
+  const footer = document.getElementById('status');
+  const cache = new Map();
+  const navLinks = {};
+  let sourceInText = null;
+  let pendingStep = null;
+  let renderCount = 0;
+  const trace = { identity: null, root: null, panes: {}, bodies: {}, signatures: {}, primaries: {}, tokens: {} };
+
+  // ---------- building the page, always from text ----------
+  // Nothing that comes from the server is ever read as markup. Every value becomes a text node,
+  // and every link is built here from a screen name and encoded parameters.
+
+  function el(tag, props, ...children) {
+    const node = document.createElement(tag);
+    if (props) {
+      for (const [name, value] of Object.entries(props)) {
+        if (value === null || value === undefined || value === false) continue;
+        if (/^on/i.test(name)) throw new Error('Event handlers are added with addEventListener.');
+        if (name === 'class') node.className = value;
+        else node.setAttribute(name, value === true ? '' : String(value));
+      }
+    }
+    return add(node, children);
+  }
+
+  // Adds content to a node. Empty values are skipped, never written out as text.
+  function put(node, ...children) { return add(node, children); }
+
+  // Replaces a node's content, skipping empty values in the same way.
+  function fill(node, ...children) {
+    node.replaceChildren();
+    return add(node, children);
+  }
+
+  function add(node, children) {
+    for (const child of [children].flat(Infinity)) {
+      if (child === null || child === undefined || child === false) continue;
+      node.append(child instanceof Node ? child : document.createTextNode(String(child)));
+    }
+    return node;
+  }
+
+  function route(screen, params) {
+    const query = new URLSearchParams();
+    for (const [name, value] of Object.entries(params || {})) {
+      if (value !== null && value !== undefined && value !== '') query.set(name, value);
+    }
+    const text = query.toString();
+    return '#/' + screen + (text ? '?' + text : '');
+  }
+
+  function current() {
+    const hash = location.hash.replace(/^#\/?/, '');
+    const at = hash.indexOf('?');
+    const screen = at < 0 ? hash : hash.slice(0, at);
+    return { screen: SCREENS[screen] ? screen : 'patients', params: new URLSearchParams(at < 0 ? '' : hash.slice(at + 1)) };
+  }
+
+  function tone(value) { return TONES.has(value) ? value : 'none'; }
+
+  function badge(words, value) { return el('span', { class: 'result ' + tone(value) }, words); }
+
+  function pill(words, value) { return el('span', { class: 'pill ' + tone(value) }, words); }
+
+  // A short status that should stay on one line inside a narrow table column.
+  function tag(words, value) { return el('span', { class: 'pill nowrap ' + tone(value) }, words); }
+
+  function quote(value) { return el('blockquote', { class: 'quote' }, value); }
+
+  function prompt(message) { return el('p', { class: 'prompt' }, message); }
+
+  function loading(message) { return el('p', { class: 'muted', role: 'status' }, message); }
+
+  function table(caption, headers, rows) {
+    const numeric = headers.map(h => typeof h === 'object' && h.num);
+    const head = el('tr', null, headers.map((h, i) => el('th', { scope: 'col', class: numeric[i] ? 'num' : null }, typeof h === 'object' ? h.text : h)));
+    const body = rows.length
+      ? rows.map(row => {
+          const cells = Array.isArray(row) ? row : row.cells;
+          return el('tr', { class: row.selected ? 'selected' : null }, cells.map((cell, i) => el('td', { class: numeric[i] ? 'num' : null }, cell)));
+        })
+      : [el('tr', null, el('td', { colspan: headers.length, class: 'muted' }, 'None'))];
+    return el('div', { class: 'table-wrap' }, el('table', null, el('caption', { class: 'vh' }, caption), el('thead', null, head), el('tbody', null, body)));
+  }
+
+  function num(text) { return { text, num: true }; }
+
+  // A form that runs its handler on submit. Enter in any of its fields submits it, whatever
+  // produced the key press.
+  function form(props, onSubmit, ...children) {
+    const node = el('form', props, ...children);
+    node.addEventListener('submit', event => { event.preventDefault(); onSubmit(); });
+    node.addEventListener('keydown', event => {
+      if (event.key !== 'Enter' || !(event.target instanceof HTMLInputElement)) return;
+      event.preventDefault();
+      node.requestSubmit();
+    });
+    return node;
+  }
+
+  function list(items, context, className) {
+    if (!items || !items.length) return null;
+    return el('ul', { class: 'list' + (className ? ' ' + className : '') }, items.map(item => el('li', null, withSources(item, context))));
+  }
+
+  // A disagreement in the record: what it is, the rule in words, and its sources as links.
+  function disagreementList(items, context, className) {
+    return el('ul', { class: 'list' + (className ? ' ' + className : '') }, items.map(d => el('li', null,
+      d.encounter ? [el('span', { class: 'mono' }, d.encounter), ': '] : null,
+      withSources(d.description, context), ' ',
+      el('span', { class: 'muted' }, d.rule + '.'),
+      d.sources.length ? [' Sources: ', sources(d.sources, context), '.'] : null)));
+  }
+
+  function details(title, items, context) {
+    if (!items || !items.length) return null;
+    return el('details', null, el('summary', null, title), list(items, context, 'small'));
+  }
+
+  function facts(pairs) {
+    return el('dl', { class: 'facts' }, pairs.filter(Boolean).map(([term, value]) => [el('dt', null, term), el('dd', null, value)]));
+  }
+
+  // ---------- sources ----------
+  // A source looks like "BH-D005 L10" or "BH-D103 L5-7". Every one on the page is a link that
+  // opens Trace step 4 at those lines, keeping whatever else is selected.
+
+  // A source inside a sentence is found by the document identifiers the database holds, taken
+  // literally, so an identifier can hold any character: spaces, "/", ".", "#", quotes or letters
+  // of any alphabet. Longer identifiers are tried first.
+  function sourcePattern(ids) {
+    const literal = [...new Set(ids)].filter(Boolean).sort((a, b) => b.length - a.length)
+      .map(id => id.replace(/[.*+?^${}()|[\]\\\/-]/g, '\\$&'));
+    return literal.length ? new RegExp('(?<![A-Za-z0-9_-])(?:' + literal.join('|') + ') L(\\d+)(?:-(\\d+))?(?![A-Za-z0-9_-])', 'g') : null;
+  }
+
+  function parseSource(reference) {
+    const match = /^(.+) L(\d+)(?:-(\d+))?$/.exec(reference);
+    return match ? { doc: match[1], lines: match[3] ? match[2] + '-' + match[3] : match[2] } : null;
+  }
+
+  function sourceLink(reference, context) {
+    const parsed = parseSource(reference);
+    if (!parsed || !context || !context.patient) return el('span', { class: 'mono' }, reference);
+    const selected = context.doc === parsed.doc && context.lines === parsed.lines;
+    return el('a', {
+      class: 'source',
+      href: route('trace', { patient: context.patient, from: context.from, to: context.to, week: context.week, encounter: context.encounter, doc: parsed.doc, lines: parsed.lines }),
+      'data-step': '4',
+      'aria-current': selected ? 'true' : null,
+    }, reference);
+  }
+
+  function sources(references, context) {
+    const out = [];
+    (references || []).forEach((reference, i) => {
+      if (i > 0) out.push(', ');
+      out.push(sourceLink(reference, context));
+    });
+    return out;
+  }
+
+  // Sentences written by the code name their sources inline. Those become links too; the rest
+  // of the sentence stays text.
+  function withSources(value, context) {
+    const textValue = value === null || value === undefined ? '' : String(value);
+    const fragment = document.createDocumentFragment();
+    let last = 0;
+    for (const match of sourceInText ? textValue.matchAll(sourceInText) : []) {
+      fragment.append(document.createTextNode(textValue.slice(last, match.index)));
+      fragment.append(sourceLink(match[0], context));
+      last = match.index + match[0].length;
+    }
+    fragment.append(document.createTextNode(textValue.slice(last)));
+    return fragment;
+  }
+
+  // ---------- requests ----------
+
+  class RequestError extends Error {}
+
+  async function fetchJson(url, options) {
+    let response;
+    try {
+      response = await fetch(url, Object.assign({ headers: { Accept: 'application/json' }, cache: 'no-store' }, options || {}));
+    } catch {
+      throw new RequestError('The page could not reach the server. Check that the serve command is still running.');
+    }
+    let body = null;
+    try { body = await response.json(); } catch { body = null; }
+    if (!response.ok) {
+      throw new RequestError(body && typeof body.error === 'string' ? body.error : 'The server could not answer this request.');
+    }
+    return body;
+  }
+
+  function get(path, params) {
+    const query = new URLSearchParams();
+    for (const [name, value] of Object.entries(params || {})) {
+      if (value !== null && value !== undefined && value !== '') query.set(name, value);
+    }
+    const url = path + (query.toString() ? '?' + query.toString() : '');
+    if (!cache.has(url)) cache.set(url, fetchJson(url).catch(error => { cache.delete(url); throw error; }));
+    return cache.get(url);
+  }
+
+  // A request that changes something: a question as JSON, or files or a folder as a form. The
+  // browser adds this page's own address as the Origin header, which the server requires.
+  function send(url, body) {
+    const headers = { Accept: 'application/json' };
+    if (typeof body === 'string') headers['Content-Type'] = 'application/json';
+    return fetchJson(url, { method: 'POST', body, headers });
+  }
+
+  // A patient, and an encounter, are named in the query string, never in the path: identifiers
+  // come from documents and can hold "/", "%", "#" or "?", or be "." or "..".
+  function patientGet(key, rest, params) { return get('/api/patient' + (rest || ''), Object.assign({ key }, params || {})); }
+
+  function failed(error) {
+    if (!(error instanceof RequestError)) console.error(error);
+    const message = error instanceof RequestError ? error.message : 'This part of the page could not be shown.';
+    return el('div', { class: 'notice error', role: 'alert' }, el('p', null, message));
+  }
+
+  // ---------- routing ----------
+
+  async function render() {
+    const { screen, params } = current();
+    const token = ++renderCount;
+    const live = () => token === renderCount;
+    for (const [name, link] of Object.entries(navLinks)) {
+      if (NAV_FOR[screen] === name) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    }
+    main.classList.toggle('wide', screen === 'trace');
+    if (screen === 'trace' && trace.root && trace.root.isConnected && trace.identity === traceIdentity(params)) {
+      updateTrace(params);
+      return;
+    }
+    trace.root = null;
+    fill(main);
+    try {
+      await SCREENS[screen].render(params, main, live);
+    } catch (error) {
+      if (live()) fill(main, failed(error));
+    }
+    if (pendingStep === null && live()) main.focus({ preventScroll: true });
+  }
+
+  function buildNav() {
+    for (const [name, screen] of Object.entries(SCREENS)) {
+      if (!screen.nav) continue;
+      const link = el('a', { href: route(name) }, screen.label);
+      navLinks[name] = link;
+      put(nav, el('li', null, link));
+    }
+  }
+
+  // ---------- Patients ----------
+
+  async function patientsScreen(params, view, live) {
+    const search = (params.get('search') || '').trim();
+    document.title = 'Patients · Clinical abstraction review';
+    const listArea = el('section', null, loading('Loading the patient list.'));
+    const collectionArea = el('section');
+    put(view, el('h1', null, 'Patients'), listArea, collectionArea);
+
+    let patients;
+    try {
+      patients = await get('/api/patients', { search });
+    } catch (error) {
+      if (live()) fill(listArea, failed(error));
+      return;
+    }
+    if (!live()) return;
+
+    if (patients.empty_collection) {
+      fill(listArea, el('div', { class: 'notice' }, el('h2', null, 'No patients yet'), el('p', null, patients.empty_collection),
+        el('p', null, el('a', { href: route('documents') }, 'Add documents'))));
+      return;
+    }
+
+    fill(listArea, 
+      patients.search_offered || search ? searchForm(search) : null,
+      patients.note ? el('p', { class: 'muted', role: 'status' }, patients.note) : null,
+      table('Patients in the collection',
+        ['Name', 'Key', 'Episode', num('Plan versions'), num('Encounters'), 'Warnings'],
+        patients.patients.map(p => [
+          el('a', { href: route('patient', { key: p.key }) }, p.name),
+          el('span', { class: 'id' }, p.key),
+          el('span', { class: 'mono nowrap' }, p.episode),
+          String(p.plan_versions),
+          String(p.encounters),
+          p.warnings ? pill(p.warnings === 1 ? '1 warning' : p.warnings + ' warnings', 'undetermined') : 'None',
+        ])));
+
+    put(collectionArea, el('h2', null, 'Across the collection'));
+    const consecutiveArea = el('div', null, loading('Loading the patients with consecutive weeks below the goal.'));
+    const summaryArea = el('div', null, loading('Loading the summary by patient.'));
+    put(collectionArea, consecutiveArea, summaryArea);
+
+    get('/api/collection/consecutive').then(
+      result => { if (live()) fill(consecutiveArea, consecutiveSection(result)); },
+      error => { if (live()) fill(consecutiveArea, el('h3', null, 'Patients with two consecutive weeks below the goal'), failed(error)); });
+    get('/api/collection/summary').then(
+      result => { if (live()) fill(summaryArea, summarySection(result)); },
+      error => { if (live()) fill(summaryArea, el('h3', null, 'Summary by patient'), failed(error)); });
+  }
+
+  function searchForm(value) {
+    const input = el('input', { type: 'search', id: 'patient-search', value, autocomplete: 'off', spellcheck: 'false' });
+    return form({ class: 'inline', role: 'search' },
+      () => { location.hash = route('patients', { search: input.value.trim() }); },
+      el('label', { for: 'patient-search' }, 'Search by name, key or medical record number', input),
+      el('button', { type: 'submit' }, 'Search'),
+      value ? el('a', { href: route('patients') }, 'Show all patients') : null);
+  }
+
+  function consecutiveSection(c) {
+    const patientLink = p => el('a', { href: route('patient', { key: p.key }) }, p.label);
+    const joined = nodes => nodes.flatMap((node, i) => (i > 0 ? [', ', node] : [node]));
+    // Each week's cell ends with the sources for the plan that set its goal and for its contacts,
+    // each a link to the document lines in step 4 of the trace.
+    const weekCell = (key, week, result, resultTone, detail, goal, contacts) => [
+      el('a', { href: route('trace', { patient: key, week }), 'data-step': '2' }, week), ' ',
+      badge(result, resultTone), ' ', detail,
+      goal.length || contacts.length
+        ? el('div', { class: 'small' },
+            goal.length ? ['Goal from ', sources(goal, { patient: key, week }), '. '] : null,
+            contacts.length ? ['Contacts: ', sources(contacts, { patient: key, week }), '.'] : null)
+        : null,
+    ];
+    return el('div', null,
+      el('h3', null, 'Patients with two consecutive weeks below the goal'),
+      el('p', { class: 'muted small' }, 'Patients examined: ' + c.patients_examined + '. Period: ' + c.period + '.'),
+      table('Groups of patients', ['Group', 'Patients'], c.groups.map(g => {
+        const members = joined([...g.patients.map(patientLink), ...g.named.map(n => document.createTextNode(n))]);
+        return [g.label, members.length ? members : 'None'];
+      })),
+      c.note ? el('p', { class: 'muted small', role: 'status' }, c.note) : null,
+      // With many patients each patient's pairs are folded away, so the page stays a readable length.
+      c.details.map(d => el(c.details.length > SEARCH_THRESHOLD ? 'details' : 'div', null,
+        el(c.details.length > SEARCH_THRESHOLD ? 'summary' : 'h4', null, patientLink(d), ': ', d.status),
+        table('Pairs of weeks for ' + d.label, ['Weeks', 'Kind', 'First week', 'Second week', 'Would be settled by'], d.pairs.map(p => [
+          p.weeks, p.kind,
+          weekCell(d.key, p.first_week, p.first_result, p.first_tone, p.first_detail, p.first_goal_sources, p.first_contact_sources),
+          weekCell(d.key, p.second_week, p.second_result, p.second_tone, p.second_detail, p.second_goal_sources, p.second_contact_sources),
+          p.would_settle.length ? p.would_settle.join(' ') : 'Nothing needed',
+        ])))),
+      details('Assumptions', c.assumptions, null));
+  }
+
+  function summarySection(s) {
+    const patientLink = r => el('a', { href: route('patient', { key: r.key }) }, r.label);
+    return el('div', null,
+      el('h3', null, 'Summary by patient'),
+      el('p', { class: 'muted small' }, 'Period: ' + s.period + '. ' + s.date_range_source),
+      s.notes.map(n => el('p', { class: 'small' }, n)),
+      s.note ? el('p', { class: 'muted small', role: 'status' }, s.note) : null,
+      table('Sessions attended, by patient',
+        ['Patient', 'Period examined', ...s.services.map(num), num('Total sessions'), num('Distinct therapy days'), num('Minutes')],
+        s.rows.map(r => [
+          patientLink(r), el('span', { class: 'mono nowrap' }, r.period), ...r.sessions.map(String), r.total, r.distinct_days,
+          el('a', { href: route('trace', { patient: r.key }), 'data-step': '1' }, r.minutes),
+        ])),
+      table('Weeks against the treatment plan goal, by patient',
+        ['Patient', num('Weeks examined'), num('Goal met'), num('Goal not met'), num('Cannot be determined'), num('No goal in effect'), num('Weeks only partly inside the period')],
+        s.rows.map(r => [
+          patientLink(r), String(r.weeks_examined), String(r.weeks_met), String(r.weeks_not_met),
+          String(r.weeks_undetermined), String(r.weeks_with_no_goal), String(r.partial_weeks),
+        ])),
+      details('Assumptions', s.assumptions, null),
+      s.warnings.length ? el('div', { class: 'notice warning' }, el('h4', null, 'Warnings'), list(s.warnings, null)) : null);
+  }
+
+  // ---------- one patient ----------
+
+  async function patientScreen(params, view, live) {
+    const key = (params.get('key') || '').trim();
+    if (!key) {
+      put(view, el('p', null, 'No patient was named. ', el('a', { href: route('patients') }, 'Choose a patient')));
+      return;
+    }
+    const from = params.get('from') || '';
+    const to = params.get('to') || '';
+    const day = params.get('day') || '';
+    put(view, loading("Loading the patient's record."));
+
+    let patient;
+    try {
+      patient = await patientGet(key);
+    } catch (error) {
+      if (live()) fill(view, failed(error), el('p', null, el('a', { href: route('patients') }, 'Back to the patient list')));
+      return;
+    }
+    if (!live()) return;
+    document.title = patient.name + ' (' + patient.key + ') · Clinical abstraction review';
+    const context = { patient: patient.key, from, to };
+    const traceHere = extra => route('trace', Object.assign({ patient: patient.key, from, to }, extra || {}));
+
+    fill(view, 
+      el('h1', null, patient.name, ' ', el('span', { class: 'id muted' }, '(' + patient.key + ')')),
+      warningsBlock(patient, context),
+      facts([
+        ['Medical record number', patient.mrn ? el('span', { class: 'mono' }, patient.mrn) : 'Not recorded'],
+        ['Date of birth', el('span', { class: 'mono' }, patient.date_of_birth)],
+        ['Episode', [el('span', { class: 'mono' }, patient.episode), patient.episode_sources.length ? [' from ', sources(patient.episode_sources, context)] : null,
+          patient.episode_note ? el('div', { class: 'small muted' }, patient.episode_note) : null]],
+        ['Week', patient.week_definition],
+        ['Documents', String(patient.documents)],
+        ['Assertions', String(patient.statements)],
+        ['Encounters', String(patient.encounter_count)],
+        ['Abstraction version', el('span', { class: 'mono' }, patient.version)],
+      ]),
+      el('p', null, el('a', { href: traceHere(), 'data-step': '1' }, 'Trace a weekly total back to the document lines')),
+      periodForm(patient.key, from, to, day),
+      section('Weekly results', () => patientGet(patient.key, '/weekly', { from, to }), weekly => weeklyBlock(weekly, context, traceHere), live),
+      section('Sessions attended', () => patientGet(patient.key, '/sessions', { from, to }), sessions => sessionsBlock(sessions, context), live),
+      el('section', null, el('h2', null, 'Treatment plan versions'),
+        table('Treatment plan versions',
+          ['In effect', num('Minimum therapy days per week'), num('Minimum minutes per week'), 'Week', 'Counts', 'Does not count', 'Sources'],
+          patient.plans.map(p => [
+            el('span', { class: 'mono nowrap' }, p.in_effect), p.minimum_days, p.minimum_minutes, p.week,
+            p.counts.join(', '), p.does_not_count.join(', '), sources(p.sources, context),
+          ]))),
+      el('section', null, el('h2', null, 'Encounters'),
+        table('Encounters',
+          ['Date', 'Encounter', 'Service', 'Conclusion', num('Patient-present minutes'), 'Counted by the plan', 'Documents'],
+          patient.encounters.map(e => [
+            el('span', { class: 'mono nowrap' }, e.date + ' ' + e.weekday),
+            el('a', { class: 'id', href: traceHere({ week: e.week_start, encounter: e.ref }), 'data-step': '3' }, e.encounter),
+            e.service, withSources(e.conclusion, context), e.minutes, pill(e.counted_by_plan, e.tone),
+            el('span', { class: 'mono' }, e.documents.join(', ')),
+          ])),
+        patient.other_records.length
+          ? el('details', null, el('summary', null, 'Records that are not appointments'),
+              table('Records that are not appointments', ['Source', 'Date', 'What the record says'],
+                patient.other_records.map(r => [sourceLink(r.source, context), el('span', { class: 'mono nowrap' }, r.date), r.description])))
+          : null),
+      section('Symptom assessments', () => patientGet(patient.key, '/measures'), measures => measuresBlock(measures, context), live),
+      daySection(patient.key, day, context, live),
+      observationsSection(patient.key, from, to, context));
+  }
+
+  // A section whose content comes from its own request, so one failed calculation does not stop the rest of the page.
+  function section(title, load, draw, live) {
+    const body = el('div', null, loading('Loading.'));
+    load().then(
+      data => { if (live()) fill(body, ...[draw(data)].flat(Infinity).filter(Boolean)); },
+      error => { if (live()) fill(body, failed(error)); });
+    return el('section', null, el('h2', null, title), body);
+  }
+
+  function warningsBlock(patient, context) {
+    if (!patient.warnings.length && !patient.unlinked.length) return null;
+    return el('section', { class: 'notice warning' },
+      el('h2', null, 'Warnings'),
+      list(patient.warnings, context),
+      patient.unlinked.length
+        ? [el('h3', null, 'Assertions that could not be linked to an encounter, left out of the counts'),
+           table('Assertions that could not be linked', ['Source', 'Kind', 'Reason', 'Quote'],
+             patient.unlinked.map(u => [sourceLink(u.source, context), u.kind, u.reason, quote(u.quote)]))]
+        : null);
+  }
+
+  function periodForm(key, from, to, day) {
+    const fromInput = el('input', { type: 'date', id: 'period-from', value: from });
+    const toInput = el('input', { type: 'date', id: 'period-to', value: to });
+    return el('div', null,
+      el('p', { class: 'small muted' }, 'The weekly results, sessions and observations cover the episode unless a period is given. Both dates are included.'),
+      form({ class: 'inline', 'aria-label': 'Period' },
+        () => { location.hash = route('patient', { key, from: fromInput.value, to: toInput.value, day }); },
+        el('label', { for: 'period-from' }, 'From', fromInput),
+        el('label', { for: 'period-to' }, 'To', toInput),
+        el('button', { type: 'submit' }, 'Show period'),
+        from || to ? el('a', { href: route('patient', { key, day }) }, 'Use the whole episode') : null));
+  }
+
+  function weeklyBlock(weekly, context, traceHere) {
+    const p = weekly.parameters;
+    return [
+      el('p', { class: 'small muted' }, withSources(p.dates + '. ' + p.date_range_source + ' Week: ' + p.week + '.', context)),
+      table('Weekly results',
+        ['Week', num('Therapy days'), num('Minutes'), num('Hours'), 'Arithmetic', 'Goal', 'Result'],
+        weekly.weeks.map(w => [
+          [el('a', { class: 'mono nowrap', href: traceHere({ week: w.week_start }), 'data-step': '2' }, w.label), w.partial ? ' (partial)' : ''],
+          w.days,
+          el('a', { href: traceHere({ week: w.week_start }), 'data-step': '2' }, w.minutes),
+          w.hours,
+          el('span', { class: 'mono' }, w.arithmetic),
+          w.goal,
+          badge(w.result, w.tone),
+        ])),
+      el('p', null, el('strong', null, 'Total: '), weekly.total_minutes + ' minutes, ' + weekly.total_hours + ' hours. ', el('span', { class: 'mono small' }, weekly.total_arithmetic)),
+      details('Why each week has its result', weekly.weeks.map(w =>
+        'Week of ' + w.week_start + ': ' + w.reason +
+        (w.goal_sources.length ? ' Goal from ' + w.goal_sources.join(', ') + '.' : '') +
+        (w.plan_note ? ' ' + w.plan_note : '') +
+        (w.partial_note ? ' ' + w.partial_note : '') +
+        (w.would_settle.length ? ' Would be settled by: ' + w.would_settle.join(' ') : '')), context),
+      weekly.unsettled.length ? [el('h3', null, 'What the record does not settle'), list(weekly.unsettled, context)] : null,
+      details('Assumptions', weekly.assumptions, context),
+    ];
+  }
+
+  function sessionsBlock(s, context) {
+    return [
+      table('Sessions attended by service type', ['Service type', num('Sessions')], [
+        ...s.by_service.map(x => [x.service, String(x.sessions)]),
+        [el('strong', null, 'Total'), el('strong', null, s.total)],
+        [el('strong', null, 'Distinct days'), el('strong', null, s.distinct_days)],
+      ]),
+      s.disagreements.length ? [el('h3', null, 'Records that disagree with the conclusion'), disagreementList(s.disagreements, context)] : null,
+      details('Contacts described by more than one document, counted once', s.described_more_than_once, context),
+      details('Records that are not appointments', s.not_appointments, context),
+    ];
+  }
+
+  function measuresBlock(m, context) {
+    return [
+      el('p', null, 'Distinct assessments: ' + m.distinct_assessments + '.'),
+      table('Symptom assessments',
+        ['Instrument', 'Completed', num('Total'), num('Change from previous'), num('Change from first'), 'Item scores', 'Sources', 'Copies and later mentions'],
+        m.assessments.map(a => [
+          a.instrument, el('span', { class: 'mono nowrap' }, a.completed), a.total, a.change_from_previous, a.change_from_first,
+          a.item_scores, sources(a.sources, context), a.copies_and_mentions.length ? sources(a.copies_and_mentions, context) : 'None',
+        ])),
+      m.assessments.some(a => a.disagreements.length)
+        ? [el('h3', null, 'Disagreements'), disagreementList(m.assessments.flatMap(a => a.disagreements.map(d => Object.assign({}, d, { encounter: a.instrument + ' ' + a.completed }))), context)]
+        : null,
+      el('h3', null, 'Limits on what these results support'),
+      list(m.limits, context),
+    ];
+  }
+
+  function daySection(key, day, context, live) {
+    const input = el('input', { type: 'date', id: 'day-date', value: day, required: true });
+    const dayForm = form({ class: 'inline', 'aria-label': 'One day' },
+      () => { location.hash = route('patient', { key, from: context.from, to: context.to, day: input.value }); },
+      el('label', { for: 'day-date' }, 'Date', input),
+      el('button', { type: 'submit' }, 'Show day'));
+    const body = el('div');
+    if (day) {
+      put(body, loading('Loading the day.'));
+      patientGet(key, '/day', { date: day }).then(
+        d => { if (live()) fill(body, ...dayBlock(d, context).flat(Infinity).filter(Boolean)); },
+        error => { if (live()) fill(body, failed(error)); });
+    }
+    return el('section', null, el('h2', null, 'One day'),
+      el('p', { class: 'small muted' }, 'Everything recorded for one date: each contact, the minutes, and the observations written that day.'),
+      dayForm, body);
+  }
+
+  function dayBlock(d, context) {
+    return [
+      el('p', null, el('strong', { class: 'mono' }, d.date), ': ' + d.therapy_contacts + ' therapy contact(s), ' + d.minutes + ' patient therapy minutes. ',
+        el('span', { class: 'mono small' }, d.arithmetic)),
+      table('Contacts on ' + d.date, ['Encounter', 'Service', 'Counted', num('Minutes'), 'Detail'], d.contacts.map(c => [
+        el('a', { class: 'id', href: route('trace', { patient: context.patient, from: context.from, to: context.to, week: c.week_start, encounter: c.ref }), 'data-step': '3' }, c.encounter),
+        c.service, pill(c.status, c.tone), c.minutes, withSources(c.detail, context),
+      ])),
+      d.other_records.length ? [el('h3', null, 'Other records dated this day'), list(d.other_records, context)] : null,
+      d.observations.length ? [el('h3', null, 'Observations recorded for this day'), observationTable(d.observations, context)] : null,
+    ];
+  }
+
+  function observationsSection(key, from, to, context) {
+    const body = el('div');
+    const box = el('details', null, el('summary', null, 'Show the quoted observations'), body);
+    let loaded = false;
+    box.addEventListener('toggle', () => {
+      if (!box.open || loaded) return;
+      loaded = true;
+      fill(body, loading('Loading the quoted observations.'));
+      patientGet(key, '/observations', { from, to }).then(
+        o => { if (box.isConnected) fill(body, o.observations.length ? observationTable(o.observations, context) : prompt('No observations are recorded in this period.')); },
+        error => { if (box.isConnected) fill(body, failed(error)); });
+    });
+    return el('section', null, el('h2', null, 'Quoted observations'),
+      el('p', { class: 'small muted' }, 'What the documents say about symptoms, functioning, safety and care, quoted exactly. They are shown as recorded and are not counted.'),
+      box);
+  }
+
+  function observationTable(observations, context) {
+    return table('Quoted observations', ['Date', 'Category', 'What the record says', 'Source', 'Record'], observations.map(o => [
+      el('span', { class: 'mono nowrap' }, o.date), o.category, quote(o.quote), sourceLink(o.source, context), o.record,
+    ]));
+  }
+
+  // ---------- Trace ----------
+  // Four steps side by side: a week, the sessions behind its total, how one session was decided,
+  // and the document lines a source points to. The address holds every selection, so a trace can
+  // be reloaded or bookmarked. Panes that a new selection does not change are left as they are.
+
+  function traceIdentity(params) {
+    return [(params.get('patient') || '').trim().toUpperCase(), params.get('from') || '', params.get('to') || ''].join('|');
+  }
+
+  function selection(params) {
+    return {
+      patient: (params.get('patient') || '').trim(),
+      from: params.get('from') || '',
+      to: params.get('to') || '',
+      week: params.get('week') || '',
+      encounter: params.get('encounter') || '',
+      doc: params.get('doc') || '',
+      lines: params.get('lines') || '',
+    };
+  }
+
+  function base(sel) { return { patient: sel.patient, from: sel.from, to: sel.to }; }
+
+  async function traceScreen(params, view, live) {
+    const sel = selection(params);
+    if (!sel.patient) return tracePicker(view, live);
+    navLinks.trace.setAttribute('href', location.hash);
+
+    const head = el('div', null, el('h1', null, 'Trace'), loading("Loading the patient's record."));
+    const panes = [1, 2, 3, 4].map(n => {
+      const body = el('div');
+      const pane = el('section', { class: 'pane', 'aria-labelledby': 'step-' + n },
+        el('h2', { id: 'step-' + n, tabindex: '-1' }, el('span', { class: 'step', 'aria-hidden': 'true' }, String(n)), el('span', { class: 'vh' }, 'Step ' + n + ': '), STEPS[n]),
+        body);
+      trace.panes[n] = pane;
+      trace.bodies[n] = body;
+      return pane;
+    });
+    trace.root = el('div', null, head,
+      el('p', { class: 'small muted' }, 'Follow a weekly total to the sessions behind it, then to how each detail of one session was decided, then to the lines of the document that say so. Every source is a link to step 4.'),
+      el('div', { class: 'trace-grid' }, panes));
+    trace.identity = traceIdentity(params);
+    trace.signatures = {};
+    trace.primaries = {};
+    fill(view, trace.root);
+    updateTrace(params);
+
+    patientGet(sel.patient).then(patient => {
+      if (!head.isConnected) return;
+      document.title = 'Trace: ' + patient.name + ' (' + patient.key + ') · Clinical abstraction review';
+      const context = base(sel);
+      fill(head, 
+        el('h1', null, 'Trace: ', patient.name, ' ', el('span', { class: 'id muted' }, '(' + patient.key + ')')),
+        el('p', { class: 'small' }, el('a', { href: route('patient', { key: patient.key, from: sel.from, to: sel.to }) }, "Back to this patient's page")),
+        warningsBlock(patient, context));
+    }, error => {
+      if (head.isConnected) fill(head, el('h1', null, 'Trace'), failed(error));
+    });
+  }
+
+  async function tracePicker(view, live) {
+    document.title = 'Trace · Clinical abstraction review';
+    put(view, el('h1', null, 'Trace'), loading('Loading the patient list.'));
+    let patients;
+    try {
+      patients = await get('/api/patients', {});
+    } catch (error) {
+      if (live()) fill(view, el('h1', null, 'Trace'), failed(error));
+      return;
+    }
+    if (!live()) return;
+    if (patients.patients_in_collection === 1) {
+      location.replace(route('trace', { patient: patients.patients[0].key }));
+      return;
+    }
+    fill(view, el('h1', null, 'Trace'),
+      patients.empty_collection
+        ? el('div', { class: 'notice' }, el('p', null, patients.empty_collection), el('p', null, el('a', { href: route('documents') }, 'Add documents')))
+        : [el('p', null, 'Choose a patient whose numbers you want to trace.'),
+           patients.note ? el('p', { class: 'muted' }, patients.note) : null,
+           el('ul', { class: 'list' }, patients.patients.map(p => el('li', null,
+             el('a', { href: route('trace', { patient: p.key }), 'data-step': '1' }, p.name + ' (' + p.key + ')'))))]);
+  }
+
+  function updateTrace(params) {
+    navLinks.trace.setAttribute('href', location.hash);
+    const sel = selection(params);
+    const deeper = [sel.week, sel.encounter, sel.doc, sel.lines];
+    const plan = {
+      1: { signature: [sel.week], primary: '' },
+      2: { signature: deeper, primary: sel.week },
+      3: { signature: deeper, primary: sel.encounter },
+      4: { signature: deeper, primary: sel.doc + ' ' + sel.lines },
+    };
+    for (const n of [1, 2, 3, 4]) {
+      const signature = JSON.stringify(plan[n].signature);
+      if (trace.signatures[n] === signature) {
+        if (pendingStep === n) focusStep(n);
+        continue;
+      }
+      trace.signatures[n] = signature;
+      const keepScroll = trace.primaries[n] === plan[n].primary;
+      trace.primaries[n] = plan[n].primary;
+      drawPane(n, sel, keepScroll);
+    }
+  }
+
+  function drawPane(n, sel, keepScroll) {
+    const pane = trace.panes[n];
+    const body = trace.bodies[n];
+    const token = (trace.tokens[n] || 0) + 1;
+    trace.tokens[n] = token;
+    const scroll = pane.scrollTop;
+    if (!keepScroll || !body.firstChild) fill(body, loading('Loading.'));
+    const draw = [null, weeksPane, sessionsPane, encounterPane, sourcePane][n];
+    draw(sel).then(content => content, failed).then(content => {
+      if (trace.tokens[n] !== token || !pane.isConnected) return;
+      fill(body, ...[content].flat(Infinity).filter(Boolean));
+      pane.scrollTop = keepScroll ? scroll : 0;
+      if (pendingStep === n) focusStep(n);
+    });
+  }
+
+  function focusStep(n) {
+    pendingStep = null;
+    const heading = document.getElementById('step-' + n);
+    if (!heading) return;
+    heading.focus({ preventScroll: true });
+    if (!WIDE.matches) heading.scrollIntoView({ block: 'start' });
+  }
+
+  function weeklyFor(sel) { return patientGet(sel.patient, '/weekly', { from: sel.from, to: sel.to }); }
+
+  async function weeksPane(sel) {
+    const weekly = await weeklyFor(sel);
+    const context = base(sel);
+    const p = weekly.parameters;
+    if (!weekly.weeks.length) return prompt('There are no weeks in this period.');
+    return [
+      el('p', { class: 'small muted' }, withSources(p.dates + '. ' + p.date_range_source, context)),
+      table('Weeks of the episode', ['Week', num('Days'), num('Minutes'), 'Result'], weekly.weeks.map(w => {
+        const selected = w.week_start === sel.week;
+        return {
+          selected,
+          cells: [
+            [el('a', { class: 'mono nowrap', href: route('trace', Object.assign(base(sel), { week: w.week_start })), 'data-step': '2', 'aria-current': selected ? 'true' : null }, w.week_start),
+             el('div', { class: 'small muted' }, 'to ' + w.week_end + (w.partial ? ' (partial)' : ''))],
+            w.days, w.minutes, badge(w.result, w.tone),
+          ],
+        };
+      })),
+      el('p', { class: 'small' }, el('strong', null, 'Total: '), weekly.total_minutes + ' minutes, ' + weekly.total_hours + ' hours.'),
+      el('p', { class: 'small mono' }, weekly.total_arithmetic),
+      details('What the record does not settle', weekly.unsettled, context),
+      details('Assumptions', weekly.assumptions, context),
+    ];
+  }
+
+  async function sessionsPane(sel) {
+    if (!sel.week) return prompt('Choose a week in step 1 to see the sessions behind its total.');
+    const weekly = await weeklyFor(sel);
+    const w = weekly.weeks.find(x => x.week_start === sel.week);
+    if (!w) return prompt('The week beginning ' + sel.week + ' is not one of the weeks in step 1. Choose a week there.');
+    const context = Object.assign(base(sel), { week: w.week_start, doc: sel.doc, lines: sel.lines });
+    return [
+      el('h3', null, 'Week of ' + w.label + (w.partial ? ' (partial)' : '')),
+      el('p', null, badge(w.result, w.tone), ' ', withSources(w.reason, context)),
+      facts([
+        ['Goal', [w.goal, w.goal_sources.length ? [' from ', sources(w.goal_sources, context)] : null]],
+        ['Minutes', el('span', { class: 'mono' }, w.arithmetic)],
+        ['Hours', w.hours],
+        ['Therapy days', w.days + (w.therapy_dates.length ? ' (' + w.therapy_dates.join(', ') + ')' : '')],
+      ]),
+      w.partial_note ? el('p', { class: 'small muted' }, w.partial_note) : null,
+      w.plan_note ? el('p', { class: 'small' }, withSources(w.plan_note, context)) : null,
+      w.would_settle.length ? el('div', { class: 'notice warning' }, el('h4', null, 'What would settle it'), list(w.would_settle, context, 'small')) : null,
+      // A week with no appointment at all says so once, rather than once for each list.
+      w.contacts_note ? prompt(w.contacts_note) : [
+        contactGroup('Counted toward the goal', w.counted, sel, context, 'No session in this week counts toward the goal.'),
+        contactGroup('May count', w.may_count, sel, context, null),
+        contactGroup('Not counted', w.not_counted, sel, context, 'No appointment in this week was left out of the count.'),
+      ],
+    ];
+  }
+
+  function contactGroup(title, contacts, sel, context, whenEmpty) {
+    if (!contacts.length && !whenEmpty) return null;
+    return el('div', null, el('h3', null, title),
+      contacts.length ? contacts.map(c => contactCard(c, sel, context)) : el('p', { class: 'small muted' }, whenEmpty));
+  }
+
+  function contactCard(c, sel, context) {
+    const selected = c.ref === sel.encounter || c.encounter === sel.encounter;
+    const own = Object.assign({}, context, { encounter: c.ref });
+    return el('article', { class: 'card' + (selected ? ' selected' : '') },
+      el('div', { class: 'card-head' },
+        el('a', { class: 'id', href: route('trace', Object.assign(base(sel), { week: context.week, encounter: c.ref })), 'data-step': '3', 'aria-current': selected ? 'true' : null }, c.encounter),
+        el('span', { class: 'mono small' }, c.date + ' ' + c.weekday),
+        el('span', null, c.service)),
+      el('p', null, el('span', { class: 'figure' }, c.minutes), ' minutes'),
+      c.tone !== 'counted' ? el('p', null, pill(c.status, c.tone)) : null,
+      el('p', { class: 'small' }, withSources(c.detail, own)),
+      el('p', { class: 'small muted' }, 'Sources: ', sources(c.sources, own)),
+      list(c.notes, own, 'small'),
+      c.disagreements.length ? [el('p', { class: 'small' }, el('strong', null, 'Disagreements: ')), disagreementList(c.disagreements, own, 'small')] : null,
+      c.would_settle.length ? [el('p', { class: 'small' }, el('strong', null, 'What would settle it:')), list(c.would_settle, own, 'small')] : null);
+  }
+
+  async function encounterPane(sel) {
+    if (!sel.encounter) return prompt('Choose a session in step 2 to see how each of its details was decided.');
+    const e = await patientGet(sel.patient, '/encounter', { id: sel.encounter });
+    if (e.week_start && e.week_start !== sel.week && trace.root) {
+      // The encounter belongs to another week, so the address and step 2 follow it.
+      history.replaceState(null, '', route('trace', Object.assign(base(sel), { week: e.week_start, encounter: sel.encounter, doc: sel.doc, lines: sel.lines })));
+      setTimeout(() => updateTrace(current().params), 0);
+    }
+    const context = Object.assign(base(sel), { week: e.week_start || sel.week, encounter: e.ref, doc: sel.doc, lines: sel.lines });
+    return [
+      el('h3', null, e.encounter + ': ' + e.service),
+      el('p', { class: 'mono small' }, e.date + ' ' + e.weekday),
+      el('p', null, e.conclusion, ' ', el('span', { class: 'figure' }, e.minutes), ' patient-present minutes.'),
+      e.arithmetic ? el('p', { class: 'small mono' }, withSources(e.arithmetic, context)) : null,
+      el('p', { class: 'small' }, pill(e.judgement.status, e.judgement.tone), ' ', withSources(e.judgement.reason, context)),
+      // Items that belong to one field are shown with that field below. These are the rest, or all
+      // of them for an encounter saved before fields recorded their own.
+      e.would_settle.length ? el('div', { class: 'notice warning' }, el('h4', null, 'What would settle it'), list(e.would_settle, context, 'small')) : null,
+      facts([
+        e.session_interval ? ['Session interval', [el('span', { class: 'mono' }, e.session_interval.times), ' ', e.session_interval.reason, ' from ', sources(e.session_interval.sources, context)]] : null,
+        e.removed.length ? ['Taken out of the minutes', e.removed.map(r => el('div', null, r.reason, ' ', el('span', { class: 'mono' }, r.times), ' from ', sources(r.sources, context)))] : null,
+        e.service_labels.length ? ['Service as written', e.service_labels.join('; ')] : null,
+        ['Modality', e.modality],
+        ['Documents', el('span', { class: 'mono' }, e.documents.join(', '))],
+      ]),
+      e.notes.length ? [el('h4', null, 'Notes'), list(e.notes, context, 'small')] : null,
+      el('h4', null, 'Each detail and how it was decided'),
+      e.fields.map(f => fieldCard(f, context)),
+      el('h4', null, 'Assertions set aside'),
+      e.set_aside.length
+        ? e.set_aside.map(s => el('div', { class: 'card' },
+            el('div', { class: 'card-head' }, el('strong', null, s.field), el('span', { class: 'figure' }, s.value), sourceLink(s.source, context)),
+            el('p', { class: 'small' }, withSources(s.reason, context)),
+            el('p', { class: 'small muted' }, s.rule)))
+        : el('p', { class: 'small muted' }, 'None. No assertion about this encounter was set aside.'),
+      el('h4', null, 'Disagreements in the record'),
+      e.disagreements.length
+        ? e.disagreements.map(d => el('div', { class: 'card' },
+            el('p', { class: 'small' }, withSources(d.description, context)),
+            el('p', { class: 'small muted' }, d.rule),
+            el('p', { class: 'small muted' }, 'Sources: ', sources(d.sources, context))))
+        : el('p', { class: 'small muted' }, 'None. The records about this encounter do not disagree.'),
+      el('h4', null, 'Every assertion linked to this encounter'),
+      e.statements.map(s => el('article', { class: 'card' },
+        el('div', { class: 'card-head' }, sourceLink(s.source, context), el('span', null, s.kind)),
+        el('dl', { class: 'facts small' },
+          el('dt', null, 'Record'), el('dd', null, s.record),
+          el('dt', null, 'Signed'), el('dd', null, s.signed),
+          el('dt', null, 'Standing'), el('dd', null, s.tier),
+          el('dt', null, 'Stated at'), el('dd', { class: 'mono' }, s.stated_at),
+          el('dt', null, 'Linked'), el('dd', null, s.linked_by)),
+        quote(s.quote))),
+    ];
+  }
+
+  function fieldCard(f, context) {
+    return el('article', { class: 'card' + (f.unresolved ? ' unresolved' : '') },
+      el('div', { class: 'card-head' }, el('strong', null, f.field), pill(f.decision, f.settled ? 'counted' : f.unresolved ? 'undetermined' : 'none')),
+      el('p', null, el('span', { class: 'figure' }, f.value)),
+      el('p', { class: 'small' }, withSources(f.explanation, context)),
+      el('p', { class: 'small muted' }, f.rule),
+      f.sources.length ? el('p', { class: 'small' }, 'Sources: ', sources(f.sources, context)) : null,
+      f.unresolved
+        ? [el('p', { class: 'small' }, el('strong', null, 'Every value still standing:')),
+           el('ul', { class: 'list small' }, f.candidates.map(c => el('li', null, el('span', { class: 'figure' }, c.value), ', ', c.tier, ', from ', sources(c.sources, context)))),
+           el('p', { class: 'small' }, el('strong', null, 'What would settle it:')),
+           list(f.would_settle, context, 'small')]
+        : null);
+  }
+
+  async function sourcePane(sel) {
+    if (!sel.doc) return prompt('Choose a source in step 2 or 3 to see the lines of the document it points to.');
+    const [from, to] = sel.lines.split('-');
+    // The patient is sent too, so a source on this patient's record is read from this patient's
+    // document when two documents carry the same printed identifier.
+    const s = await get('/api/source', { document: sel.doc, from: from || '', to: to || from || '', context: '1', patient: sel.patient });
+    const context = Object.assign(base(sel), { week: sel.week, encounter: sel.encounter, doc: sel.doc, lines: sel.lines });
+    if (s.candidates.length) {
+      return [
+        el('h3', null, s.heading),
+        el('div', { class: 'notice warning', role: 'note' }, el('p', { class: 'small' }, s.note)),
+        s.candidates.map((c, i) => el('section', { class: 'card' },
+          el('h4', null, 'Document ' + (i + 1) + ' of ' + s.candidates.length + ': ', el('span', { class: 'mono' }, c.file)),
+          documentLines(c, sel, context))),
+      ];
+    }
+    return [el('h3', null, s.heading), s.note ? el('p', { class: 'notice small' }, s.note) : null, documentLines(s, sel, context)];
+  }
+
+  function documentLines(s, sel, context) {
+    return [
+      el('p', { class: 'small' }, 'File: ', el('span', { class: 'mono' }, s.file)),
+      s.lines.length ? null : el('p', { class: 'small muted' }, s.note),
+      el('div', { class: 'doc-lines' }, s.lines.map(line => el('div', { class: 'doc-line' + (line.cited ? ' cited' : '') },
+        el('span', { 'aria-hidden': 'true' }, line.cited ? '>' : ''),
+        el('span', { class: 'no' }, String(line.number)),
+        el('span', { class: 'text' }, line.cited ? el('span', { class: 'vh' }, 'Cited line: ') : null, line.text)))),
+      el('h4', null, s.statements_heading),
+      s.statements.map(st => statementCard(st, context,
+        st.encounter ? route('trace', Object.assign(base(sel), { week: sel.week, encounter: st.encounter, doc: sel.doc, lines: sel.lines })) : null)),
+    ];
+  }
+
+  // One assertion as step 4 of the trace lists it, and as the document page lists the assertions
+  // from a line: its source, its kind, the encounter it was linked to, and what it recorded.
+  function statementCard(st, context, encounterHref) {
+    return el('article', { class: 'card' },
+      el('div', { class: 'card-head' },
+        sourceLink(st.source, context),
+        el('span', null, st.kind),
+        st.encounter ? (encounterHref ? el('a', { class: 'id', href: encounterHref, 'data-step': '3' }, st.encounter) : el('span', { class: 'id' }, st.encounter)) : null),
+      el('p', { class: 'small muted' }, st.record + '. ' + st.signed + '.'),
+      st.recorded.length ? el('dl', { class: 'facts small' }, st.recorded.map(r => [el('dt', null, r.label), el('dd', null, r.value)])) : null,
+      quote(st.quote));
+  }
+
+  // ---------- jobs ----------
+  // Adding documents and answering a question run as jobs on the server. While one runs, the page
+  // asks for its progress once a second, whichever screen is showing. When it ends, every response
+  // the page kept is dropped and the screen is drawn again, so nothing shown afterwards predates it.
+
+  const followed = new Map();
+  let polling = false;
+
+  function jobUrl(id) { return '/api/jobs?' + new URLSearchParams({ id }).toString(); }
+
+  function follow(id, draw) {
+    followed.set(id, draw);
+    if (!polling) poll();
+  }
+
+  async function poll() {
+    polling = true;
+    while (followed.size) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      for (const [id, draw] of [...followed]) {
+        let job;
+        try {
+          job = await fetchJson(jobUrl(id));
+        } catch (error) {
+          job = { id, running: false, failed: true, state: 'Failed', stage: '', elapsed: '', error: error.message, files: [], calculations: [], summary: [], warnings: [] };
+        }
+        draw(job);
+        if (!job.running) {
+          followed.delete(id);
+          await jobEnded(job);
+        }
+      }
+    }
+    polling = false;
+  }
+
+  async function jobEnded(job) {
+    cache.clear();
+    await loadStatus();
+    const { screen, params } = current();
+    if (screen === 'ask' && params.get('job') === job.id && job.answer_id && !job.failed) {
+      location.replace(route('ask', { answer: job.answer_id }));
+      return;
+    }
+    await render();
+  }
+
+  // Shows a job in an area of the screen, and keeps it up to date while the job runs.
+  async function showJob(id, area, live) {
+    fill(area, loading('Loading the progress.'));
+    let job;
+    try {
+      job = await fetchJson(jobUrl(id));
+    } catch (error) {
+      if (live()) fill(area, failed(error));
+      return;
+    }
+    if (!live()) return;
+    if (job.kind === 'ask' && !job.running && !job.failed && job.answer_id) {
+      location.replace(route('ask', { answer: job.answer_id }));
+      return;
+    }
+    const draw = view => { if (area.isConnected) fill(area, jobBlock(view)); };
+    draw(job);
+    if (job.running) follow(id, draw);
+  }
+
+  function jobBlock(job) {
+    return el('div', { class: 'notice' + (job.failed ? ' error' : '') },
+      el('h2', null, job.title || 'Progress'),
+      el('p', { role: 'status' }, el('strong', null, job.state + '. '), job.stage, ' ', el('span', { class: 'muted' }, job.elapsed)),
+      job.error ? el('p', { role: 'alert' }, job.error) : null,
+      job.calculations.length
+        ? [el('h3', null, 'Calculations the model asked for'),
+           el('ol', { class: 'list' }, job.calculations.map(c => el('li', null, el('strong', null, c.title), c.inputs && c.inputs !== 'none' ? ': ' + c.inputs : '',
+             c.note ? el('div', { class: 'small muted' }, c.note) : null)))]
+        : job.kind === 'ask' && job.running ? el('p', { class: 'small muted' }, 'Each calculation the model asks for is listed here as it is run.') : null,
+      job.files.length
+        ? table('Files', ['File', 'Status', 'Detail'], job.files.map(f => [
+            f.document && !job.running ? el('a', { class: 'mono', href: route('document', { id: f.document }) }, f.name) : el('span', { class: 'mono' }, f.name),
+            tag(f.status, f.tone), f.detail]))
+        : null,
+      list(job.summary, null),
+      job.warnings.length ? [el('h3', null, 'Warnings'), list(job.warnings, null)] : null);
+  }
+
+  // Said on Ask and Documents when no model is configured. The rest of the page works without one.
+  function modelMissing(what, missing) {
+    return el('div', { class: 'notice warning', role: 'note' },
+      el('h2', null, 'No model is configured'), el('p', null, what), el('p', null, missing));
+  }
+
+  // ---------- text written by the model ----------
+  // The written answer and the calculation tables arrive divided into headings, paragraphs,
+  // lists, tables and code, with bold, italic and inline code inside them. Each piece is built
+  // here as an element holding text. Nothing is read as markup.
+
+  function blocks(list, link) {
+    return (list || []).map(b => {
+      if (b.kind === 'heading') return el('h' + Math.min(6, 3 + (b.level || 1)), null, spans(b.spans, link));
+      if (b.kind === 'paragraph') return el('p', null, spans(b.spans, link));
+      if (b.kind === 'list') return entries(b.items, b.ordered, link);
+      if (b.kind === 'table') {
+        return el('div', { class: 'table-wrap' }, el('table', null,
+          el('thead', null, el('tr', null, (b.headers || []).map(h => el('th', { scope: 'col' }, spans(h, link))))),
+          el('tbody', null, (b.rows || []).map(r => el('tr', null, r.map(cell => el('td', null, spans(cell, link))))))));
+      }
+      if (b.kind === 'code') return el('pre', { class: 'code' }, b.text || '');
+      return el('p', null, b.text || '');
+    });
+  }
+
+  function entries(items, ordered, link) {
+    return el(ordered ? 'ol' : 'ul', { class: 'list' }, (items || []).map(item => el('li', null, spans(item.spans, link),
+      item.children && item.children.length ? entries(item.children, item.ordered, link) : null)));
+  }
+
+  function spans(list, link) {
+    return (list || []).map(s => {
+      if (s.code) return el('code', null, s.text);
+      const content = link(s.text);
+      if (s.bold && s.italic) return el('strong', null, el('em', null, content));
+      if (s.bold) return el('strong', null, content);
+      if (s.italic) return el('em', null, content);
+      return content;
+    });
+  }
+
+  // Sources in an answer, such as [BH-D103 L7] or BH-D103 L5-7, become links to step 4 of the trace
+  // for the patient whose document it is. The answer says which patient each document belongs to.
+  function answerLinks(answer) {
+    const owners = answer.source_patients || {};
+    const literal = Object.keys(owners).sort((a, b) => b.length - a.length).map(id => id.replace(/[.*+?^${}()|[\]\\\/-]/g, '\\$&'));
+    const pattern = literal.length
+      ? new RegExp('(?<![A-Za-z0-9_-])(' + literal.join('|') + ') L(\\d+)(?:\\s*[-–]\\s*L?(\\d+))?(?![A-Za-z0-9_-])', 'g')
+      : null;
+    return value => {
+      const text = value === null || value === undefined ? '' : String(value);
+      const fragment = document.createDocumentFragment();
+      let last = 0;
+      for (const match of pattern ? text.matchAll(pattern) : []) {
+        fragment.append(document.createTextNode(text.slice(last, match.index)));
+        const patient = owners[match[1]] || answer.patient_key;
+        fragment.append(patient
+          ? el('a', { class: 'source', href: route('trace', { patient, doc: match[1], lines: match[3] ? match[2] + '-' + match[3] : match[2] }), 'data-step': '4' }, match[0])
+          : el('span', { class: 'mono' }, match[0]));
+        last = match.index + match[0].length;
+      }
+      fragment.append(document.createTextNode(text.slice(last)));
+      return fragment;
+    };
+  }
+
+  // ---------- Ask ----------
+
+  async function askScreen(params, view, live) {
+    document.title = 'Ask · Clinical abstraction review';
+    const answerId = params.get('answer') || '';
+    const jobId = params.get('job') || '';
+    const modelArea = el('div');
+    const formArea = el('section', null, loading('Loading.'));
+    const resultArea = el('section');
+    const historyArea = el('section', null, el('h2', null, 'Earlier questions'), loading('Loading the earlier questions.'));
+    put(view, el('h1', null, 'Ask a question'),
+      el('p', { class: 'muted' }, 'A model chooses the calculations the question needs and writes the answer from their results. Code runs the calculations, checks the written answer against them, and adds their tables. A question asked before, of the same abstraction, is answered from the saved answer without calling the model.'),
+      modelArea, formArea, resultArea, historyArea);
+
+    if (jobId) showJob(jobId, resultArea, live);
+    else if (answerId) {
+      fill(resultArea, loading('Loading the answer.'));
+      get('/api/answer', { id: answerId }).then(
+        answer => { if (live()) { document.title = 'Answer · Clinical abstraction review'; fill(resultArea, answerBlock(answer)); } },
+        error => { if (live()) fill(resultArea, failed(error)); });
+    }
+    get('/api/answers').then(
+      earlier => { if (live()) fill(historyArea, historyBlock(earlier, answerId)); },
+      error => { if (live()) fill(historyArea, el('h2', null, 'Earlier questions'), failed(error)); });
+
+    let model, patients;
+    try {
+      [model, patients] = await Promise.all([get('/api/model'), get('/api/patients', {})]);
+    } catch (error) {
+      if (live()) fill(formArea, failed(error));
+      return;
+    }
+    if (!live()) return;
+    if (!model.ready) fill(modelArea, modelMissing('Questions cannot be answered until a model is configured. Earlier answers can still be opened below.', model.missing));
+    fill(formArea, askForm(patients, model.ready));
+  }
+
+  function askForm(patients, ready) {
+    const question = el('textarea', { id: 'ask-question', rows: '3', maxlength: '4000', required: true });
+    const patient = el('select', { id: 'ask-patient' },
+      el('option', { value: '' }, 'None: the question decides'),
+      patients.patients.map(p => el('option', { value: p.key }, p.name + ' (' + p.key + ')')));
+    const button = el('button', { type: 'submit', disabled: !ready }, 'Ask');
+    const message = el('div', { role: 'status' });
+    return form({ class: 'stack', 'aria-label': 'Ask a question' }, async () => {
+      if (!ready) return;
+      const text = question.value.trim();
+      if (!text) {
+        fill(message, el('p', { class: 'small' }, 'Write a question first.'));
+        return;
+      }
+      button.disabled = true;
+      fill(message, loading('Sending the question.'));
+      try {
+        const job = await send('/api/ask', JSON.stringify({ question: text, patient: patient.value || null }));
+        location.hash = route('ask', { job: job.id });
+      } catch (error) {
+        fill(message, failed(error));
+        button.disabled = false;
+      }
+    },
+    el('label', { for: 'ask-question' }, 'Question', question),
+    el('label', { for: 'ask-patient' }, 'Default patient, used when the question names none', patient),
+    patients.note ? el('p', { class: 'small muted' }, patients.note) : null,
+    el('div', null, button),
+    message);
+  }
+
+  // An answer in its three parts, each saying who wrote it. A warning from the checks comes first.
+  function answerBlock(a) {
+    const link = answerLinks(a);
+    return el('article', { 'aria-labelledby': 'answer-heading' },
+      el('h2', { id: 'answer-heading' }, 'Answer'),
+      el('p', null, el('strong', null, 'Question: '), a.question),
+      a.patient ? el('p', { class: 'small' }, 'Default patient: ', el('a', { href: route('patient', { key: a.patient_key }) }, a.patient)) : null,
+      el('p', { class: 'small muted' }, 'Asked ' + a.asked_at + '. ' + a.how),
+      a.note ? el('div', { class: 'notice', role: 'note' }, el('p', null, a.note)) : null,
+      a.warning ? el('div', { class: 'notice warning', role: 'note' }, el('h3', null, 'Check before relying on this answer'), el('p', null, link(a.warning))) : null,
+      el('section', { class: 'part', 'aria-labelledby': 'part-written' },
+        el('h3', { id: 'part-written' }, 'Written answer'),
+        el('p', { class: 'byline' }, a.narrative_by),
+        blocks(a.narrative, link)),
+      a.checks.length
+        ? el('section', { class: 'part', 'aria-labelledby': 'part-checks' },
+            el('h3', { id: 'part-checks' }, 'Checks on the written answer'),
+            el('p', { class: 'byline' }, a.checks_by),
+            table('Checks on the written answer', ['Check', 'Result'], a.checks.map(c => [c.check, link(c.result)])))
+        : null,
+      a.checks.length
+        ? el('section', { class: 'part', 'aria-labelledby': 'part-tables' },
+            el('h3', { id: 'part-tables' }, 'Calculation tables'),
+            el('p', { class: 'byline' }, a.calculations_by),
+            a.calculations.length
+              ? a.calculations.map(c => el('section', { class: 'card' },
+                  el('h4', null, c.number + '. ' + c.title),
+                  el('p', { class: 'small muted' }, 'Inputs chosen by the model: ' + c.inputs + '. ' + c.ran),
+                  blocks(c.blocks, link)))
+              : prompt('The model asked for no calculation other than finding the patient.'))
+        : null,
+      a.produced.length ? el('details', null, el('summary', null, 'How this answer was produced'), facts(a.produced.map(p => [p.label, p.value]))) : null);
+  }
+
+  function historyBlock(earlier, openId) {
+    return [
+      el('h2', null, 'Earlier questions'),
+      earlier.empty ? prompt(earlier.empty) : [
+        el('p', { class: 'small muted' }, 'Newest first. Open one to see its answer in full.'),
+        earlier.note ? el('p', { class: 'small muted' }, earlier.note) : null,
+        table('Earlier questions', ['Asked', 'Question', 'Default patient', 'How it was answered'], earlier.answers.map(r => ({
+          selected: String(r.id) === openId,
+          cells: [
+            el('span', { class: 'mono nowrap' }, r.asked_at),
+            el('a', { href: route('ask', { answer: r.id }), 'aria-current': String(r.id) === openId ? 'true' : null }, r.question),
+            r.patient ? el('span', { class: 'id' }, r.patient) : 'None',
+            r.from_saved ? tag(r.how, 'counted') : r.how,
+          ],
+        }))),
+      ],
+    ];
+  }
+
+  // ---------- Documents ----------
+
+  async function documentsScreen(params, view, live) {
+    document.title = 'Documents · Clinical abstraction review';
+    const jobId = params.get('job') || '';
+    const modelArea = el('div');
+    const addArea = el('section', null, el('h2', null, 'Add documents'), loading('Loading.'));
+    const jobArea = el('section');
+    const listArea = el('section', null, el('h2', null, 'Documents in this database'), loading('Loading the documents.'));
+    put(view, el('h1', null, 'Documents'), modelArea, addArea, jobArea, listArea);
+
+    if (jobId) showJob(jobId, jobArea, live);
+    get('/api/documents').then(
+      listed => { if (live()) fill(listArea, documentList(listed)); },
+      error => { if (live()) fill(listArea, el('h2', null, 'Documents in this database'), failed(error)); });
+
+    let model;
+    try {
+      model = await get('/api/model');
+    } catch (error) {
+      if (live()) fill(addArea, el('h2', null, 'Add documents'), failed(error));
+      return;
+    }
+    if (!live()) return;
+    if (!model.ready) fill(modelArea, modelMissing('Documents cannot be added until a model is configured, because the model reads each new document. The documents already added can still be opened below.', model.missing));
+    fill(addArea, addForms(model.ready));
+  }
+
+  function addForms(ready) {
+    const files = el('input', { type: 'file', id: 'add-files', multiple: true, accept: '.txt,text/plain' });
+    const folder = el('input', { type: 'text', id: 'add-folder', size: '48', autocomplete: 'off', spellcheck: 'false' });
+    const message = el('div', { role: 'status' });
+    const say = text => fill(message, el('div', { class: 'notice error', role: 'alert' }, el('p', null, text)));
+    const start = async body => {
+      fill(message, loading('Sending.'));
+      try {
+        const job = await send('/api/documents', body);
+        location.hash = route('documents', { job: job.id });
+      } catch (error) {
+        fill(message, failed(error));
+      }
+    };
+    return [
+      el('h2', null, 'Add documents'),
+      el('p', { class: 'small muted' }, 'Text files ending in .txt, up to 1 MB each. A document whose text was added before is recognised and not read again. Each new document is read by the model, which takes a little while.'),
+      form({ class: 'inline', 'aria-label': 'Add text files' }, () => {
+        if (!ready) return;
+        const chosen = files.files ? Array.from(files.files) : [];
+        if (!chosen.length) return say('Choose one or more text files first.');
+        const large = chosen.find(f => f.size > 1024 * 1024);
+        if (large) return say('Nothing was added. "' + large.name + '" is larger than 1 MB. Only text files of up to 1 MB each can be added.');
+        const body = new FormData();
+        for (const f of chosen) body.append('files', f, f.name);
+        start(body);
+      },
+      el('label', { for: 'add-files' }, 'Text files', files),
+      el('button', { type: 'submit', disabled: !ready }, 'Add documents')),
+      form({ class: 'inline', 'aria-label': 'Add a folder' }, () => {
+        if (!ready) return;
+        const named = folder.value.trim();
+        if (!named) return say('Name a folder first.');
+        const body = new FormData();
+        body.append('folder', named);
+        start(body);
+      },
+      el('label', { for: 'add-folder' }, 'Or the full path of a folder on this machine. Its text files are read, and the folder is never changed.', folder),
+      el('button', { type: 'submit', disabled: !ready }, 'Add documents from this folder')),
+      message,
+    ];
+  }
+
+  function documentList(listed) {
+    return [
+      el('h2', null, 'Documents in this database'),
+      listed.empty ? prompt(listed.empty) : table('Documents in this database',
+        ['Identifier', 'File name', 'Patient', num('Assertions kept'), num('Assertions rejected'), 'Status'],
+        listed.documents.map(d => [
+          el('a', { class: 'id', href: route('document', { id: d.id }) }, d.identifier),
+          el('span', { class: 'mono' }, d.file_name),
+          d.patient_key ? el('a', { href: route('patient', { key: d.patient_key }) }, d.patient) : d.patient,
+          String(d.kept), String(d.rejected), tag(d.status, d.tone),
+        ])),
+    ];
+  }
+
+  // ---------- one document ----------
+
+  async function documentScreen(params, view, live) {
+    const id = (params.get('id') || '').trim();
+    const selected = Number(params.get('line') || 0);
+    if (!id) {
+      put(view, el('p', null, 'No document was named. ', el('a', { href: route('documents') }, 'Choose a document')));
+      return;
+    }
+    put(view, loading('Loading the document.'));
+    let d;
+    try {
+      d = await get('/api/document', { id });
+    } catch (error) {
+      if (live()) fill(view, failed(error), el('p', null, el('a', { href: route('documents') }, 'Back to the documents')));
+      return;
+    }
+    if (!live()) return;
+    document.title = d.identifier + ' · Clinical abstraction review';
+    const context = { patient: d.patient_key || '' };
+    const encounterHref = st => {
+      const parsed = parseSource(st.source);
+      return st.encounter && context.patient ? route('trace', { patient: context.patient, encounter: st.encounter, doc: parsed ? parsed.doc : '', lines: parsed ? parsed.lines : '' }) : null;
+    };
+
+    fill(view,
+      el('h1', null, d.identifier, ' ', el('span', { class: 'id muted' }, d.file_name)),
+      el('p', { class: 'small' }, el('a', { href: route('documents') }, 'Back to the documents')),
+      facts([
+        ['File', el('span', { class: 'mono' }, d.file)],
+        d.also_seen_as.length ? ['Also seen as', el('span', { class: 'mono' }, d.also_seen_as.join(', '))] : null,
+        ['Patient', d.patient_key ? el('a', { href: route('patient', { key: d.patient_key }) }, d.patient) : d.patient],
+        ['Status', [pill(d.status, d.tone), d.status_detail ? el('div', { class: 'small muted' }, d.status_detail) : null]],
+        ['Assertions kept', String(d.kept)],
+        ['Assertions rejected', String(d.rejected)],
+        ['Lines', String(d.line_count)],
+      ]),
+      el('p', { class: 'small muted' }, 'Lines marked with a dot produced assertions. Select a line number to list the assertions extracted from that line, as step 4 of the trace lists them.'),
+      el('div', { class: 'doc-lines' }, d.lines.map(line => {
+        const has = line.statements.length > 0;
+        const chosen = line.number === selected;
+        const row = el('div', { class: 'doc-line' + (has ? ' marked' : '') + (chosen ? ' cited' : ''), id: 'line-' + line.number },
+          el('span', { 'aria-hidden': 'true' }, has ? '•' : ''),
+          has
+            ? el('a', { class: 'no', href: route('document', { id: d.id, line: line.number }), 'aria-current': chosen ? 'true' : null },
+                String(line.number), el('span', { class: 'vh' }, ', ' + line.statements.length + (line.statements.length === 1 ? ' assertion' : ' assertions')))
+            : el('span', { class: 'no' }, String(line.number)),
+          el('span', { class: 'text' }, line.text));
+        if (!chosen) return row;
+        return [row, el('div', { class: 'line-assertions' },
+          el('h2', null, 'Assertions extracted from line ' + line.number + ': ' + line.statements.length),
+          has ? line.statements.map(i => statementCard(d.statements[i], context, encounterHref(d.statements[i])))
+              : prompt('No assertion was extracted from this line.'))];
+      })));
+
+    const target = selected ? document.getElementById('line-' + selected) : null;
+    if (target) target.scrollIntoView({ block: 'center' });
+  }
+
+  // ---------- Gap log ----------
+
+  async function gapsScreen(params, view, live) {
+    document.title = 'Gap log · Clinical abstraction review';
+    const body = el('div', null, loading('Loading the gap log.'));
+    put(view, el('h1', null, 'Gap log'),
+      el('p', { class: 'muted' }, 'Passages found by text search when a question needed a fact the calculations do not hold. They are grouped by the kind of fact the model said it was looking for, with the questions that led to them. They are not part of the abstraction and are never counted.'),
+      body);
+    let g;
+    try {
+      g = await get('/api/gaps');
+    } catch (error) {
+      if (live()) fill(body, failed(error));
+      return;
+    }
+    if (!live()) return;
+    if (g.empty) {
+      fill(body, el('div', { class: 'notice' }, el('p', null, g.empty)));
+      return;
+    }
+    fill(body,
+      el('p', null, g.passages + (g.passages === 1 ? ' passage' : ' passages') + ' in ' + g.groups.length + (g.groups.length === 1 ? ' group.' : ' groups.')),
+      g.groups.map(group => el('section', null,
+        el('h2', null, group.kind + ': ' + group.count + (group.count === 1 ? ' passage' : ' passages')),
+        el('h3', null, group.questions.length === 1 ? 'The question that led to them' : 'The questions that led to them'),
+        el('ul', { class: 'list' }, group.questions.map(q => el('li', null, q))),
+        table('Passages found for ' + group.kind, ['Source', 'Search terms', 'Passage'], group.passages.map(p => [
+          sourceLink(p.source, { patient: p.patient_key || '' }), p.search_terms, quote(p.passage),
+        ])))));
+  }
+
+  // ---------- status ----------
+
+  async function loadStatus() {
+    try {
+      const status = await get('/api/status');
+      sourceInText = sourcePattern(status.document_ids);
+      showStatus(status);
+    } catch (error) {
+      fill(footer, failed(error));
+    }
+  }
+
+  function showStatus(status) {
+    fill(footer, 
+      el('p', null, 'Database: ', el('span', { class: 'mono' }, status.database)),
+      el('details', null, el('summary', null, 'What the database holds'),
+        facts(status.counts.map(c => [c.label, String(c.count)]))),
+      el('p', null, status.model.note + ' Provider: ' + status.model.provider + '. Extraction model: ' + status.model.extraction_model + '. Answer model: ' + status.model.answer_model + '.'));
+  }
+
+  // ---------- start ----------
+
+  async function start() {
+    buildNav();
+    document.addEventListener('click', event => {
+      const link = event.target instanceof Element ? event.target.closest('a[data-step]') : null;
+      if (!link) return;
+      const step = Number(link.getAttribute('data-step'));
+      if (link.getAttribute('href') === location.hash) {
+        // The link is the current selection, so nothing reloads. Move to its step instead.
+        event.preventDefault();
+        focusStep(step);
+        return;
+      }
+      pendingStep = step;
+    }, true);
+    window.addEventListener('hashchange', render);
+    await loadStatus();
+    await render();
+  }
+
+  start();
+})();
+</script>
+</body>
+</html>

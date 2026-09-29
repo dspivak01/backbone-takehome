@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Anthropic" Version="12.50.0" />
+    <PackageReference Include="Anthropic.Bedrock" Version="0.13.3" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.12" />
+  </ItemGroup>
+
+  <!-- The web server behind 'serve'. It is part of .NET, so no package is added. -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <!-- The review page ships inside the program, so 'serve' works from any directory. -->
+  <ItemGroup>
+    <EmbeddedResource Include="Web\page.html" LogicalName="ClinicalAbstraction.Web.page.html" />
+  </ItemGroup>
+
+</Project>

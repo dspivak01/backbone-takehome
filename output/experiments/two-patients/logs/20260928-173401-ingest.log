@@ -1,0 +1,19 @@
+17:34:01.891  Ingesting test-data/synthetic-patient into output/experiments/two-patients/collection.db
+17:34:01.898  new        f02b4e55ad6f  test-data/synthetic-patient/attendance_register_feb.txt
+17:34:01.898  new        c4690c6bbdd1  test-data/synthetic-patient/family_note_feb26.txt
+17:34:01.899  new        2917f5bbb54d  test-data/synthetic-patient/individual_note_feb10.txt
+17:34:01.900  duplicate  2917f5bbb54d  test-data/synthetic-patient/individual_note_feb10_second_copy.txt  (same text after normalising as test-data/synthetic-patient/individual_note_feb10.txt)
+17:34:01.900  new        43273effb39b  test-data/synthetic-patient/plan_initial.txt
+17:34:01.900  new        0d53c29bbd7c  test-data/synthetic-patient/plan_revision.txt
+17:34:01.900  Registered 6 files: 5 new, 1 already known. 5 need extraction.
+17:34:32.598  Extracted NS-0031     28 assertions, 0 rejected, 1 attempt(s), 30682 ms  [attendance_register_feb.txt]
+17:34:40.894  Extracted NS-0001      4 assertions, 0 rejected, 1 attempt(s), 8296 ms  [plan_initial.txt]
+17:34:41.487  Extracted NS-0014      4 assertions, 0 rejected, 1 attempt(s), 8889 ms  [plan_revision.txt]
+17:34:43.316  Extracted NS-0027      8 assertions, 0 rejected, 1 attempt(s), 10717 ms  [family_note_feb26.txt]
+17:34:43.943  Extracted NS-0009      8 assertions, 0 rejected, 1 attempt(s), 11344 ms  [individual_note_feb10.txt]
+17:34:44.020  Extraction: 5 documents, 52 assertions kept (0 with corrected line numbers), 0 rejected (0 critical).
+17:34:44.020  Reconciled 1 patient(s).
+17:34:44.020  Time: register 7 ms, extract 42041 ms, reconcile 75 ms, total 42126 ms.
+17:34:44.021  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 40 calls, 31292 input, 0 cache write, 279800 cache read, 94838 output tokens, 700774 ms in total. Cost at list price: $1.0669.
+17:34:44.021  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.
+17:34:44.021  Model usage so far, question with us.anthropic.claude-sonnet-5: 30 calls, 118561 input, 6023 cache write, 84322 cache read, 16589 output tokens, 209942 ms in total. Cost at list price: $0.4349.

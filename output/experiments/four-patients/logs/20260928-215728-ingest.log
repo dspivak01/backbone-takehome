@@ -1,0 +1,18 @@
+21:57:28.944  Ingesting test-data/synthetic-patient-unresolved into output/experiments/four-patients/collection.db
+21:57:28.955  new        74d87f3d4885  test-data/synthetic-patient-unresolved/group_attendance_march.txt
+21:57:28.956  new        0a39d2e176a3  test-data/synthetic-patient-unresolved/individual_notes_march.txt
+21:57:28.956  new        550011bcba3e  test-data/synthetic-patient-unresolved/plan.txt
+21:57:28.956  new        da1fcae64fbd  test-data/synthetic-patient-unresolved/session_s304_therapist.txt
+21:57:28.957  new        136b7a9e013a  test-data/synthetic-patient-unresolved/session_s304_trainee.txt
+21:57:28.957  Registered 5 files: 5 new, 0 already known. 5 need extraction.
+21:57:41.620  Extracted RV-G-03      7 assertions, 0 rejected, 1 attempt(s), 12634 ms  [group_attendance_march.txt]
+21:57:49.619  Extracted RV-P-01      3 assertions, 0 rejected, 1 attempt(s), 7999 ms  [plan.txt]
+21:57:51.512  Extracted RV-N-11      5 assertions, 0 rejected, 1 attempt(s), 9891 ms  [session_s304_therapist.txt]
+21:57:51.906  Extracted RV-N-12      6 assertions, 0 rejected, 1 attempt(s), 10284 ms  [session_s304_trainee.txt]
+21:57:56.245  Extracted RV-N-07     10 assertions, 0 rejected, 1 attempt(s), 14624 ms  [individual_notes_march.txt]
+21:57:56.323  Extraction: 5 documents, 31 assertions kept (0 with corrected line numbers), 0 rejected (0 critical).
+21:57:56.323  Reconciled 1 patient(s).
+21:57:56.323  Time: register 10 ms, extract 27287 ms, reconcile 73 ms, total 27375 ms.
+21:57:56.325  Model usage so far, extraction with us.anthropic.claude-sonnet-5: 48 calls, 35248 input, 13990 cache write, 321770 cache read, 105744 output tokens, 786788 ms in total. Cost at list price: $1.2273.
+21:57:56.325  Model usage so far, extraction header with us.anthropic.claude-sonnet-5: 1 calls, 792 input, 0 cache write, 6995 cache read, 1000 output tokens, 8475 ms in total. Cost at list price: $0.0130.
+21:57:56.325  Model usage so far, question with us.anthropic.claude-sonnet-5: 161 calls, 861890 input, 22113 cache write, 617775 cache read, 88179 output tokens, 1169299 ms in total. Cost at list price: $2.7844.
