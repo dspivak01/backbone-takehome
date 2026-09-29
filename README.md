@@ -37,9 +37,7 @@ the document lines.
 | Every command | `docs/commands.md` |
 
 The saved abstraction is included, so everything except asking a new question and adding
-documents works with no model access. Those two need AWS credentials with access to Claude
-Sonnet 5 on Amazon Bedrock in `us-west-2`, or `ANTHROPIC_API_KEY` set in the terminal that runs
-the command. When the key is set, the program uses the Anthropic API.
+documents works with no model access. Those two call a model. See "Model access" below.
 
 ```bash
 ca ask "How many group sessions did Rowan Mercer attend?"
@@ -59,6 +57,46 @@ ca serve --db fresh.db --out fresh-output
 ```
 
 The model's output varies between runs, so a fresh build can differ slightly from the saved one.
+
+### Model access
+
+Use either of these. If an Anthropic API key is set, the program uses it. Otherwise it uses
+Amazon Bedrock.
+
+**Anthropic API**
+
+1. Create a key at `console.anthropic.com`, under API keys. The account needs credit.
+2. Set the key in the terminal you will run the commands from.
+
+   macOS or Linux:
+
+   ```bash
+   export ANTHROPIC_API_KEY=sk-ant-your-key
+   ```
+
+   Windows PowerShell:
+
+   ```powershell
+   $env:ANTHROPIC_API_KEY = "sk-ant-your-key"
+   ```
+
+3. Run the commands in that same terminal. For the review page, set the key before `ca serve`.
+
+The key lasts until that terminal is closed. A new terminal does not have it.
+
+**Amazon Bedrock**
+
+Configure AWS credentials as for the AWS CLI, with access to Claude Sonnet 5 in `us-west-2`.
+Nothing else needs setting. `CA_AWS_REGION` changes the region.
+
+**Which one was used**
+
+| Where | What it shows |
+|---|---|
+| The last table of every answer | `claude-sonnet-5` for the Anthropic API, `us.anthropic.claude-sonnet-5` for Bedrock |
+| The foot of every screen of the review page | The provider and the models |
+
+To use Bedrock while a key is set, also set `CA_PROVIDER=bedrock`.
 
 ## How it works
 
