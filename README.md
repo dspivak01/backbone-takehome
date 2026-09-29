@@ -45,6 +45,20 @@ ca ask "How many group sessions did Rowan Mercer attend?"
 ca ingest <folder>
 ```
 
+**Adding documents.** Use `ca ingest <folder>` or the Documents screen. Only content not seen
+before is sent to the model, and only the patients it names are rebuilt. Everything else in the
+abstraction is left as it was.
+
+**Starting from nothing.** Any command given a database file that does not exist creates it.
+This rebuilds the abstraction from the supplied documents in about 2 minutes, for about $1:
+
+```bash
+ca ingest documents --db fresh.db --out fresh-output
+ca serve --db fresh.db --out fresh-output
+```
+
+The model's output varies between runs, so a fresh build can differ slightly from the saved one.
+
 ## How it works
 
 | Stage | What it does | Model |
